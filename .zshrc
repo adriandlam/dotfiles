@@ -99,6 +99,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias nv="nvim"
 
 # pnpm
 export PNPM_HOME="/Users/adrianlam/Library/pnpm"
