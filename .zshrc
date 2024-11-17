@@ -12,6 +12,7 @@ prompt pure
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -44,7 +45,7 @@ prompt pure
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -73,7 +74,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast command-not-found httpie iterm2 macos web-search docker dotenv keychain git-commit gitignore zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(gitfast httpie iterm2 macos web-search docker dotenv keychain git-commit gitignore zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -138,3 +139,36 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /Users/adrianlam/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=header,grid --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always | head -200'"
+
+_fzf_comprun() {
+  local command=$1
+  shift
+  
+  case "$command" in
+    cd) fzf --preview 'eza --tree --color=always | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$' {}" "$@" ;;
+    ssh) fzf --preview 'dig {}' "$@" ;;
+    *) fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}' "$@" ;;
+  esac
+}
+
+# Bat (better cat) theme
+export BAT_THEME="base16"
+
+# eza alias 
+alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions"
+
+# thefuck alias
+eval $(thefuck --alias)
+eval $(thefuck --alias fk)
+
+# zoxide (better cd)
+eval "$(zoxide init zsh)"
+
+alias cd="z"
