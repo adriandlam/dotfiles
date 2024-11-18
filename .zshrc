@@ -74,7 +74,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast httpie iterm2 macos web-search docker dotenv keychain git-commit gitignore zsh-syntax-highlighting)
+plugins=(gitfast httpie iterm2 macos web-search docker dotenv keychain git-commit gitignore zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,10 +99,8 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nv="nvim"
 
 # pnpm
@@ -159,7 +157,7 @@ _fzf_comprun() {
 }
 
 # Bat (better cat) theme
-export BAT_THEME="base16"
+export BAT_THEME="tokyonight_moon"
 
 # eza alias 
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions"
@@ -172,3 +170,4 @@ eval $(thefuck --alias fk)
 eval "$(zoxide init zsh)"
 
 alias cd="z"
+source /opt/homebrew/opt/spaceship/spaceship.zsh
