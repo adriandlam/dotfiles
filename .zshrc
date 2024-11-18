@@ -4,8 +4,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-autoload -U promptinit; promptinit
-prompt pure
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -170,4 +168,20 @@ eval $(thefuck --alias fk)
 eval "$(zoxide init zsh)"
 
 alias cd="z"
-source /opt/homebrew/opt/spaceship/spaceship.zsh
+# source /opt/homebrew/opt/spaceship/spaceship.zsh
+
+# pure prompt
+autoload -U promptinit; promptinit
+
+# Tokyo Night color scheme for Pure prompt
+zstyle :prompt:pure:path color '#7AA2F7'          # Tokyo Night's bright blue
+zstyle :prompt:pure:git:branch color '#BB9AF7'    # Tokyo Night's purple
+zstyle :prompt:pure:git:dirty color '#E0AF68'     # Tokyo Night's yellow/orange
+zstyle :prompt:pure:git:arrow color '#E0AF68'     # Matching arrow to dirty indicator
+zstyle ':prompt:pure:prompt:success' color '#7AA2F7'  # Blue prompt
+zstyle ':prompt:pure:prompt:error' color '#F7768E'    # Tokyo Night's red
+zstyle :prompt:pure:git:stash show yes            # Enable git stash indicator
+zstyle :prompt:pure:git:stash color '#89DDFF'     # Tokyo Night's cyan
+zstyle :prompt:pure:virtualenv color '#7AA2F7'
+
+prompt pure
