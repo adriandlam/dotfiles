@@ -178,10 +178,13 @@ zstyle :prompt:pure:path color '#7AA2F7'          # Tokyo Night's bright blue
 zstyle :prompt:pure:git:branch color '#BB9AF7'    # Tokyo Night's purple
 zstyle :prompt:pure:git:dirty color '#E0AF68'     # Tokyo Night's yellow/orange
 zstyle :prompt:pure:git:arrow color '#E0AF68'     # Matching arrow to dirty indicator
-zstyle ':prompt:pure:prompt:success' color '#7AA2F7'  # Blue prompt
+# zstyle ':prompt:pure:prompt:success' color '#7AA2F7'  # Blue prompt
 zstyle ':prompt:pure:prompt:error' color '#F7768E'    # Tokyo Night's red
 zstyle :prompt:pure:git:stash show yes            # Enable git stash indicator
 zstyle :prompt:pure:git:stash color '#89DDFF'     # Tokyo Night's cyan
 zstyle :prompt:pure:virtualenv color '#7AA2F7'
+zstyle :prompt:pure:prompt:success color '#BB9AF7'
+
+# tokyo night's comment is '#4C566A'
 
 prompt pure
