@@ -101,6 +101,11 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nv="nvim"
 
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/shims:$PATH"
+
+export PATH="/Users/adrianlam/Documents/flutter/bin:$PATH"
+
 # pnpm
 export PNPM_HOME="/Users/adrianlam/Library/pnpm"
 case ":$PATH:" in
@@ -142,7 +147,7 @@ source <(fzf --zsh)
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=header,grid --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always | head -200'"
 
-_fzf_comprun() {
+_ifzf_comprun() {
   local command=$1
   shift
   
@@ -174,17 +179,38 @@ alias cd="z"
 autoload -U promptinit; promptinit
 
 # Tokyo Night color scheme for Pure prompt
-zstyle :prompt:pure:path color '#7AA2F7'          # Tokyo Night's bright blue
-zstyle :prompt:pure:git:branch color '#BB9AF7'    # Tokyo Night's purple
-zstyle :prompt:pure:git:dirty color '#E0AF68'     # Tokyo Night's yellow/orange
-zstyle :prompt:pure:git:arrow color '#E0AF68'     # Matching arrow to dirty indicator
-# zstyle ':prompt:pure:prompt:success' color '#7AA2F7'  # Blue prompt
-zstyle ':prompt:pure:prompt:error' color '#F7768E'    # Tokyo Night's red
-zstyle :prompt:pure:git:stash show yes            # Enable git stash indicator
-zstyle :prompt:pure:git:stash color '#89DDFF'     # Tokyo Night's cyan
-zstyle :prompt:pure:virtualenv color '#7AA2F7'
+# zstyle :prompt:pure:path color '#7AA2F7'          # Tokyo Night's bright blue
+# zstyle :prompt:pure:git:branch color '#BB9AF7'    # Tokyo Night's purple
+# zstayle :prompt:pure:git:dirty color '#E0AF68'     # Tokyo Night's yellow/orange
+# zstyle :prompt:pure:git:arrow color '#E0AF68'     # Matching arrow to dirty indicator
+# # zstyle ':prompt:pure:prompt:success' color '#7AA2F7'  # Blue prompt
+# zstyle ':prompt:pure:prompt:error' color '#F7768E'    # Tokyo Night's red
+# zstyle :prompt:pure:git:stash show yes            # Enable git stash indicator
+# zstyle :prompt:pure:git:stash color '#89DDFF'     # Tokyo Night's cyan
+# zstysle :prompt:pure:virtualenv color '#7AA2F7'
 zstyle :prompt:pure:prompt:success color '#BB9AF7'
 
 # tokyo night's comment is '#4C566A'
 
-prompt pure
+alias c2p="code2prompt -l"
+
+# prompt pure
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/adrianlam/.codeium/windsurf/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/adrianlam/.codeium/windsurf/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/adrianlam/.codeium/windsurf/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# bun completions
+[ -s "/Users/adrianlam/.bun/_bun" ] && source "/Users/adrianlam/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
