@@ -26,9 +26,13 @@
   "workbench.layoutControl.enabled": false,
   "workbench.editor.editorActionsLocation": "titleBar",
   "breadcrumbs.enabled": false,
+  "vscode_custom_css.imports": [
+    "",
+    "file:///Users/adrianlam/.cursor/extensions/yesitsfebreeze.smearcursor-1.2.0/_smearcursor.js"
+  ],
   "workbench.tree.renderIndentGuides": "none",
   "editor.cursorSurroundingLines": 15,
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorBlinking": "phase",
   "editor.lineNumbers": "relative",
   "editor.showFoldingControls": "mouseover",
@@ -46,5 +50,7 @@
   "workbench.colorTheme": "Monokai Pro",
   "workbench.colorCustomizations": {},
   "window.titleBarStyle": "custom",
-  "editor.smoothScrolling": true
+  "editor.smoothScrolling": true,
+  "sync.gist": "10fc3dffbfcd3c8f53037c7c8adefe8d",
+  "sync.autoUpload": true
 }
