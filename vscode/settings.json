@@ -1,0 +1,50 @@
+{
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "window.newWindowProfile": "Default",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
+  "cursor.cpp.enablePartialAccepts": true,
+  "update.releaseTrack": "prerelease",
+  "makefile.configureOnOpen": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.autofetch": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vscord.app.name": "Visual Studio Code",
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "githubPullRequests.pullBranch": "never",
+  "workbench.navigationControl.enabled": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.editorActionsLocation": "titleBar",
+  "breadcrumbs.enabled": false,
+  "workbench.tree.renderIndentGuides": "none",
+  "editor.cursorSurroundingLines": 15,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorBlinking": "phase",
+  "editor.lineNumbers": "relative",
+  "editor.showFoldingControls": "mouseover",
+  "tailwindCSS.experimental.classRegex": [
+    "class:\\s*?[\"'`]([^\"'`]*).*?,"
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+  "editor.accessibilitySupport": "off",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorTheme": "Monokai Pro",
+  "workbench.colorCustomizations": {},
+  "window.titleBarStyle": "custom",
+  "editor.smoothScrolling": true
+}
