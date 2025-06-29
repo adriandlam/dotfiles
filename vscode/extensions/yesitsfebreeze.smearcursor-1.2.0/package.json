@@ -1,0 +1,112 @@
+{
+	"name": "smearcursor",
+	"displayName": "SmearCursor",
+	"description": "A Neovide like smear cursor",
+	"publisher": "yesitsfebreeze",
+	"author": {
+		"name": "yesitsfebreeze"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yesitsfebreeze/vsc-smearcursor"
+	},
+	"icon": "images/logo.png",
+	"version": "1.2.0",
+	"engines": {
+		"vscode": "^1.96.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "smearcursor.enable",
+				"title": "Smearcursor: Enable/Update"
+			},
+			{
+				"command": "smearcursor.disable",
+				"title": "Smearcursor: Disable"
+			}
+		],
+		"configuration": {
+			"properties": {
+				"smearcursor.animation_time": {
+					"type": "number",
+					"default": 250,
+					"description": "Animation Time"
+				},
+				"smearcursor.animation_easing": {
+					"type": "string",
+					"default": "circ",
+					"description": "Type of easing function used for the cursor animation.",
+					"enum": [
+						"linear",
+						"quad",
+						"cubic",
+						"quart",
+						"quint",
+						"sine",
+						"expo",
+						"circ",
+						"back"
+					],
+					"enumDescriptions": [
+						"No easing, constant speed.",
+						"Starts slow and accelerates (quadratic).",
+						"Starts even slower and accelerates more smoothly (cubic).",
+						"Starts very slow and accelerates strongly (quartic).",
+						"Starts extremely slow and accelerates rapidly (quintic).",
+						"Smooth, sine wave-like easing.",
+						"Exponential acceleration and deceleration.",
+						"Circular easing, creating a natural motion effect.",
+						"Moves slightly backward before accelerating forward.",
+						"Spring-like motion with elasticity.",
+						"Bouncy, rubber-like easing effect."
+					]
+				},
+				"smearcursor.max_length": {
+					"type": "number",
+					"default": 300,
+					"description": "Max trail length"
+				},
+				"smearcursor.tip_shrink": {
+					"type": "number",
+					"default": 0.9,
+					"description": "How much the cursor tip shrinks when moving"
+				},
+				"smearcursor.tail_shrink": {
+					"type": "number",
+					"default": 0.45,
+					"description": "How much the cursor tail shrinks when moving"
+				}
+			}
+		}
+	},
+	"extensionDependencies": [
+		"be5invis.vscode-custom-css"
+	],
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.96.0",
+		"@types/mocha": "^10.0.10",
+		"@types/node": "20.x",
+		"eslint": "^9.16.0",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.4.1"
+	},
+	"__metadata": {
+		"size": 56048,
+		"isApplicationScoped": false,
+		"installedTimestamp": 1750993937589,
+		"pinned": true,
+		"source": "vsix"
+	}
+}

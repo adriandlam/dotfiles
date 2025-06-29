@@ -1,0 +1,155 @@
+{
+	"name": "one-hunter",
+	"displayName": "One Hunter Theme",
+	"description": "A VSCode theme inspired by Vercel Theme and One Dark Pro",
+	"publisher": "RaillyHugo",
+	"version": "1.4.0",
+	"engines": {
+		"vscode": "^1.70.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"contributes": {
+		"themes": [
+			{
+				"label": "One Hunter Theme",
+				"uiTheme": "vs-dark",
+				"path": "./themes/OneHunter-Classic-color-theme.json"
+			},
+			{
+				"label": "One Hunter Theme Material",
+				"uiTheme": "vs-dark",
+				"path": "./themes/OneHunter-Material-color-theme.json"
+			},
+			{
+				"label": "One Hunter Theme Vercel",
+				"uiTheme": "vs-dark",
+				"path": "./themes/OneHunter-Vercel-color-theme.json"
+			},
+			{
+				"label": "One Hunter Theme Light",
+				"uiTheme": "vs",
+				"path": "./themes/OneHunter-Light-color-theme.json"
+			},
+			{
+				"label": "One Hunter Flexoki Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/OneHunter-Flexoki-Dark-color-theme.json"
+			},
+			{
+				"label": "One Hunter Flexoki Light",
+				"uiTheme": "vs",
+				"path": "./themes/OneHunter-Flexoki-Light-color-theme.json"
+			},
+			{
+				"label": "Flexoki Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Flexoki-Dark-color-theme.json"
+			},
+			{
+				"label": "Flexoki Light",
+				"uiTheme": "vs",
+				"path": "./themes/Flexoki-Light-color-theme.json"
+			},
+			{
+				"label": "Vercel 2024 Light",
+				"uiTheme": "vs",
+				"path": "./themes/Vercel2024-Light-color-theme.json"
+			},
+			{
+				"label": "Vercel 2024 Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Vercel2024-Dark-color-theme.json"
+			}
+		]
+	},
+	"configuration": {
+		"title": "One Hunter Theme",
+		"properties": {
+			"one-hunter.editorTheme": {
+				"type": "string",
+				"default": "classic",
+				"markdownDescription": "%description.one-hunter.editorTheme%",
+				"enum": [
+					"classic",
+					"material",
+					"vercel",
+					"light",
+					"one-hunter-flexoki-dark",
+					"one-hunter-flexoki-light",
+					"original-flexoki-dark",
+					"original-flexoki-light",
+					"vercel-2024-light",
+					"vercel-2024-dark"
+				],
+				"enumDescriptions": [
+					"Classic",
+					"Material",
+					"Vercel",
+					"Light",
+					"One Hunter Flexoki Dark",
+					"One Hunter Flexoki Light",
+					"Flexoki Dark",
+					"Flexoki Light",
+					"Vercel 2024 Light",
+					"Vercel 2024 Dark"
+				],
+				"description": "Select the theme variant"
+			}
+		}
+	},
+	"keywords": [
+		"color-theme",
+		"theme",
+		"one hunter",
+		"hunter",
+		"one dark",
+		"one dark pro",
+		"vercel",
+		"vercel theme",
+		"flexoki"
+	],
+	"icon": "icon.png",
+	"homepage": "https://github.com/Railly/one-hunter-vscode/blob/main/README.md",
+	"bugs": {
+		"url": "https://github.com/Railly/one-hunter-vscode/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Railly/one-hunter-vscode.git"
+	},
+	"scripts": {
+		"generate:vscode": "ts-node --project src/tsconfig.json src/generators/generate-theme.ts",
+		"generate:iterm2": "ts-node --project src/tsconfig.json src/generators/generate-iterm2-theme.ts",
+		"generate": "npm run generate:vscode && npm run generate:iterm2",
+		"build:ts": "tsc -p src",
+		"build:theme": "npm run generate",
+		"build": "npm run build:ts && npm run build:theme",
+		"publish": "vsce publish",
+		"package": "vsce package"
+	},
+	"devDependencies": {
+		"@types/node": "^18.11.18",
+		"ts-node": "^10.9.1",
+		"tslib": "^2.4.1",
+		"typescript": "^4.9.4"
+	},
+	"dependencies": {
+		"@types/vscode": "^1.74.0"
+	},
+	"__metadata": {
+		"id": "4c471c3c-c3ce-43e6-b7bd-ebde0b9c4ace",
+		"publisherId": "3c8c42f9-fa0f-4eb6-9b77-72e01bcfe296",
+		"publisherDisplayName": "Railly Hugo",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1746896532009,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery",
+		"size": 8449655
+	}
+}
