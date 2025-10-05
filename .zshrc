@@ -72,7 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast httpie iterm2 macos web-search docker dotenv keychain git-commit gitignore zsh-autosuggestions)
+plugins=(git gitfast httpie iterm2 macos web-search docker dotenv keychain git-commit gitignore)
 
 source $ZSH/oh-my-zsh.sh
 
