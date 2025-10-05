@@ -101,6 +101,8 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nv="nvim"
 
+alias p="pnpm"
+
 # eza alias 
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions"
 
