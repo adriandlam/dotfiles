@@ -100,7 +100,7 @@ fi
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nv="nvim"
-
+alias gg="lazygit"
 alias p="pnpm"
 
 # eza alias 
