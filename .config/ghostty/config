@@ -1,5 +1,5 @@
 # Appearance
-theme = vercel
+theme = carbonfox
 background-opacity = 0.65
 background-blur = true
 window-padding-x = 16

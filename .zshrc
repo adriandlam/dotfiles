@@ -137,6 +137,8 @@ zstyle ':autocomplete:*' special-dirs true
 zstyle ':autocomplete:*' delay 0.1
 zstyle ':autocomplete:*' timeout 2.0
 zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
+bindkey              '^I'         menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
 zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
 zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
 
