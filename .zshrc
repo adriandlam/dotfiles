@@ -148,6 +148,8 @@ PURE_PROMPT_SYMBOL=">"
 zstyle :prompt:pure:path color '#be95ff'
 zstyle :prompt:pure:git:branch color white
 zstyle :prompt:pure:git:dirty color '#ffa400'
+zstyle :prompt:pure:prompt:success '#0fce6c'
+zstyle :prompt:pure:git:arrow '#0fce6c'
 prompt pure
 
 
