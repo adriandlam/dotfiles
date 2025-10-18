@@ -7,11 +7,13 @@ window-padding-y = 16
 window-padding-balance = true
 window-padding-color = background
 cursor-style = underline
+cursor-style-blink = true
 unfocused-split-opacity = 0.45
 split-divider-color = #2e2e2e
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 macos-icon = blueprint
+macos-window-buttons = hidden
 
 # Keybinds
 keybind = cmd+r=reload_config
@@ -23,6 +25,7 @@ keybind = cmd+l=goto_split:right
 keybind = cmd+h=goto_split:left
 keybind = ctrl+backquote=toggle_quick_terminal
 
+quit-after-last-window-closed = true
 shell-integration-features = no-cursor
 
 # 100 mb per terminal
