@@ -132,15 +132,24 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+zstyle ':autocomplete:*' min-input 3
+zstyle ':autocomplete:*' special-dirs true
+zstyle ':autocomplete:*' delay 0.1
+zstyle ':autocomplete:*' timeout 2.0
+zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
+
 # pure prompt
 autoload -U promptinit; promptinit
 PURE_PROMPT_SYMBOL=">"
 zstyle :prompt:pure:path color '#f22881'
 zstyle :prompt:pure:git:branch color white
 zstyle :prompt:pure:git:dirty color '#ffa400'
-zstyle :prompt:pure:prompt:success'#0fce6c'
-zstyle :prompt:pure:git:arrow'#0fce6c'
+zstyle :prompt:pure:prompt:success '#0fce6c'
+zstyle :prompt:pure:git:arrow '#0fce6c'
 prompt pure
+
 
 # zoxide (better cd)
 eval "$(zoxide init zsh)"
