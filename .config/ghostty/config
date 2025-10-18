@@ -1,0 +1,36 @@
+# Appearance
+theme = vercel
+background-opacity = 0.65
+background-blur = true
+window-padding-x = 16
+window-padding-y = 16
+window-padding-balance = true
+window-padding-color = background
+cursor-style = underline
+unfocused-split-opacity = 0.45
+split-divider-color = #2e2e2e
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+macos-icon = blueprint
+
+# Keybinds
+keybind = cmd+r=reload_config
+keybind = cmd+shift+l=new_split:right
+keybind = cmd+shift+j=new_split:down
+keybind = cmd+k=goto_split:up
+keybind = cmd+j=goto_split:down
+keybind = cmd+l=goto_split:right
+keybind = cmd+h=goto_split:left
+keybind = ctrl+backquote=toggle_quick_terminal
+
+shell-integration-features = no-cursor
+
+# 100 mb per terminal
+scrollback-limit = 100000000  
+
+# Quick terminal
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.1
+quick-terminal-autohide = true
+ 

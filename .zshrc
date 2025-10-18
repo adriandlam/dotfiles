@@ -130,6 +130,14 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# pure prompt
+autoload -U promptinit; promptinit
+PURE_PROMPT_SYMBOL=">"
+zstyle :prompt:pure:path color '#f22881'
+zstyle :prompt:pure:git:branch color white
+zstyle :prompt:pure:git:dirty color '#ffa400'
+prompt pure
+
 # zoxide (better cd)
 eval "$(zoxide init zsh)"
 #compdef gt
