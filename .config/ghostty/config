@@ -1,6 +1,6 @@
 # Appearance
 theme = carbonfox
-background-opacity = 0.65
+background-opacity = 0.75
 background-blur = true
 window-padding-x = 16
 window-padding-y = 16
@@ -19,6 +19,10 @@ macos-window-buttons = hidden
 keybind = cmd+r=reload_config
 keybind = cmd+shift+l=new_split:right
 keybind = cmd+shift+j=new_split:down
+keybind = cmd+left=resize_split:left,25
+keybind = cmd+down=resize_split:down,25
+keybind = cmd+up=resize_split:up,25
+keybind = cmd+right=resize_split:right,25
 keybind = cmd+k=goto_split:up
 keybind = cmd+j=goto_split:down
 keybind = cmd+l=goto_split:right
