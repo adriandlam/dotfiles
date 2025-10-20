@@ -12,11 +12,12 @@ unfocused-split-opacity = 0.45
 split-divider-color = #2e2e2e
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
-macos-icon = blueprint
 macos-window-buttons = hidden
 
 # Keybinds
 keybind = cmd+r=reload_config
+keybind = cmd+shift+k=new_split:up
+keybind = cmd+shift+h=new_split:left
 keybind = cmd+shift+l=new_split:right
 keybind = cmd+shift+j=new_split:down
 keybind = cmd+left=resize_split:left,25
@@ -27,7 +28,7 @@ keybind = cmd+k=goto_split:up
 keybind = cmd+j=goto_split:down
 keybind = cmd+l=goto_split:right
 keybind = cmd+h=goto_split:left
-keybind = ctrl+backquote=toggle_quick_terminal
+keybind = cmd+backquote=toggle_quick_terminal
 
 quit-after-last-window-closed = true
 shell-integration-features = no-cursor

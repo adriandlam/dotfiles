@@ -4,7 +4,8 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+zle -N menu-search
+zle -N recent-paths
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -72,9 +73,23 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast httpie iterm2 macos web-search docker dotenv keychain git-commit gitignore git fast-syntax-highlighting zsh-autosuggestions)
+plugins=(gitfast macos web-search dotenv keychain git zsh-autosuggestions fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+# Configure zsh-autocomplete BEFORE loading it
+zstyle ':autocomplete:*' min-input 3
+zstyle ':autocomplete:*' special-dirs true
+zstyle ':autocomplete:*' delay 0.5
+zstyle ':autocomplete:*' timeout 1.0
+zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
+zstyle ':completion:*' keep-prefix true
+bindkey              '^I'         menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
+
+# Load zsh-autocomplete
+source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # User configuration
 
@@ -131,16 +146,6 @@ esac
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-zstyle ':autocomplete:*' min-input 3
-zstyle ':autocomplete:*' special-dirs true
-zstyle ':autocomplete:*' delay 0.1
-zstyle ':autocomplete:*' timeout 2.0
-zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
-zstyle ':completion:*' keep-prefix true
-bindkey              '^I'         menu-complete
-bindkey "$terminfo[kcbt]" reverse-menu-complete
-zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
 
 # pure prompt
 autoload -U promptinit; promptinit
