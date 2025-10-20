@@ -11,6 +11,7 @@ cursor-style-blink = true
 unfocused-split-opacity = 0.45
 split-divider-color = #2e2e2e
 macos-titlebar-style = tabs
+macos-icon = blueprint
 macos-titlebar-proxy-icon = hidden
 macos-window-buttons = hidden
 
