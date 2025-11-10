@@ -1,0 +1,45 @@
+# Appearance
+theme = carbonfox
+background-opacity = 0.75
+background-blur = true
+window-padding-x = 16
+window-padding-y = 16
+window-padding-balance = true
+window-padding-color = background
+cursor-style = underline
+cursor-style-blink = true
+unfocused-split-opacity = 0.45
+split-divider-color = #2e2e2e
+macos-titlebar-style = tabs
+macos-icon = blueprint
+macos-titlebar-proxy-icon = hidden
+macos-window-buttons = hidden
+
+# Keybinds
+keybind = cmd+r=reload_config
+keybind = cmd+shift+k=new_split:up
+keybind = cmd+shift+h=new_split:left
+keybind = cmd+shift+l=new_split:right
+keybind = cmd+shift+j=new_split:down
+keybind = cmd+left=resize_split:left,25
+keybind = cmd+down=resize_split:down,25
+keybind = cmd+up=resize_split:up,25
+keybind = cmd+right=resize_split:right,25
+keybind = cmd+k=goto_split:up
+keybind = cmd+j=goto_split:down
+keybind = cmd+l=goto_split:right
+keybind = cmd+h=goto_split:left
+keybind = cmd+backquote=toggle_quick_terminal
+
+quit-after-last-window-closed = true
+shell-integration-features = no-cursor
+
+# 100 mb per terminal
+scrollback-limit = 100000000  
+
+# Quick terminal
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.1
+quick-terminal-autohide = true
+ 
