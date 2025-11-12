@@ -125,6 +125,11 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+mkcd () {
+  \mkdir -p "$1"
+  cd "$1"
+}
+
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
 alias p="pnpm"
