@@ -24,3 +24,5 @@ _darcs
 
 vscode
 setup.sh
+
+.DS_Store
