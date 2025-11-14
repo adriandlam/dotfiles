@@ -7,9 +7,16 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "context_servers": {
-    
+  "edit_predictions": {
+    "mode": "subtle"
   },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "scrollbar": {
+    "diagnostics": "all"
+  },
+  "buffer_font_family": "Geist Mono",
   "git": {
     "hunk_style": "staged_hollow",
     "blame": {
@@ -20,6 +27,7 @@
     }
   },
   "git_panel": {
+    "status_style": "icon",
     "sort_by_path": false,
     "button": true
   },
@@ -49,6 +57,9 @@
     "button": false
   },
   "diagnostics": {
+    "inline": {
+      "enabled": true
+    },
     "button": true
   },
   "terminal": {
@@ -72,7 +83,7 @@
     "center_on_match": true
   },
   "use_smartcase_search": true,
-  "autosave": "on_window_change",
+  "autosave": "on_focus_change",
   "ui_font_family": "Geist",
   "icon_theme": {
     "mode": "dark",
@@ -100,7 +111,46 @@
   "buffer_font_size": 13.0,
   "theme": {
     "mode": "system",
-    "light": "Ayu Dark",
+    "light": "Vercel Light",
     "dark": "Vercel Dark"
+  },
+  "lsp": {
+    "biome": {
+     "binary": {
+        "path": "/var/biome-2.2.3/bin/biome",
+        "arguments": [
+          "lsp-proxy"
+       ]
+      }
+    }
+  },
+  "languages": {
+    "JavaScript": {
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TypeScript": {
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TSX": {
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+         "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      },
+    "JSX": {
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+         "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
   }
+}
 }
