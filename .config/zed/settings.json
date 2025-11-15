@@ -7,11 +7,30 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "soft_wrap": "editor_width",
+  "remove_trailing_whitespace_on_save": true,
+  "agent_buffer_font_size": 13.0,
+  "agent_ui_font_size": 15.0,
+  "agent": {
+    "play_sound_when_agent_done": true,
+    "default_profile": "minimal",
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
+    },
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
+    },
+    "model_parameters": []
+  },
   "edit_predictions": {
+    "enabled_in_text_threads": true,
     "mode": "subtle"
   },
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "zed"
   },
   "scrollbar": {
     "diagnostics": "all"
@@ -70,10 +89,13 @@
   },
   "project_panel": {
     "folder_icons": true,
+    "file_icons": true,
     "entry_spacing": "standard",
     "default_width": 240.0,
     "dock": "left",
-    "button": true
+    "button": true,
+    "auto_fold_dirs": true,
+    "auto_reveal_entries": true
   },
   "file_finder": {
     "file_icons": true
@@ -114,43 +136,13 @@
     "light": "Vercel Light",
     "dark": "Vercel Dark"
   },
-  "lsp": {
-    "biome": {
-     "binary": {
-        "path": "/var/biome-2.2.3/bin/biome",
-        "arguments": [
-          "lsp-proxy"
-       ]
-      }
-    }
+  "confirm_quit": true,
+  "cursor_shape": "underline",
+  "jsx_tag_auto_close": {
+    "enabled": true
   },
-  "languages": {
-    "JavaScript": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
-    },
-    "TypeScript": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
-    },
-    "TSX": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-         "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      },
-    "JSX": {
-      "formatter": { "language_server": { "name": "biome" } },
-      "code_actions_on_format": {
-         "source.fixAll.biome": true,
-        "source.organizeImports.biome": true
-      }
+  "tab_bar": {
+    "show_tab_bar_buttons": false,
+    "show_nav_history_buttons": false
   }
-}
 }
