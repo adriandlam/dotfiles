@@ -144,5 +144,12 @@
   "tab_bar": {
     "show_tab_bar_buttons": false,
     "show_nav_history_buttons": false
+  },
+  "auto_install_extensions": {
+    "biome": true,
+    "git-firefly": true,
+    "github-actions": true,
+    "mdx": true,
+    "vercel-theme": true
   }
 }
