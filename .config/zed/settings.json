@@ -7,13 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "soft_wrap": "editor_width",
   "remove_trailing_whitespace_on_save": true,
   "agent_buffer_font_size": 13.0,
   "agent_ui_font_size": 15.0,
   "agent": {
     "play_sound_when_agent_done": true,
-    "default_profile": "minimal",
+    "default_profile": "write",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "anthropic",
