@@ -11,8 +11,9 @@
   "agent_buffer_font_size": 13.0,
   "agent_ui_font_size": 15.0,
   "agent": {
+    "enable_feedback": false,
     "play_sound_when_agent_done": true,
-    "default_profile": "write",
+    "default_profile": "minimal",
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "anthropic",
@@ -85,6 +86,9 @@
   },
   "status_bar": {
     "active_language_button": true
+  },
+  "collaboration_panel": {
+    "button": false
   },
   "project_panel": {
     "folder_icons": true,
