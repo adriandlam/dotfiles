@@ -7,152 +7,210 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "remove_trailing_whitespace_on_save": true,
-  "agent_buffer_font_size": 13.0,
-  "agent_ui_font_size": 15.0,
-  "agent": {
-    "enable_feedback": false,
-    "play_sound_when_agent_done": true,
-    "default_profile": "minimal",
-    "always_allow_tool_actions": true,
-    "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-5-latest"
-    },
-    "inline_assistant_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-5-latest"
-    },
-    "model_parameters": []
-  },
-  "edit_predictions": {
-    "enabled_in_text_threads": true,
-    "mode": "subtle"
-  },
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
-  "scrollbar": {
-    "diagnostics": "all"
-  },
-  "buffer_font_family": "Geist Mono",
-  "git": {
-    "hunk_style": "staged_hollow",
-    "blame": {
-      "show_avatar": true
-    },
-    "inline_blame": {
-      "show_commit_summary": false
-    }
-  },
-  "git_panel": {
-    "status_style": "icon",
-    "sort_by_path": false,
-    "button": true
-  },
-  "outline_panel": {
-    "button": true
-  },
-  "zoomed_padding": true,
-  "active_pane_modifiers": {
-    "border_size": 0.0,
-    "inactive_opacity": 1.0
-  },
-  "use_system_window_tabs": false,
-  "bottom_dock_layout": "contained",
-  "tabs": {
-    "close_position": "right",
-    "file_icons": false,
-    "git_status": true
-  },
-  "title_bar": {
-    "show_menus": false,
-    "show_sign_in": true,
-    "show_user_picture": true,
-    "show_branch_name": true,
-    "show_branch_icon": true
-  },
-  "debugger": {
-    "button": false
-  },
-  "diagnostics": {
-    "inline": {
-      "enabled": true
-    },
-    "button": true
-  },
-  "terminal": {
-    "button": false
-  },
-  "status_bar": {
-    "active_language_button": true
-  },
-  "collaboration_panel": {
-    "button": false
-  },
-  "project_panel": {
-    "folder_icons": true,
-    "file_icons": true,
-    "entry_spacing": "standard",
-    "default_width": 240.0,
-    "dock": "left",
-    "button": true,
-    "auto_fold_dirs": true,
-    "auto_reveal_entries": true
-  },
-  "file_finder": {
-    "file_icons": true
-  },
-  "search": {
-    "button": false,
-    "center_on_match": true
-  },
-  "use_smartcase_search": true,
-  "autosave": "on_focus_change",
-  "ui_font_family": "Geist",
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Zed (Default)",
-    "dark": "Colored Zed Icons Theme Dark"
-  },
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-  "vim_mode": true,
-  "relative_line_numbers": "enabled",
-  "vertical_scroll_margin": 15.0,
-  "gutter": {
-    "line_numbers": true,
-    "folds": true
-  },
-  "cursor_blink": true,
-  "file_types": {
-    "markdown": ["*.mdx"]
-  },
-  "auto_indent_on_paste": true,
-  "base_keymap": "Cursor",
-  "ui_font_size": 15.0,
-  "buffer_font_size": 13.0,
-  "theme": {
-    "mode": "system",
-    "light": "Vercel Light",
-    "dark": "Vercel Dark"
-  },
-  "confirm_quit": true,
-  "cursor_shape": "underline",
-  "jsx_tag_auto_close": {
-    "enabled": true
-  },
-  "tab_bar": {
-    "show_tab_bar_buttons": false,
-    "show_nav_history_buttons": false
-  },
-  "auto_install_extensions": {
-    "biome": true,
-    "git-firefly": true,
-    "github-actions": true,
-    "mdx": true,
-    "vercel-theme": true
-  }
+	// "format_on_save": "off",
+	"context_servers": {
+		"mcp-server-github": {
+			"source": "extension",
+			"enabled": true,
+			"settings": {}
+		}
+	},
+	"remove_trailing_whitespace_on_save": true,
+	"agent_buffer_font_size": 13.0,
+	"agent_ui_font_size": 15.0,
+	"agent": {
+		"enable_feedback": false,
+		"play_sound_when_agent_done": true,
+		"default_profile": "minimal",
+		"always_allow_tool_actions": true,
+		"model_parameters": [
+			{
+				"provider": "anthropic",
+				"model": "claude-opus-4-1-latest",
+				"temperature": 0.3
+			}
+		],
+		"default_model": {
+			"provider": "anthropic",
+			"model": "claude-opus-4-1-latest"
+		},
+		"inline_assistant_model": {
+			"provider": "anthropic",
+			"model": "claude-sonnet-4-5-latest"
+		}
+	},
+	"edit_predictions": {
+		"enabled_in_text_threads": true,
+		"mode": "subtle"
+	},
+	"features": {
+		"edit_prediction_provider": "zed"
+	},
+	"scrollbar": {
+		"diagnostics": "all"
+	},
+	"buffer_font_family": "Geist Mono",
+	"git": {
+		"hunk_style": "staged_hollow",
+		"blame": {
+			"show_avatar": true
+		},
+		"inline_blame": {
+			"show_commit_summary": false
+		}
+	},
+	"git_panel": {
+		"status_style": "icon",
+		"sort_by_path": false,
+		"button": true
+	},
+	"outline_panel": {
+		"button": true
+	},
+	"zoomed_padding": true,
+	"active_pane_modifiers": {
+		"border_size": 0.0,
+		"inactive_opacity": 1.0
+	},
+	"use_system_window_tabs": false,
+	"bottom_dock_layout": "contained",
+	"tabs": {
+		"close_position": "right",
+		"file_icons": false,
+		"git_status": true
+	},
+	"title_bar": {
+		"show_menus": false,
+		"show_sign_in": true,
+		"show_user_picture": true,
+		"show_branch_name": true,
+		"show_branch_icon": true
+	},
+	"debugger": {
+		"button": false
+	},
+	"diagnostics": {
+		"inline": {
+			"enabled": true
+		},
+		"button": true
+	},
+	"terminal": {
+		"button": false
+	},
+	"status_bar": {
+		"active_language_button": true
+	},
+	"collaboration_panel": {
+		"button": false
+	},
+	"project_panel": {
+		"folder_icons": true,
+		"file_icons": true,
+		"entry_spacing": "standard",
+		"default_width": 240.0,
+		"dock": "left",
+		"button": true,
+		"auto_fold_dirs": true,
+		"auto_reveal_entries": true
+	},
+	"file_finder": {
+		"file_icons": true
+	},
+	"search": {
+		"button": false,
+		"center_on_match": true
+	},
+	"use_smartcase_search": true,
+	"autosave": "on_window_change",
+	"ui_font_family": "Geist",
+	"icon_theme": {
+		"mode": "dark",
+		"light": "Zed (Default)",
+		"dark": "Colored Zed Icons Theme Dark"
+	},
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	},
+	"vim_mode": true,
+	"relative_line_numbers": "enabled",
+	"vertical_scroll_margin": 15.0,
+	"gutter": {
+		"line_numbers": true,
+		"folds": true
+	},
+	"cursor_blink": true,
+	"file_types": {
+		"markdown": ["*.mdx"]
+	},
+	"auto_indent_on_paste": true,
+	"base_keymap": "Cursor",
+	"ui_font_size": 15.0,
+	"buffer_font_size": 13.0,
+	"theme": {
+		"mode": "system",
+		"light": "Vercel Light",
+		"dark": "Vercel Dark"
+	},
+	"confirm_quit": true,
+	"cursor_shape": "underline",
+	"jsx_tag_auto_close": {
+		"enabled": true
+	},
+	"tab_bar": {
+		"show_tab_bar_buttons": false,
+		"show_nav_history_buttons": false
+	},
+	"auto_install_extensions": {
+		"biome": true,
+		"git-firefly": true,
+		"github-actions": true,
+		"mdx": true,
+		"vercel-theme": true
+	},
+	"languages": {
+		"JSON": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"language_servers": ["!eslint", "json-language-server", "biome"]
+		},
+		"JSONC": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"language_servers": ["!eslint", "json-language-server", "biome"]
+		},
+		"CSS": {
+			"formatter": { "language_server": { "name": "biome" } }
+		},
+		"JavaScript": {
+			"formatter": [
+				{ "language_server": { "name": "biome" } },
+				{ "code_action": "source.fixAll.biome" },
+				{ "code_action": "source.organizeImports.biome" }
+			],
+			"language_servers": ["!eslint", "vtsls", "biome"]
+		},
+		"TypeScript": {
+			"formatter": [
+				{ "language_server": { "name": "biome" } },
+				{ "code_action": "source.fixAll.biome" },
+				{ "code_action": "source.organizeImports.biome" }
+			],
+			"language_servers": ["!eslint", "vtsls", "biome"]
+		},
+		"TSX": {
+			"formatter": [
+				{ "language_server": { "name": "biome" } },
+				{ "code_action": "source.fixAll.biome" },
+				{ "code_action": "source.organizeImports.biome" }
+			],
+			"language_servers": ["!eslint", "vtsls", "biome"]
+		}
+	},
+	"lsp": {
+		"biome": {
+			"settings": {
+				"require_config_file": true
+			}
+		}
+	}
 }

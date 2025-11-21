@@ -191,3 +191,7 @@ compdef _gt_yargs_completions gt
 ###-end-gt-completions-###
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/adrianlam/.antigravity/antigravity/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
