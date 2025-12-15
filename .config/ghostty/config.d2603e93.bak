@@ -44,4 +44,3 @@ quick-terminal-animation-duration = 0.1
 quick-terminal-autohide = true
  
 working-directory = inherit
-keybind = shift+enter=text:\x1b\r
