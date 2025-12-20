@@ -1,5 +1,7 @@
 # Appearance
 theme = carbonfox
+palette = 3=#ffc24b
+palette = 11=#ffd580
 background-opacity = 0.75
 background-blur = true
 window-padding-x = 16
