@@ -17,10 +17,12 @@
 [user]
 	name = Adrian Lam
 	email = me@adriandlam.com
-	signingkey = /Users/adrianlam/.ssh/id_ed25519.pub
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpW/soFiCrttzvsERgdEIzsYcGlRrfu1LH7g8aTSlE0
 [gpg]
 	format = ssh
 [commit]
 	gpgsign = true
 [push]
   autoSetupRemote = true
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
