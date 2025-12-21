@@ -14,6 +14,7 @@ brew install lazygit
 brew install zoxide
 brew install gh
 brew install ghostty
+brew install pnpm
 
 # Create symlinks
 # Run stow from the dotfiles directory, targeting home directory
