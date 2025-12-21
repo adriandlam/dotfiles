@@ -1,8 +1,14 @@
 #!/bin/bash
 
+set -e  # Exit on error
+
+# Update Homebrew
+echo "📦 Updating Homebrew..."
 brew update
 brew upgrade
 
+# Install packages
+echo "📦 Installing packages..."
 brew install stow
 brew install lazygit
 brew install zoxide
@@ -13,12 +19,37 @@ brew install ghostty
 # Run stow from the dotfiles directory, targeting home directory
 stow --target="$HOME" .
 
-# Setup zsh plugins
+# Install zsh enhancements
+echo "🐚 Installing zsh plugins..."
 brew install pure
-brew install zsh-autocomplete
 brew install zsh-autosuggestions
+brew install zsh-syntax-highlighting
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    echo "📝 Installing oh-my-zsh plugins..."
 
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
-  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+        git clone https://github.com/zsh-users/zsh-autosuggestions \
+            ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    fi
+
+    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting" ]; then
+        git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+            ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+    fi
+else
+    echo "⚠️  oh-my-zsh not found, skipping plugin installation"
+fi
+
+
+# Create symlinks with stow
+echo "🔗 Creating symlinks..."
+stow --target="$HOME" --restow .
+
+# Apply macOS defaults
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "🍎 Applying macOS defaults..."
+    bash "$(dirname "$0")/macos-defaults.sh"
+fi
+
+echo "✅ Installation complete!"
