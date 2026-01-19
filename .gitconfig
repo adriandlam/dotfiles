@@ -15,14 +15,14 @@
 	wip = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"wip${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
 [user]
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpW/soFiCrttzvsERgdEIzsYcGlRrfu1LH7g8aTSlE0
 	name = Adrian Lam
 	email = me@adriandlam.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpW/soFiCrttzvsERgdEIzsYcGlRrfu1LH7g8aTSlE0
 [gpg]
-	format = ssh
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
-	gpgsign = true
+  gpgsign = true
 [push]
   autoSetupRemote = true
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
