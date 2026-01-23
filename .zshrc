@@ -195,3 +195,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # Added by Antigravity
 export PATH="/Users/adrianlam/.antigravity/antigravity/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+# Added by Hades
+export PATH="$PATH:$HOME/.hades/bin"
