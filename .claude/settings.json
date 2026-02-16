@@ -1,0 +1,24 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir'); name=$(echo \"$input\" | jq -r '.session_name // empty'); rem=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); dir=$(basename \"$cwd\"); branch=$(git -C \"$cwd\" branch --show-current 2>/dev/null); dirty=$(git -C \"$cwd\" diff-index --quiet HEAD -- 2>/dev/null || echo '*'); parts=\"\"; [ -n \"$name\" ] && parts=\"$(printf '\\033[38;5;147m%s\\033[0m' \"$name\") \"; parts=\"$parts$(printf '\\033[38;5;183m%s\\033[0m' \"$dir\")\"; [ -n \"$branch\" ] && parts=\"$parts $(printf '\\033[38;5;221m%s\\033[0m' \"$branch\")$( [ -n \"$dirty\" ] && printf ' \\033[38;5;208m*\\033[0m' )\"; [ -n \"$rem\" ] && parts=\"$parts $(printf '\\033[38;5;246m%s%%\\033[0m' \"$rem\")\"; echo \"$parts $(printf '\\033[38;5;48m>\\033[0m')\""
+  },
+  "enabledPlugins": {
+    "sonatype-guide@claude-plugins-official": true,
+    "firecrawl@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true
+}

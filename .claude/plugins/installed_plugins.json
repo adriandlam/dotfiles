@@ -1,0 +1,155 @@
+{
+  "version": 2,
+  "plugins": {
+    "sonatype-guide@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/sonatype-guide/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-11T19:01:13.471Z",
+        "lastUpdated": "2026-02-11T19:01:13.471Z",
+        "gitCommitSha": "ce3e3f3da4585fd5c3ea03c55b7d024575a041f9"
+      }
+    ],
+    "firecrawl@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/firecrawl/1.0.1",
+        "version": "1.0.1",
+        "installedAt": "2026-02-12T20:25:58.143Z",
+        "lastUpdated": "2026-02-12T20:25:58.143Z",
+        "gitCommitSha": "be19826f16aeec4effe3358923b53d3a458a0c5b"
+      }
+    ],
+    "code-review@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/code-review/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-12T20:27:11.025Z",
+        "lastUpdated": "2026-02-12T20:27:11.025Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "feature-dev@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/feature-dev/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-12T20:27:11.034Z",
+        "lastUpdated": "2026-02-12T20:27:11.034Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "code-simplifier@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-12T20:27:11.038Z",
+        "lastUpdated": "2026-02-12T20:27:11.038Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "commit-commands@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/commit-commands/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-12T20:27:11.045Z",
+        "lastUpdated": "2026-02-12T20:27:11.045Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "pr-review-toolkit@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/pr-review-toolkit/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-12T20:27:11.054Z",
+        "lastUpdated": "2026-02-12T20:27:11.054Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "explanatory-output-style@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/explanatory-output-style/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-12T20:27:11.058Z",
+        "lastUpdated": "2026-02-12T20:27:11.058Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "claude-md-management@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/claude-md-management/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-12T20:27:11.063Z",
+        "lastUpdated": "2026-02-12T20:27:11.063Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "hookify@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/hookify/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-12T20:27:11.070Z",
+        "lastUpdated": "2026-02-12T20:27:11.070Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "claude-code-setup@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/claude-code-setup/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-12T20:27:11.074Z",
+        "lastUpdated": "2026-02-12T20:27:11.074Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "github@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/github/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-14T19:24:14.520Z",
+        "lastUpdated": "2026-02-14T19:24:14.520Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "security-guidance@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/security-guidance/2cd88e7947b7",
+        "version": "2cd88e7947b7",
+        "installedAt": "2026-02-14T19:24:29.418Z",
+        "lastUpdated": "2026-02-14T19:24:29.418Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
+      }
+    ],
+    "vercel@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/vercel/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-14T19:24:35.863Z",
+        "lastUpdated": "2026-02-14T19:24:35.863Z",
+        "gitCommitSha": "ae067751b4f42c97d13054211657275029ca8b6d"
+      }
+    ],
+    "superpowers@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/superpowers/4.3.0",
+        "version": "4.3.0",
+        "installedAt": "2026-02-14T19:35:51.301Z",
+        "lastUpdated": "2026-02-14T19:35:51.301Z",
+        "gitCommitSha": "e16d611eee14ac4c3253b4bf4c55a98d905c2e64"
+      }
+    ]
+  }
+}
