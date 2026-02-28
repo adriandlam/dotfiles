@@ -73,7 +73,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast macos web-search dotenv keychain git zsh-autosuggestions fast-syntax-highlighting alias-finder aliases brew command-not-found thefuck)
+plugins=(gitfast macos web-search dotenv keychain git zsh-autosuggestions fast-syntax-highlighting alias-finder aliases brew command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -137,8 +137,7 @@ alias p="pnpm"
 alias gg="lazygit"
 
 
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
