@@ -26,3 +26,8 @@ vscode
 setup.sh
 
 .DS_Store
+
+# Claude Code generated files
+\.claude/debug
+\.claude/file-history
+\.claude/cache
