@@ -82,13 +82,15 @@
       }
     }
   },
+  "instructions": [
+    "~/.config/opencode/plugin/shell-strategy/shell_strategy.md"
+  ],
   "plugin": [
     "opencode-antigravity-auth@latest",
     "@mohak34/opencode-notifier",
     "@franlol/opencode-md-table-formatter",
     "@bastiangx/opencode-unmoji",
     "envsitter-guard@latest",
-    "opencode-shell-strategy",
     "opencode-pty",
     "@tarquinen/opencode-dcp@latest",
     "opencode-websearch-cited@1.2.0"

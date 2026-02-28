@@ -130,13 +130,11 @@ mkcd () {
   cd "$1"
 }
 
-alias opencode="oc"
+alias oc="opencode"
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
 alias p="pnpm"
 alias gg="lazygit"
-
-
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -202,3 +200,9 @@ export PATH="$PATH:$HOME/.hades/bin"
 
 # Added by Antigravity
 export PATH="/Users/adrianlam/.antigravity/antigravity/bin:$PATH"
+
+# Mole shell completion
+if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
+
+# opencode
+export PATH=/Users/adrianlam/.opencode/bin:$PATH
