@@ -47,6 +47,19 @@ fi
 echo "🔗 Creating symlinks..."
 stow --target="$HOME" --restow .
 
+# Initialize git submodules (superpowers, etc.)
+echo "📦 Initializing git submodules..."
+git submodule update --init --recursive
+
+# Set up opencode plugins + skills symlinks
+echo "🔗 Setting up opencode plugins and skills..."
+mkdir -p "$HOME/.config/opencode/plugins"
+ln -sf "$HOME/.config/opencode/superpowers/.opencode/plugins/superpowers.js" \
+       "$HOME/.config/opencode/plugins/superpowers.js"
+mkdir -p "$HOME/.config/opencode/skills"
+ln -sf "$HOME/.config/opencode/superpowers/skills" \
+       "$HOME/.config/opencode/skills/superpowers"
+
 # Apply macOS defaults
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "🍎 Applying macOS defaults..."

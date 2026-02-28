@@ -130,11 +130,11 @@ mkcd () {
   cd "$1"
 }
 
+alias opencode="oc"
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
 alias p="pnpm"
 alias gg="lazygit"
-alias ai='llama-cli -hf Qwen/Qwen3-8B-GGUF --system-prompt "Do not use markdown and emojis unless for code blocks."'
 
 
 eval $(thefuck --alias)
@@ -200,3 +200,6 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Added by Hades
 export PATH="$PATH:$HOME/.hades/bin"
+
+# Added by Antigravity
+export PATH="/Users/adrianlam/.antigravity/antigravity/bin:$PATH"
