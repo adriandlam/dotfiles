@@ -82,7 +82,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast macos web-search dotenv keychain zsh-autosuggestions fast-syntax-highlighting alias-finder aliases brew command-not-found sudo extract copypath colored-man-pages jsontools)
+plugins=(gitfast macos web-search dotenv keychain zsh-autosuggestions fast-syntax-highlighting alias-finder aliases brew command-not-found sudo extract copypath copyfile colored-man-pages jsontools)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -143,6 +143,8 @@ alias oc="opencode"
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
 alias p="pnpm"
+alias yp="copypath"
+alias yf="copyfile"
 # lazygit with directory change on exit
 gg() {
   export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
