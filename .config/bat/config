@@ -1,5 +1,5 @@
-# Vesper-compatible theme (dark, minimal)
---theme="base16"
+# Custom Vesper theme with explicit hex colors
+--theme="Vesper"
 
 # Show line numbers and changes but no grid
 --style="numbers,changes,header"

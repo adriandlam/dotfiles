@@ -24,10 +24,9 @@ _darcs
 
 vscode
 setup.sh
+macos-defaults.sh
 
 .DS_Store
 
-# Claude Code generated files
-\.claude/debug
-\.claude/file-history
-\.claude/cache
+# Claude Code - managed separately, not by stow
+\.claude

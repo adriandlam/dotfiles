@@ -305,10 +305,13 @@ bindkey '^G' fzf-cd-widget
 bindkey '\x1b[71;9~' fzf-cd-widget
 # Cmd+R for history search (atuin)
 bindkey '\x1b[82;9~' atuin-search
+# Disable up/down arrow history navigation — use Cmd+R (atuin) instead
+bindkey -r '^[[A'
+bindkey -r '^[[B'
 
 # bat as man pager (syntax-highlighted man pages)
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 
 # atuin (better shell history)
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
