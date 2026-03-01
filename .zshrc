@@ -206,3 +206,4 @@ if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
 
 # opencode
 export PATH=/Users/adrianlam/.opencode/bin:$PATH
+export OPENCODE_ENABLE_EXA=1
