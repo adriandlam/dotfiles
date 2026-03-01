@@ -29,7 +29,7 @@
       "chmod -R 777 *": "ask"
     },
     "doom_loop": "ask",
-    "external_directory": "ask"
+    "external_directory": "allow"
   },
   "agent": {
     "plan": {
