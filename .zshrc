@@ -4,6 +4,15 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# History
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+
 zle -N menu-search
 zle -N recent-paths
 
@@ -73,7 +82,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast macos web-search dotenv keychain git zsh-autosuggestions fast-syntax-highlighting alias-finder aliases brew command-not-found)
+plugins=(gitfast macos web-search dotenv keychain zsh-autosuggestions fast-syntax-highlighting alias-finder aliases brew command-not-found sudo extract copypath colored-man-pages jsontools)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,12 +143,28 @@ alias oc="opencode"
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
 alias p="pnpm"
-alias gg="lazygit"
+# lazygit with directory change on exit
+gg() {
+  export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+  lazygit "$@"
+  if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+    cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+    rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+  fi
+}
 
 
+# nvm (lazy loaded for faster shell startup)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+node() { unset -f node; nvm() { unset -f nvm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; nvm "$@"; }; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; node "$@"; }
+npm() { unset -f npm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; npm "$@"; }
+npx() { unset -f npx; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; npx "$@"; }
 
 # pnpm
 export PNPM_HOME="/Users/adrianlam/Library/pnpm"
@@ -198,12 +223,28 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 # Added by Hades
 export PATH="$PATH:$HOME/.hades/bin"
 
-# Added by Antigravity
-export PATH="/Users/adrianlam/.antigravity/antigravity/bin:$PATH"
-
 # Mole shell completion
 if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
 
 # opencode
 export PATH=/Users/adrianlam/.opencode/bin:$PATH
 export OPENCODE_ENABLE_EXA=1
+
+# fzf (fuzzy finder)
+eval "$(fzf --zsh)"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
+
+# Remap fzf: Ctrl+F / Cmd+F for file search, Ctrl+G / Cmd+G for directory jump
+bindkey -r '^T'
+bindkey '^F' fzf-file-widget
+bindkey '\x1b[70;9~' fzf-file-widget
+bindkey -r '\ec'
+bindkey '^G' fzf-cd-widget
+bindkey '\x1b[71;9~' fzf-cd-widget
+# Cmd+R for history search (atuin)
+bindkey '\x1b[82;9~' atuin-search
+
+# atuin (better shell history)
+eval "$(atuin init zsh)"
