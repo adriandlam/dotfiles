@@ -8,14 +8,21 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "disable_ai": true,
+  "agent_servers": {
+    "opencode": {
+      "type": "registry",
+    },
+  },
   "remove_trailing_whitespace_on_save": true,
   "agent_buffer_font_size": 13.0,
   "agent_ui_font_size": 15.0,
   "agent": {
+    "tool_permissions": {
+      "default": "allow",
+    },
     "enable_feedback": false,
     "play_sound_when_agent_done": true,
     "default_profile": "write",
-    "always_allow_tool_actions": true,
     "model_parameters": [
       {
         "provider": "anthropic",
@@ -33,11 +40,9 @@
     },
   },
   "edit_predictions": {
+    "provider": "zed",
     "enabled_in_text_threads": true,
     "mode": "eager",
-  },
-  "features": {
-    "edit_prediction_provider": "zed",
   },
   "scrollbar": {
     "diagnostics": "all",
@@ -144,7 +149,7 @@
   "theme": {
     "mode": "system",
     "light": "Vercel Light",
-    "dark": "Vercel Dark",
+    "dark": "Vesper",
   },
   "confirm_quit": true,
   "cursor_shape": "underline",
