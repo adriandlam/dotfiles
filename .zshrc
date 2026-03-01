@@ -290,7 +290,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
 
-# fzf Vesper theme
+# fzf Vesper theme (upstream: https://github.com/adriandlam/vesper-fzf)
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=bg+:#2a2a2a,bg:#101010,spinner:#99ffe4,hl:#ffc799 \
   --color=fg:#ffffff,header:#505050,info:#505050,pointer:#99ffe4 \

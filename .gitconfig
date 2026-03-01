@@ -28,6 +28,7 @@
   pager = delta
 [interactive]
   diffFilter = delta --color-only
+# Vesper theme for delta (upstream: https://github.com/adriandlam/vesper-delta)
 [delta]
   navigate = true
   side-by-side = true

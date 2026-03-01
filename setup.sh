@@ -71,6 +71,10 @@ mkdir -p "$HOME/.config/opencode/skills"
 ln -sf "$HOME/.config/opencode/superpowers/skills" \
        "$HOME/.config/opencode/skills/superpowers"
 
+# Rebuild bat theme cache (stow symlinks the tmTheme, but bat needs its binary cache rebuilt)
+echo "Building bat theme cache..."
+bat cache --build
+
 # Apply macOS defaults
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Applying macOS defaults..."

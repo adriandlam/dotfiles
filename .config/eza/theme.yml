@@ -1,4 +1,5 @@
 # Vesper theme for eza
+# Upstream: https://github.com/adriandlam/vesper-eza
 filekinds:
   normal:
     foreground: "#ffffff"
