@@ -1,8 +1,6 @@
 # Appearance
-theme = carbonfox
-palette = 3=#ffc24b
-palette = 11=#ffd580
-background-opacity = 0.75
+theme = Vesper
+background-opacity = 0.80
 background-blur = true
 window-padding-x = 16
 window-padding-y = 16
@@ -10,7 +8,7 @@ window-padding-balance = true
 window-padding-color = background
 cursor-style = underline
 cursor-style-blink = true
-unfocused-split-opacity = 0.45
+unfocused-split-opacity = 0.70
 split-divider-color = #2e2e2e
 macos-titlebar-style = tabs
 macos-icon = blueprint

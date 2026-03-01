@@ -159,11 +159,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # pure prompt
 autoload -U promptinit; promptinit
 PURE_PROMPT_SYMBOL=">"
-zstyle :prompt:pure:path color '#be95ff'
-zstyle :prompt:pure:git:branch color '#d5d96f'
-zstyle :prompt:pure:git:dirty color '#ffa400'
-zstyle :prompt:pure:prompt:success '#0fce6c'
-zstyle :prompt:pure:git:arrow '#0fce6c'
+zstyle :prompt:pure:path color '#99ffe4'
+zstyle :prompt:pure:git:branch color '#ffc799'
+zstyle :prompt:pure:git:dirty color '#ff8080'
+zstyle :prompt:pure:prompt:success color '#99ffe4'
+zstyle :prompt:pure:git:arrow color '#ffc799'
 prompt pure
 
 
