@@ -90,6 +90,8 @@ source $ZSH/oh-my-zsh.sh
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 # eza: unset LS_COLORS so theme.yml takes effect (oh-my-zsh sets LS_COLORS above)
 unset LS_COLORS
+# Restore Vesper-colored directories for zsh tab completion (unset LS_COLORS removes them)
+zstyle ':completion:*' list-colors 'di=38;2;153;255;228' 'ln=38;2;255;199;153' 'ex=38;2;153;255;228;1'
 
 # fast-syntax-highlighting: Vesper theme overrides
 # (fg=green resolves to sRGB green under truecolor, bypassing palette)
