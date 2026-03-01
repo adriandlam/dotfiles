@@ -86,6 +86,11 @@ plugins=(git gitfast macos web-search dotenv keychain zsh-autosuggestions fast-s
 
 source $ZSH/oh-my-zsh.sh
 
+# eza: ensure theme.yml is found on macOS (defaults to ~/Library/Application Support/eza)
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+# eza: unset LS_COLORS so theme.yml takes effect (oh-my-zsh sets LS_COLORS above)
+unset LS_COLORS
+
 # fast-syntax-highlighting: Vesper theme overrides
 # (fg=green resolves to sRGB green under truecolor, bypassing palette)
 FAST_HIGHLIGHT_STYLES[command]='fg=#99ffe4'           # aqua - commands
