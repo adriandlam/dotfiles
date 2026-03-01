@@ -303,6 +303,27 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window='right:60%:wrap'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --icons --level=2 {}' --preview-window='right:50%'"
 
+# Override fzf cd widget to use zoxide instead of builtin cd
+fzf-cd-widget() {
+  setopt localoptions pipefail no_aliases 2> /dev/null
+  local dir="$(
+    FZF_DEFAULT_COMMAND=${FZF_ALT_C_COMMAND:-} \
+    FZF_DEFAULT_OPTS=$(__fzf_defaults "--reverse --walker=dir,follow,hidden --scheme=path" "${FZF_ALT_C_OPTS-} +m") \
+    FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd) < /dev/tty)"
+  if [[ -z "$dir" ]]; then
+    zle redisplay
+    return 0
+  fi
+  zle push-line
+  BUFFER="z ${(q)dir:a}"
+  zle accept-line
+  local ret=$?
+  unset dir
+  zle reset-prompt
+  return $ret
+}
+zle -N fzf-cd-widget
+
 # Remap fzf: Ctrl+F / Cmd+F for file search, Ctrl+G / Cmd+G for directory jump
 bindkey -r '^T'
 bindkey '^F' fzf-file-widget
