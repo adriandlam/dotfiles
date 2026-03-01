@@ -20,7 +20,7 @@ require("lazy").setup({
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      opts = { colorscheme = "monokai-pro" },
+      opts = { colorscheme = "vesper" },
     },
     -- import/override with your plugins
     { import = "plugins" },
@@ -34,7 +34,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "monokai-pro", "habamax" } },
+  install = { colorscheme = { "vesper", "habamax" } },
   checker = {
     enabled = false, -- check for plugin updates periodically
     notify = false, -- notify on update

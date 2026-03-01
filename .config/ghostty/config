@@ -34,6 +34,7 @@ keybind = cmd+backquote=toggle_quick_terminal
 keybind = cmd+f=text:\x1b[70;9~
 keybind = cmd+g=text:\x1b[71;9~
 
+copy-on-select = clipboard
 quit-after-last-window-closed = true
 shell-integration-features = no-cursor
 

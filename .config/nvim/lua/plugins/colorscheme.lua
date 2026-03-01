@@ -1,61 +1,47 @@
 return {
-  "loctvl842/monokai-pro.nvim",
+  "datsfilipe/vesper.nvim",
   lazy = false,
-  branch = "master",
   priority = 1000,
   config = function()
-    require("monokai-pro").setup({
-      transparent_background = true,
-      devicons = true,
-      filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
-      inc_search = "background", -- underline | background
-      -- background_clear = {
-      -- 	"float_win",
-      -- 	"toggleterm",
-      -- 	"telescope",
-      -- 	-- "which-key",
-      -- 	"renamer",
-      -- 	"notify",
-      -- 	"nvim-tree",
-      -- 	"neo-tree",
-      -- 	-- "bufferline", -- better used if background of `neo-tree` or `nvim-tree` is cleared
-      -- },
-      plugins = {
-        bufferline = {
-          underline_selected = true,
-          underline_visible = false,
-          bold = true,
-        },
-        indent_blankline = {
-          context_highlight = "pro", -- default | pro
-          context_start_underline = true,
-        },
+    require("vesper").setup({
+      transparent = true,
+      italics = {
+        comments = true,
+        keywords = true,
+        functions = false,
+        strings = false,
+        variables = false,
       },
-      override = function(scheme)
-        return {
-          colorcolumn = { bg = scheme.base.dimmed3 },
-          dashboardrecent = { fg = scheme.base.magenta },
-          dashboardproject = { fg = scheme.base.blue },
-          dashboardconfiguration = { fg = scheme.base.white },
-          dashboardsession = { fg = scheme.base.green },
-          dashboardlazy = { fg = scheme.base.cyan },
-          dashboardserver = { fg = scheme.base.yellow },
-          dashboardquit = { fg = scheme.base.red },
-          DiagnosticUnnecessary = { link = "Comment" },
-          SnacksPicker = { bg = scheme.editor.background, fg = scheme.base.dimmed1 },
-          SnacksPickerBorder = { bg = scheme.editor.background, fg = scheme.base.dimmed4 },
-          SnacksPickerTree = { fg = scheme.base.dimmed3 },
-          SnacksPickerCol = { fg = scheme.base.dimmed3 },
-          NonText = { fg = scheme.base.dimmed3 },
-          FloatBorder = { fg = scheme.base.dimmed4 },
-        }
-      end,
+      overrides = {
+        -- Dashboard
+        DashboardRecent = { fg = "#ffc799" },
+        DashboardProject = { fg = "#a0a0a0" },
+        DashboardConfiguration = { fg = "#ffffff" },
+        DashboardSession = { fg = "#99ffe4" },
+        DashboardLazy = { fg = "#99ffe4" },
+        DashboardServer = { fg = "#ffc799" },
+        DashboardQuit = { fg = "#ff8080" },
+
+        -- Diagnostics
+        DiagnosticUnnecessary = { link = "Comment" },
+
+        -- Snacks Picker
+        SnacksPicker = { bg = "NONE", fg = "#a0a0a0" },
+        SnacksPickerBorder = { bg = "NONE", fg = "#505050" },
+        SnacksPickerTree = { fg = "#505050" },
+        SnacksPickerCol = { fg = "#505050" },
+
+        -- UI elements
+        NonText = { fg = "#505050" },
+        FloatBorder = { fg = "#505050" },
+        ColorColumn = { bg = "#1a1a1a" },
+      },
     })
-    vim.cmd.colorscheme("monokai-pro")
+    vim.cmd.colorscheme("vesper")
 
     -- LSP comment overrides (applied after colorscheme loads)
     vim.api.nvim_create_autocmd("ColorScheme", {
-      pattern = "monokai-pro*",
+      pattern = "vesper*",
       callback = function()
         vim.cmd([[hi @lsp.type.comment.c guifg=NONE]])
         vim.cmd([[hi @lsp.type.comment.cpp guifg=NONE]])

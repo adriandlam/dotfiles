@@ -86,6 +86,52 @@ plugins=(git gitfast macos web-search dotenv keychain zsh-autosuggestions fast-s
 
 source $ZSH/oh-my-zsh.sh
 
+# fast-syntax-highlighting: Vesper theme overrides
+# (fg=green resolves to sRGB green under truecolor, bypassing palette)
+FAST_HIGHLIGHT_STYLES[command]='fg=#99ffe4'           # aqua - commands
+FAST_HIGHLIGHT_STYLES[alias]='fg=#99ffe4'             # aqua - aliases
+FAST_HIGHLIGHT_STYLES[suffix-alias]='fg=#99ffe4'      # aqua - suffix aliases
+FAST_HIGHLIGHT_STYLES[builtin]='fg=#99ffe4'           # aqua - builtins
+FAST_HIGHLIGHT_STYLES[function]='fg=#99ffe4'          # aqua - functions
+FAST_HIGHLIGHT_STYLES[precommand]='fg=#99ffe4'        # aqua - precommands (sudo, etc)
+FAST_HIGHLIGHT_STYLES[hashed-command]='fg=#99ffe4'    # aqua - hashed commands
+FAST_HIGHLIGHT_STYLES[single-sq-bracket]='fg=#99ffe4' # aqua - [ ]
+FAST_HIGHLIGHT_STYLES[double-sq-bracket]='fg=#99ffe4' # aqua - [[ ]]
+FAST_HIGHLIGHT_STYLES[assign-array-bracket]='fg=#99ffe4'
+FAST_HIGHLIGHT_STYLES[case-input]='fg=#99ffe4'
+FAST_HIGHLIGHT_STYLES[subtle-separator]='fg=#99ffe4'
+FAST_HIGHLIGHT_STYLES[bracket-level-1]='fg=#99ffe4,bold'
+FAST_HIGHLIGHT_STYLES[reserved-word]='fg=#ffc799'     # orange - reserved words
+FAST_HIGHLIGHT_STYLES[subcommand]='fg=#ffc799'        # orange - subcommands
+FAST_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#ffc799'  # orange - 'strings'
+FAST_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#ffc799'  # orange - "strings"
+FAST_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#ffc799'  # orange - $'strings'
+FAST_HIGHLIGHT_STYLES[double-paren]='fg=#ffc799'      # orange - (( ))
+FAST_HIGHLIGHT_STYLES[for-loop-operator]='fg=#ffc799'
+FAST_HIGHLIGHT_STYLES[for-loop-separator]='fg=#ffc799,bold'
+FAST_HIGHLIGHT_STYLES[case-parentheses]='fg=#ffc799'
+FAST_HIGHLIGHT_STYLES[here-string-tri]='fg=#ffc799'
+FAST_HIGHLIGHT_STYLES[bracket-level-2]='fg=#ffc799,bold'
+FAST_HIGHLIGHT_STYLES[unknown-token]='fg=#ff8080,bold' # red - errors
+FAST_HIGHLIGHT_STYLES[incorrect-subtle]='fg=#ff8080'
+FAST_HIGHLIGHT_STYLES[matherr]='fg=#ff8080'
+FAST_HIGHLIGHT_STYLES[path]='fg=#a0a0a0'              # muted gray - paths
+FAST_HIGHLIGHT_STYLES[path-to-dir]='fg=#a0a0a0,underline'
+FAST_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#505050'  # dim gray - options
+FAST_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#505050'
+FAST_HIGHLIGHT_STYLES[back-or-dollar-double-quoted-argument]='fg=#99ffe4'
+FAST_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#99ffe4'
+FAST_HIGHLIGHT_STYLES[bracket-level-3]='fg=#99ffe4,bold'
+FAST_HIGHLIGHT_STYLES[comment]='fg=#505050'           # dim gray - comments
+FAST_HIGHLIGHT_STYLES[variable]='fg=#ffc799'          # orange - variables
+FAST_HIGHLIGHT_STYLES[for-loop-number]='fg=#ffc799'   # orange - numbers
+FAST_HIGHLIGHT_STYLES[mathnum]='fg=#ffc799'
+FAST_HIGHLIGHT_STYLES[mathvar]='fg=#99ffe4,bold'
+FAST_HIGHLIGHT_STYLES[globbing]='fg=#a0a0a0,bold'     # gray - globs
+FAST_HIGHLIGHT_STYLES[globbing-ext]='fg=#a0a0a0'
+FAST_HIGHLIGHT_STYLES[history-expansion]='fg=#a0a0a0,bold'
+FAST_HIGHLIGHT_STYLES[correct-subtle]='fg=#99ffe4'
+
 # Configure zsh-autocomplete BEFORE loading it
 zstyle ':autocomplete:*' min-input 3
 zstyle ':autocomplete:*' special-dirs true
@@ -239,6 +285,17 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
 
+# fzf Vesper theme
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+  --color=bg+:#2a2a2a,bg:#101010,spinner:#99ffe4,hl:#ffc799 \
+  --color=fg:#ffffff,header:#505050,info:#505050,pointer:#99ffe4 \
+  --color=marker:#99ffe4,fg+:#ffffff,prompt:#ffc799,hl+:#ffc799 \
+  --color=selected-bg:#2a2a2a,border:#2a2a2a,gutter:#101010"
+
+# fzf previews (bat for files, eza tree for directories)
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window='right:60%:wrap'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --icons --level=2 {}' --preview-window='right:50%'"
+
 # Remap fzf: Ctrl+F / Cmd+F for file search, Ctrl+G / Cmd+G for directory jump
 bindkey -r '^T'
 bindkey '^F' fzf-file-widget
@@ -248,6 +305,10 @@ bindkey '^G' fzf-cd-widget
 bindkey '\x1b[71;9~' fzf-cd-widget
 # Cmd+R for history search (atuin)
 bindkey '\x1b[82;9~' atuin-search
+
+# bat as man pager (syntax-highlighted man pages)
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 
 # atuin (better shell history)
 eval "$(atuin init zsh)"

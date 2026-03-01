@@ -54,6 +54,25 @@
   line-numbers-right-style = "#505050"
   # Blame
   blame-palette = "#101010" "#1a1a1a" "#2a2a2a"
+[pull]
+  rebase = true
+[fetch]
+  prune = true
+  prunetags = true
+[init]
+  defaultBranch = main
+[rerere]
+  enabled = true
+[diff]
+  algorithm = histogram
+  colorMoved = default
+[rebase]
+  autoStash = true
+  updateRefs = true
+[branch]
+  sort = -committerdate
+[tag]
+  sort = -version:refname
 [merge]
   conflictstyle = zdiff3
 [push]
