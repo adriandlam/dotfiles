@@ -58,15 +58,12 @@
       }
     }
   },
-  "instructions": [
-    "~/.config/opencode/plugin/shell-strategy/shell_strategy.md"
-  ],
+  "instructions": [],
   "plugin": [
     "opencode-cursor-auth@1.0.16",
     "@mohak34/opencode-notifier",
     "@franlol/opencode-md-table-formatter",
     "@bastiangx/opencode-unmoji",
-    "envsitter-guard@latest",
     "opencode-pty",
     "opencode-websearch-cited@1.2.0"
   ],
@@ -97,11 +94,6 @@
     }
   },
   "mcp": {
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "enabled": true
-    },
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app"
