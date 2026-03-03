@@ -34,9 +34,24 @@ keybind = cmd+backquote=toggle_quick_terminal
 keybind = cmd+f=text:\x1b[70;9~
 keybind = cmd+g=text:\x1b[71;9~
 
+# Link previews
+link-previews = true
+
+# Environment
+env = COLORTERM=truecolor
+env = TERM_PROGRAM=Ghostty
+
+# Background opacity for apps like vim/tmux
+background-opacity-cells = true
+
+# Hide mouse while typing
+mouse-hide-while-typing = true
+
+# Shell integration
+shell-integration-features = title,sudo,ssh-env,no-cursor
+
 copy-on-select = clipboard
 quit-after-last-window-closed = true
-shell-integration-features = no-cursor
 
 # 100 mb per terminal
 scrollback-limit = 100000000  
