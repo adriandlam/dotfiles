@@ -17,7 +17,7 @@
 [user]
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpW/soFiCrttzvsERgdEIzsYcGlRrfu1LH7g8aTSlE0
 	name = Adrian Lam
-	email = me@adriandlam.com
+	email = me@adrianlam.sh
 [gpg]
   format = ssh
 [gpg "ssh"]
