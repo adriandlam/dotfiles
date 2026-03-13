@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "@opencode-ai/plugin": "1.2.15"
+    "@ai-sdk/openai-compatible": "^2.0.33",
+    "@opencode-ai/plugin": "1.2.26",
+    "opencode-antigravity-auth": "^1.6.0"
   },
   "devDependencies": {
     "jsonc-parser": "3.3.1",

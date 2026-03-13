@@ -192,7 +192,7 @@ mkcd () {
   cd "$1"
 }
 
-alias oc="opencode"
+alias oc="OPENCODE_EXPERIMENTAL_MARKDOWN=1 opencode"
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
 alias p="pnpm"
@@ -343,3 +343,4 @@ export MANROFFOPT="-c"
 
 # atuin (better shell history)
 eval "$(atuin init zsh --disable-up-arrow)"
+ZSH_DOTENV_PROMPT=false
