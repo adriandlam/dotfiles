@@ -30,12 +30,14 @@
       },
     ],
     "default_model": {
+      "effort": "medium",
+      "enable_thinking": true,
       "provider": "zed.dev",
-      "model": "gemini-3.1-pro-preview",
+      "model": "claude-sonnet-4-6",
     },
     "inline_assistant_model": {
-      "provider": "anthropic",
-      "model": "claude-opus-4-5",
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-6",
     },
   },
   "edit_predictions": {
@@ -222,6 +224,19 @@
     "biome": {
       "settings": {
         "require_config_file": true,
+      },
+    },
+    "discord_presence": {
+      "initialization_options": {
+        "application_id": "1263505205522337886",
+        "base_icons_url": "https://raw.githubusercontent.com/xhyrom/zed-discord-presence/main/assets/icons/",
+        "state": "Working on {filename}",
+        "details": "In {workspace}",
+        "large_image": "{base_icons_url}/{language:lo}.png",
+        "large_text": "{language:u}",
+        "small_image": "{base_icons_url}/zed.png",
+        "small_text": "Zed",
+        "git_integration": true,
       },
     },
   },

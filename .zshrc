@@ -192,6 +192,40 @@ mkcd () {
   cd "$1"
 }
 
+
+# ai: one-shot local Gemma 4 via llama-cli (~10s cold start, ~48 tok/s)
+ai() {
+  local model=~/models/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf
+  local llama=~/llama.cpp-dev/build/bin/llama-cli
+  local prompt=""
+
+  # Read piped stdin if available
+  if [ ! -t 0 ]; then
+    prompt="$(cat)"$'\n\n'
+  fi
+
+  # Append arguments as prompt
+  prompt+="$*"
+
+  if [ -z "$prompt" ]; then
+    echo "Usage: ai <prompt>"
+    echo "       echo 'context' | ai <prompt>"
+    return 1
+  fi
+
+  "$llama" \
+    -m "$model" \
+    -ngl 99 \
+    -c 8192 \
+    -n 1024 \
+    --single-turn \
+    --reasoning off \
+    --no-display-prompt \
+    --log-disable \
+    -p "$prompt" \
+    2>/dev/null
+  echo
+}
 alias oc="OPENCODE_EXPERIMENTAL_MARKDOWN=1 opencode"
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
@@ -333,14 +367,11 @@ bindkey '^G' fzf-cd-widget
 bindkey '\x1b[71;9~' fzf-cd-widget
 # Cmd+R for history search (atuin)
 bindkey '\x1b[82;9~' atuin-search
-# Disable up/down arrow history navigation — use Cmd+R (atuin) instead
-bindkey -r '^[[A'
-bindkey -r '^[[B'
 
 # bat as man pager (syntax-highlighted man pages)
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 
 # atuin (better shell history)
-eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin init zsh)"
 ZSH_DOTENV_PROMPT=false

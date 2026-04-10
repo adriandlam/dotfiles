@@ -214,6 +214,18 @@
         },
         "gpt-5.4-xhigh-fast": {
           "name": "GPT-5.4 Extra High Fast"
+        },
+        "gpt-5.1-low": {
+          "name": "GPT-5.1 Low"
+        },
+        "gpt-5.1": {
+          "name": "GPT-5.1"
+        },
+        "composer-2-fast": {
+          "name": "Composer 2 Fast"
+        },
+        "composer-2": {
+          "name": "Composer 2"
         }
       }
     }

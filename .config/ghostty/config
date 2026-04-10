@@ -48,7 +48,7 @@ background-opacity-cells = true
 mouse-hide-while-typing = true
 
 # Shell integration
-shell-integration-features = title,sudo,ssh-env,no-cursor
+shell-integration-features = title,sudo,ssh-terminfo,ssh-env,no-cursor
 
 copy-on-select = clipboard
 quit-after-last-window-closed = true
