@@ -14,6 +14,7 @@ macos-titlebar-style = tabs
 macos-icon = blueprint
 macos-titlebar-proxy-icon = hidden
 macos-window-buttons = hidden
+macos-option-as-alt = true
 
 # Keybinds
 keybind = cmd+shift+r=reload_config

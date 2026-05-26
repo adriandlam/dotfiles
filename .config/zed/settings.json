@@ -8,6 +8,9 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    },
     "opencode": {
       "type": "registry",
     },
@@ -16,21 +19,22 @@
   "agent_buffer_font_size": 13.0,
   "agent_ui_font_size": 15.0,
   "agent": {
+    "dock": "right",
     "tool_permissions": {
       "default": "allow",
     },
     "enable_feedback": false,
     "play_sound_when_agent_done": true,
-    "default_profile": "write",
+    "default_profile": "minimal",
     "model_parameters": [
       {
         "provider": "anthropic",
-        "model": "claude-opus-4-5",
+        "model": "claude-sonnet-4-6",
         "temperature": 0.3,
       },
     ],
     "default_model": {
-      "effort": "medium",
+      "effort": "low",
       "enable_thinking": true,
       "provider": "zed.dev",
       "model": "claude-sonnet-4-6",
@@ -43,12 +47,12 @@
   "edit_predictions": {
     "provider": "zed",
     "enabled_in_text_threads": true,
-    "mode": "eager",
+    "mode": "subtle",
   },
   "scrollbar": {
     "diagnostics": "all",
   },
-  "buffer_font_family": "Geist Mono",
+  "buffer_font_family": ".ZedMono",
   "git": {
     "hunk_style": "staged_hollow",
     "blame": {
@@ -59,11 +63,13 @@
     },
   },
   "git_panel": {
+    "dock": "left",
     "status_style": "icon",
     "sort_by_path": false,
     "button": true,
   },
   "outline_panel": {
+    "dock": "left",
     "button": true,
   },
   "zoomed_padding": true,
@@ -101,6 +107,7 @@
     "active_language_button": true,
   },
   "collaboration_panel": {
+    "dock": "left",
     "button": false,
   },
   "project_panel": {
@@ -168,43 +175,52 @@
     "mdx": true,
     "vercel-theme": true,
   },
-  // "languages": {
-  //   "JSON": {
-  //     "formatter": { "language_server": { "name": "biome" } },
-  //     "language_servers": ["!eslint", "json-language-server", "biome"]
-  //   },
-  //   "JSONC": {
-  //     "formatter": { "language_server": { "name": "biome" } },
-  //     "language_servers": ["!eslint", "json-language-server", "biome"]
-  //   },
-  //   "CSS": {
-  //     "formatter": { "language_server": { "name": "biome" } }
-  //   },
-  //   "JavaScript": {
-  //     "formatter": [
-  //       { "language_server": { "name": "biome" } },
-  //       { "code_action": "source.fixAll.biome" },
-  //       { "code_action": "source.organizeImports.biome" }
-  //     ],
-  //     "language_servers": ["!eslint", "vtsls", "biome"]
-  //   },
-  //   "TypeScript": {
-  //     "formatter": [
-  //       { "language_server": { "name": "biome" } },
-  //       { "code_action": "source.fixAll.biome" },
-  //       { "code_action": "source.organizeImports.biome" }
-  //     ],
-  //     "language_servers": ["!eslint", "vtsls", "biome"]
-  //   },
-  //   "TSX": {
-  //     "formatter": [
-  //       { "language_server": { "name": "biome" } },
-  //       { "code_action": "source.fixAll.biome" },
-  //       { "code_action": "source.organizeImports.biome" }
-  //     ],
-  //     "language_servers": ["!eslint", "vtsls", "biome"]
-  //   }
-  // },
+  "languages": {
+    "C": {
+      "formatter": {
+        "external": {
+          "command": "clang-format",
+          "arguments": ["-"],
+        },
+      },
+      "format_on_save": "on",
+    },
+    // "JSON": {
+    //   "formatter": { "language_server": { "name": "biome" } },
+    //   "language_servers": ["!eslint", "json-language-server", "biome"]
+    // },
+    // "JSONC": {
+    //   "formatter": { "language_server": { "name": "biome" } },
+    //   "language_servers": ["!eslint", "json-language-server", "biome"]
+    // },
+    // "CSS": {
+    //   "formatter": { "language_server": { "name": "biome" } }
+    // },
+    // "JavaScript": {
+    //   "formatter": [
+    //     { "language_server": { "name": "biome" } },
+    //     { "code_action": "source.fixAll.biome" },
+    //     { "code_action": "source.organizeImports.biome" }
+    //   ],
+    //   "language_servers": ["!eslint", "vtsls", "biome"]
+    // },
+    // "TypeScript": {
+    //   "formatter": [
+    //     { "language_server": { "name": "biome" } },
+    //     { "code_action": "source.fixAll.biome" },
+    //     { "code_action": "source.organizeImports.biome" }
+    //   ],
+    //   "language_servers": ["!eslint", "vtsls", "biome"]
+    // },
+    // "TSX": {
+    //   "formatter": [
+    //     { "language_server": { "name": "biome" } },
+    //     { "code_action": "source.fixAll.biome" },
+    //     { "code_action": "source.organizeImports.biome" }
+    //   ],
+    //   "language_servers": ["!eslint", "vtsls", "biome"]
+    // }
+  },
   "lsp": {
     "vtsls": {
       "settings": {
