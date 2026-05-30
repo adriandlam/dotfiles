@@ -193,39 +193,6 @@ mkcd () {
 }
 
 
-# ai: one-shot local Gemma 4 via llama-cli (~10s cold start, ~48 tok/s)
-ai() {
-  local model=~/models/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf
-  local llama=~/llama.cpp-dev/build/bin/llama-cli
-  local prompt=""
-
-  # Read piped stdin if available
-  if [ ! -t 0 ]; then
-    prompt="$(cat)"$'\n\n'
-  fi
-
-  # Append arguments as prompt
-  prompt+="$*"
-
-  if [ -z "$prompt" ]; then
-    echo "Usage: ai <prompt>"
-    echo "       echo 'context' | ai <prompt>"
-    return 1
-  fi
-
-  "$llama" \
-    -m "$model" \
-    -ngl 99 \
-    -c 8192 \
-    -n 1024 \
-    --single-turn \
-    --reasoning off \
-    --no-display-prompt \
-    --log-disable \
-    -p "$prompt" \
-    2>/dev/null
-  echo
-}
 alias oc="OPENCODE_EXPERIMENTAL_MARKDOWN=1 opencode"
 alias nv="nvim"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
