@@ -32,7 +32,7 @@ keybind = cmd+j=goto_split:down
 keybind = cmd+l=goto_split:right
 keybind = cmd+h=goto_split:left
 keybind = cmd+backquote=toggle_quick_terminal
-keybind = cmd+f=text:\x1b[70;9~
+keybind = cmd+f=start_search
 keybind = cmd+g=text:\x1b[71;9~
 
 # Link previews
