@@ -1,0 +1,46 @@
+{
+  "lastChangelogVersion": "0.80.2",
+  "terminal": {
+    "showTerminalProgress": false,
+    "imageWidthCells": 120
+  },
+  "transport": "websocket",
+  "enableInstallTelemetry": false,
+  "defaultProjectTrust": "always",
+  "treeFilterMode": "default",
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-simplify",
+    "npm:@ayulab/pi-rewind",
+    "npm:pi-smart-fetch",
+    "npm:@gotgenes/pi-permission-system",
+    "npm:@juicesharp/rpiv-btw",
+    "https://github.com/obra/superpowers",
+    "npm:@pi-stef/superpowers-adapter",
+    "npm:@gotgenes/pi-subagents",
+    "npm:@heyhuynhgiabuu/pi-pretty",
+    "npm:pi-tool-display",
+    "npm:pi-marketplace",
+    "npm:@dustydonkey/pi-spinner",
+    "npm:pi-bar",
+    "npm:pi-notify",
+    "npm:pi-mcp-adapter",
+    "npm:@tintinweb/pi-tasks",
+    "npm:pi-lens",
+    "npm:context-mode"
+  ],
+  "defaultProvider": "opencode-cloudflare",
+  "defaultModel": "workers-ai/@cf/zai-org/glm-5.2",
+  "enabledModels": [
+    "openai/gpt-5.5",
+    "anthropic/claude-opus-4-8",
+    "anthropic/claude-haiku-4-5",
+    "opencode-cloudflare/workers-ai/@cf/zai-org/glm-5.2"
+  ],
+  "theme": "dark-flat",
+  "hideThinkingBlock": true
+}
