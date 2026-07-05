@@ -1,5 +1,5 @@
 # Appearance
-theme = Vesper
+theme = linear-dark
 background-opacity = 0.80
 background-blur = true
 window-padding-x = 16
@@ -9,7 +9,7 @@ window-padding-color = background
 cursor-style = underline
 cursor-style-blink = true
 unfocused-split-opacity = 0.4
-split-divider-color = #2e2e2e
+split-divider-color = #636b7b
 macos-titlebar-style = tabs
 macos-icon = blueprint
 macos-titlebar-proxy-icon = hidden

@@ -4,28 +4,28 @@ gui:
   nerdFontsVersion: "3"
   theme:
     activeBorderColor:
-      - "#99ffe4" # aqua
+      - "#8c97ff" # accent
       - bold
     inactiveBorderColor:
-      - "#505050" # dim gray
+      - "#636b7b" # dim
     optionsTextColor:
-      - "#ffc799" # orange
+      - "#f5c56a" # yellow
     selectedLineBgColor:
-      - "#2a2a2a" # selection
+      - "#22273a" # selection
     selectedRangeBgColor:
-      - "#2a2a2a" # selection
+      - "#22273a" # selection
     cherryPickedCommitBgColor:
-      - "#ffc799" # orange
+      - "#f5c56a" # yellow
     cherryPickedCommitFgColor:
-      - "#101010" # bg
+      - "#17181d" # bg
     unstagedChangesColor:
-      - "#ff8080" # red
+      - "#f5c56a" # dirty
     defaultFgColor:
-      - "#ffffff" # foreground
+      - "#e6e9ef" # foreground
     searchingActiveBorderColor:
-      - "#ffc799" # orange
+      - "#f5c56a" # yellow
       - bold
 git:
-  paging:
-    colorArg: always
-    pager: delta
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never

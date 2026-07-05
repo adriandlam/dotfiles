@@ -90,54 +90,54 @@ source $ZSH/oh-my-zsh.sh
 export EZA_CONFIG_DIR="$HOME/.config/eza"
 # eza: unset LS_COLORS so theme.yml takes effect (oh-my-zsh sets LS_COLORS above)
 unset LS_COLORS
-# Restore Vesper-colored directories for zsh tab completion (unset LS_COLORS removes them)
-zstyle ':completion:*' list-colors 'di=38;2;153;255;228' 'ln=38;2;255;199;153' 'ex=38;2;153;255;228;1'
+# Restore Linear-colored directories for zsh tab completion (unset LS_COLORS removes them)
+zstyle ':completion:*' list-colors 'di=38;2;140;151;255' 'ln=38;2;245;197;106' 'ex=38;2;140;151;255;1'
 
-# fast-syntax-highlighting: Vesper theme overrides
-# (fg=green resolves to sRGB green under truecolor, bypassing palette)
-FAST_HIGHLIGHT_STYLES[command]='fg=#99ffe4'           # aqua - commands
-FAST_HIGHLIGHT_STYLES[alias]='fg=#99ffe4'             # aqua - aliases
-FAST_HIGHLIGHT_STYLES[suffix-alias]='fg=#99ffe4'      # aqua - suffix aliases
-FAST_HIGHLIGHT_STYLES[builtin]='fg=#99ffe4'           # aqua - builtins
-FAST_HIGHLIGHT_STYLES[function]='fg=#99ffe4'          # aqua - functions
-FAST_HIGHLIGHT_STYLES[precommand]='fg=#99ffe4'        # aqua - precommands (sudo, etc)
-FAST_HIGHLIGHT_STYLES[hashed-command]='fg=#99ffe4'    # aqua - hashed commands
-FAST_HIGHLIGHT_STYLES[single-sq-bracket]='fg=#99ffe4' # aqua - [ ]
-FAST_HIGHLIGHT_STYLES[double-sq-bracket]='fg=#99ffe4' # aqua - [[ ]]
-FAST_HIGHLIGHT_STYLES[assign-array-bracket]='fg=#99ffe4'
-FAST_HIGHLIGHT_STYLES[case-input]='fg=#99ffe4'
-FAST_HIGHLIGHT_STYLES[subtle-separator]='fg=#99ffe4'
-FAST_HIGHLIGHT_STYLES[bracket-level-1]='fg=#99ffe4,bold'
-FAST_HIGHLIGHT_STYLES[reserved-word]='fg=#ffc799'     # orange - reserved words
-FAST_HIGHLIGHT_STYLES[subcommand]='fg=#ffc799'        # orange - subcommands
-FAST_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#ffc799'  # orange - 'strings'
-FAST_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#ffc799'  # orange - "strings"
-FAST_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#ffc799'  # orange - $'strings'
-FAST_HIGHLIGHT_STYLES[double-paren]='fg=#ffc799'      # orange - (( ))
-FAST_HIGHLIGHT_STYLES[for-loop-operator]='fg=#ffc799'
-FAST_HIGHLIGHT_STYLES[for-loop-separator]='fg=#ffc799,bold'
-FAST_HIGHLIGHT_STYLES[case-parentheses]='fg=#ffc799'
-FAST_HIGHLIGHT_STYLES[here-string-tri]='fg=#ffc799'
-FAST_HIGHLIGHT_STYLES[bracket-level-2]='fg=#ffc799,bold'
-FAST_HIGHLIGHT_STYLES[unknown-token]='fg=#ff8080,bold' # red - errors
-FAST_HIGHLIGHT_STYLES[incorrect-subtle]='fg=#ff8080'
-FAST_HIGHLIGHT_STYLES[matherr]='fg=#ff8080'
-FAST_HIGHLIGHT_STYLES[path]='fg=#a0a0a0'              # muted gray - paths
-FAST_HIGHLIGHT_STYLES[path-to-dir]='fg=#a0a0a0,underline'
-FAST_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#505050'  # dim gray - options
-FAST_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#505050'
-FAST_HIGHLIGHT_STYLES[back-or-dollar-double-quoted-argument]='fg=#99ffe4'
-FAST_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#99ffe4'
-FAST_HIGHLIGHT_STYLES[bracket-level-3]='fg=#99ffe4,bold'
-FAST_HIGHLIGHT_STYLES[comment]='fg=#505050'           # dim gray - comments
-FAST_HIGHLIGHT_STYLES[variable]='fg=#ffc799'          # orange - variables
-FAST_HIGHLIGHT_STYLES[for-loop-number]='fg=#ffc799'   # orange - numbers
-FAST_HIGHLIGHT_STYLES[mathnum]='fg=#ffc799'
-FAST_HIGHLIGHT_STYLES[mathvar]='fg=#99ffe4,bold'
-FAST_HIGHLIGHT_STYLES[globbing]='fg=#a0a0a0,bold'     # gray - globs
-FAST_HIGHLIGHT_STYLES[globbing-ext]='fg=#a0a0a0'
-FAST_HIGHLIGHT_STYLES[history-expansion]='fg=#a0a0a0,bold'
-FAST_HIGHLIGHT_STYLES[correct-subtle]='fg=#99ffe4'
+# fast-syntax-highlighting: Linear theme overrides
+# Use fixed Linear colors so shell chrome matches the theme.
+FAST_HIGHLIGHT_STYLES[command]='fg=#8c97ff'           # accent - commands
+FAST_HIGHLIGHT_STYLES[alias]='fg=#8c97ff'             # accent - aliases
+FAST_HIGHLIGHT_STYLES[suffix-alias]='fg=#8c97ff'      # accent - suffix aliases
+FAST_HIGHLIGHT_STYLES[builtin]='fg=#8c97ff'           # accent - builtins
+FAST_HIGHLIGHT_STYLES[function]='fg=#8c97ff'          # accent - functions
+FAST_HIGHLIGHT_STYLES[precommand]='fg=#8c97ff'        # accent - precommands (sudo, etc)
+FAST_HIGHLIGHT_STYLES[hashed-command]='fg=#8c97ff'    # accent - hashed commands
+FAST_HIGHLIGHT_STYLES[single-sq-bracket]='fg=#c2a1ff' # purple - [ ]
+FAST_HIGHLIGHT_STYLES[double-sq-bracket]='fg=#c2a1ff' # purple - [[ ]]
+FAST_HIGHLIGHT_STYLES[assign-array-bracket]='fg=#c2a1ff'
+FAST_HIGHLIGHT_STYLES[case-input]='fg=#c2a1ff'
+FAST_HIGHLIGHT_STYLES[subtle-separator]='fg=#c2a1ff'
+FAST_HIGHLIGHT_STYLES[bracket-level-1]='fg=#c2a1ff,bold'
+FAST_HIGHLIGHT_STYLES[reserved-word]='fg=#f5c56a'     # yellow - reserved words
+FAST_HIGHLIGHT_STYLES[subcommand]='fg=#f5c56a'        # yellow - subcommands
+FAST_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#f5c56a'  # yellow - 'strings'
+FAST_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#f5c56a'  # yellow - "strings"
+FAST_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#f5c56a'  # yellow - $'strings'
+FAST_HIGHLIGHT_STYLES[double-paren]='fg=#f5c56a'      # yellow - (( ))
+FAST_HIGHLIGHT_STYLES[for-loop-operator]='fg=#f5c56a'
+FAST_HIGHLIGHT_STYLES[for-loop-separator]='fg=#f5c56a,bold'
+FAST_HIGHLIGHT_STYLES[case-parentheses]='fg=#f5c56a'
+FAST_HIGHLIGHT_STYLES[here-string-tri]='fg=#f5c56a'
+FAST_HIGHLIGHT_STYLES[bracket-level-2]='fg=#f5c56a,bold'
+FAST_HIGHLIGHT_STYLES[unknown-token]='fg=#ff7e78,bold' # red - errors
+FAST_HIGHLIGHT_STYLES[incorrect-subtle]='fg=#ff7e78'
+FAST_HIGHLIGHT_STYLES[matherr]='fg=#ff7e78'
+FAST_HIGHLIGHT_STYLES[path]='fg=#b5bccb'              # muted gray - paths
+FAST_HIGHLIGHT_STYLES[path-to-dir]='fg=#b5bccb,underline'
+FAST_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#636b7b'  # dim gray - options
+FAST_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#636b7b'
+FAST_HIGHLIGHT_STYLES[back-or-dollar-double-quoted-argument]='fg=#c2a1ff'
+FAST_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#c2a1ff'
+FAST_HIGHLIGHT_STYLES[bracket-level-3]='fg=#c2a1ff,bold'
+FAST_HIGHLIGHT_STYLES[comment]='fg=#636b7b'           # dim gray - comments
+FAST_HIGHLIGHT_STYLES[variable]='fg=#f5c56a'          # yellow - variables
+FAST_HIGHLIGHT_STYLES[for-loop-number]='fg=#f5c56a'   # yellow - numbers
+FAST_HIGHLIGHT_STYLES[mathnum]='fg=#f5c56a'
+FAST_HIGHLIGHT_STYLES[mathvar]='fg=#c2a1ff,bold'
+FAST_HIGHLIGHT_STYLES[globbing]='fg=#b5bccb,bold'     # gray - globs
+FAST_HIGHLIGHT_STYLES[globbing-ext]='fg=#b5bccb'
+FAST_HIGHLIGHT_STYLES[history-expansion]='fg=#b5bccb,bold'
+FAST_HIGHLIGHT_STYLES[correct-subtle]='fg=#c2a1ff'
 
 # Configure zsh-autocomplete BEFORE loading it
 zstyle ':autocomplete:*' min-input 3
@@ -241,11 +241,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # pure prompt
 autoload -U promptinit; promptinit
 PURE_PROMPT_SYMBOL=">"
-zstyle :prompt:pure:path color '#99ffe4'
-zstyle :prompt:pure:git:branch color '#ffc799'
-zstyle :prompt:pure:git:dirty color '#ff8080'
-zstyle :prompt:pure:prompt:success color '#99ffe4'
-zstyle :prompt:pure:git:arrow color '#ffc799'
+zstyle :prompt:pure:path color '#8c97ff'
+zstyle :prompt:pure:git:branch color '#c2a1ff'
+zstyle :prompt:pure:git:dirty color '#f5c56a'
+zstyle :prompt:pure:prompt:success color '#8c97ff'
+zstyle :prompt:pure:git:arrow color '#c2a1ff'
 prompt pure
 
 
@@ -293,12 +293,12 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
 
-# fzf Vesper theme (upstream: https://github.com/adriandlam/vesper-fzf)
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-  --color=bg+:#2a2a2a,bg:#101010,spinner:#99ffe4,hl:#ffc799 \
-  --color=fg:#ffffff,header:#505050,info:#505050,pointer:#99ffe4 \
-  --color=marker:#99ffe4,fg+:#ffffff,prompt:#ffc799,hl+:#ffc799 \
-  --color=selected-bg:#2a2a2a,border:#2a2a2a,gutter:#101010"
+# fzf Linear theme
+export FZF_DEFAULT_OPTS="\
+  --color=bg+:#22273a,bg:#17181d,spinner:#c2a1ff,hl:#f5c56a \
+  --color=fg:#e6e9ef,header:#636b7b,info:#636b7b,pointer:#8c97ff \
+  --color=marker:#8c97ff,fg+:#e6e9ef,prompt:#8c97ff,hl+:#f5c56a \
+  --color=selected-bg:#22273a,border:#22273a,gutter:#17181d"
 
 # fzf previews (bat for files, eza tree for directories)
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window='right:60%:wrap'"
