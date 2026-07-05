@@ -28,33 +28,29 @@
   pager = delta
 [interactive]
   diffFilter = delta --color-only
-# Vesper theme for delta (upstream: https://github.com/adriandlam/vesper-delta)
+# Linear theme for delta
 [delta]
   navigate = true
   side-by-side = true
   line-numbers = true
   dark = true
-  syntax-theme = base16-256
-  # File headers - Vesper orange
-  file-style = "#ffc799" bold
-  file-decoration-style = "#ffc799" ul
-  # Hunk headers - Vesper aqua
-  hunk-header-style = "#505050" italic
-  hunk-header-decoration-style = "#2a2a2a" box
-  # Added lines - subtle dark aqua bg
-  plus-style = syntax "#0d2b22"
-  plus-emph-style = syntax "#15493a"
-  # Removed lines - subtle dark red bg
-  minus-style = syntax "#2b1010"
-  minus-emph-style = syntax "#4a1a1a"
+  syntax-theme = Linear
+  file-style = "#8c97ff" bold
+  file-decoration-style = "#8c97ff" ul
+  hunk-header-style = "#b5bccb" italic
+  hunk-header-decoration-style = "#252936" box
+  plus-style = syntax "#143023"
+  plus-emph-style = syntax "#1f4a32"
+  minus-style = syntax "#3a1d20"
+  minus-emph-style = syntax "#52292c"
   # Line numbers
-  line-numbers-minus-style = "#ff8080"
-  line-numbers-plus-style = "#99ffe4"
-  line-numbers-zero-style = "#505050"
-  line-numbers-left-style = "#505050"
-  line-numbers-right-style = "#505050"
+  line-numbers-minus-style = "#ff7e78"
+  line-numbers-plus-style = "#69c967"
+  line-numbers-zero-style = "#636b7b"
+  line-numbers-left-style = "#636b7b"
+  line-numbers-right-style = "#636b7b"
   # Blame
-  blame-palette = "#101010" "#1a1a1a" "#2a2a2a"
+  blame-palette = "#17181d" "#1b2130" "#22273a"
 [pull]
   rebase = true
 [fetch]
