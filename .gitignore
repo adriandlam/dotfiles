@@ -23,9 +23,6 @@
 # raycast: extensions are recompiled bundles, not config
 .config/raycast/extensions/
 
-# vscode: track the extension list, never the installed extensions
-vscode/extensions/
-
 # ssh: config only, never keys or known_hosts
 .ssh/*
 !.ssh/config

@@ -34,12 +34,5 @@ echo "Refreshing Brewfile..."
 brew bundle dump --force --describe --file="$DOTFILES/Brewfile"
 echo "  Brewfile rewritten"
 
-if command -v code >/dev/null 2>&1; then
-    code --list-extensions > "$DOTFILES/vscode/extensions.txt"
-    echo "  vscode/extensions.txt rewritten"
-else
-    echo "  skip vscode extensions (code not on PATH)"
-fi
-
 echo
 echo "Done. Review with: git -C \"$DOTFILES\" diff"

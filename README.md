@@ -39,7 +39,6 @@ Three things it deliberately does not do, because they need you:
 | `Brewfile` | Every package, cask, tap and global npm/cargo/go install |
 | `macos-defaults.sh` | `defaults write` settings |
 | `setup.sh`, `snapshot.sh` | Install on a new machine; pull replace-on-write config back in |
-| `vscode/extensions.txt` | Extension list (install with the one-liner below) |
 
 ## How linking works
 
@@ -51,8 +50,8 @@ state and credentials next to their config. Symlinking those directories wholesa
 pull session logs, caches and auth tokens into a public repo. Only individual config files
 are linked.
 
-For the same reason `.config/raycast/extensions/` and `vscode/extensions/` are gitignored:
-they are recompiled bundles and downloaded binaries, not config.
+For the same reason `.config/raycast/extensions/` is gitignored: those are bundles
+Raycast recompiles on every launch, not config.
 
 ### Snapshots
 
@@ -93,13 +92,6 @@ installed but unloaded — `:colorscheme vesper` switches back.
 brew bundle --file=Brewfile          # install everything
 brew bundle dump --force --describe  # rewrite Brewfile from current state
 brew bundle cleanup --force          # uninstall anything not in the Brewfile
-```
-
-## VS Code extensions
-
-```bash
-xargs -n1 code --install-extension < vscode/extensions.txt   # restore
-code --list-extensions > vscode/extensions.txt               # update
 ```
 
 ## Secrets

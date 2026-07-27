@@ -22,7 +22,6 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
-vscode
 setup.sh
 snapshot.sh
 macos-defaults.sh
