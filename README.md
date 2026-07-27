@@ -60,7 +60,7 @@ atomic replace, which deletes a symlink the first time the plugin set changes. T
 copied on a fresh install and refreshed on demand:
 
 ```bash
-./snapshot.sh    # pull live plugin manifests, Brewfile and extension list into the repo
+./snapshot.sh    # pull the live plugin manifests and Brewfile into the repo
 ```
 
 Everything else is symlinked, so edits land in the repo automatically.
