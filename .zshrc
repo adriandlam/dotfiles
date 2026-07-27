@@ -1,10 +1,6 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# History
+# ── History ───────────────────────────────────────────────────────────────
 HISTSIZE=50000
 SAVEHIST=50000
 setopt SHARE_HISTORY
@@ -13,88 +9,44 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 
-zle -N menu-search
-zle -N recent-paths
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ── Oh My Zsh ─────────────────────────────────────────────────────────────
+# Prompt comes from pure, not an omz theme.
 ZSH_THEME=""
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# zsh-autosuggestions and fast-syntax-highlighting are installed by Homebrew and
+# sourced below, so they are deliberately absent here.
+#
+# `dotenv` is deliberately absent too: it sources any .env in a directory you cd
+# into, which means `cd` into a cloned repo runs whatever that file contains.
+# direnv (hooked in below) does the same job but requires `direnv allow` per
+# directory, so a fresh checkout can't execute anything.
+plugins=(
+  git gitfast macos brew
+  alias-finder aliases command-not-found
+  sudo extract copypath copyfile
+  colored-man-pages jsontools web-search
+  safe-paste
+)
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast macos web-search dotenv keychain zsh-autosuggestions fast-syntax-highlighting alias-finder aliases brew command-not-found sudo extract copypath copyfile colored-man-pages jsontools)
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' longer yes
+zstyle ':omz:plugins:alias-finder' exact yes
+zstyle ':omz:plugins:alias-finder' cheaper yes
 
 source $ZSH/oh-my-zsh.sh
 
-# eza: ensure theme.yml is found on macOS (defaults to ~/Library/Application Support/eza)
+# ── eza ───────────────────────────────────────────────────────────────────
+# Point eza at the repo config, and drop the LS_COLORS omz just set so
+# theme.yml wins.
 export EZA_CONFIG_DIR="$HOME/.config/eza"
-# eza: unset LS_COLORS so theme.yml takes effect (oh-my-zsh sets LS_COLORS above)
 unset LS_COLORS
-# Restore Linear-colored directories for zsh tab completion (unset LS_COLORS removes them)
+# unset LS_COLORS also uncolors tab completion, so restore it in Linear colors.
 zstyle ':completion:*' list-colors 'di=38;2;140;151;255' 'ln=38;2;245;197;106' 'ex=38;2;140;151;255;1'
 
-# fast-syntax-highlighting: Linear theme overrides
-# Use fixed Linear colors so shell chrome matches the theme.
+# ── Syntax highlighting (Linear) ──────────────────────────────────────────
+source $HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
 FAST_HIGHLIGHT_STYLES[command]='fg=#8c97ff'           # accent - commands
 FAST_HIGHLIGHT_STYLES[alias]='fg=#8c97ff'             # accent - aliases
 FAST_HIGHLIGHT_STYLES[suffix-alias]='fg=#8c97ff'      # accent - suffix aliases
@@ -139,66 +91,46 @@ FAST_HIGHLIGHT_STYLES[globbing-ext]='fg=#b5bccb'
 FAST_HIGHLIGHT_STYLES[history-expansion]='fg=#b5bccb,bold'
 FAST_HIGHLIGHT_STYLES[correct-subtle]='fg=#c2a1ff'
 
-# Configure zsh-autocomplete BEFORE loading it
+# ── Autosuggestions ───────────────────────────────────────────────────────
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#636b7b'   # dim gray, matches comments
+
+# ── Completion ────────────────────────────────────────────────────────────
+# zsh-autocomplete replaces the completion UI, so it must be configured before
+# it is sourced and loaded after everything that defines widgets.
 zstyle ':autocomplete:*' min-input 3
 zstyle ':autocomplete:*' special-dirs true
 zstyle ':autocomplete:*' delay 0.5
 zstyle ':autocomplete:*' timeout 1.0
 zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
 zstyle ':completion:*' keep-prefix true
-bindkey              '^I'         menu-complete
-bindkey "$terminfo[kcbt]" reverse-menu-complete
 zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
+bindkey '^I' menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
 
-zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
-zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
-zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
-zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
-
-# Load zsh-autocomplete
 source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
+# ── Editor ────────────────────────────────────────────────────────────────
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+# ── Aliases and functions ─────────────────────────────────────────────────
+alias nv="nvim"
+alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
+alias lt="eza --tree --level=2 --icons --git-ignore"
+alias p="pnpm"
+alias yp="copypath"
+alias yf="copyfile"
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-mkcd () {
+mkcd() {
   \mkdir -p "$1"
   cd "$1"
 }
 
-
-alias nv="nvim"
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
-alias p="pnpm"
-alias yp="copypath"
-alias yf="copyfile"
-# lazygit with directory change on exit
+# lazygit, chdir-ing to wherever you ended up when it exits
 unalias gg 2>/dev/null
 gg() {
   export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
@@ -209,8 +141,8 @@ gg() {
   fi
 }
 
-
-# nvm (lazy loaded for faster shell startup)
+# ── Runtimes ──────────────────────────────────────────────────────────────
+# nvm is slow enough to matter at startup, so nothing loads until first use.
 export NVM_DIR="$HOME/.nvm"
 nvm() {
   unset -f nvm node npm npx
@@ -222,22 +154,20 @@ node() { unset -f node; nvm() { unset -f nvm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$N
 npm() { unset -f npm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; npm "$@"; }
 npx() { unset -f npx; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; npx "$@"; }
 
-# pnpm
-export PNPM_HOME="/Users/adrianlam/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
-# bun completions
-[ -s "/Users/adrianlam/.bun/_bun" ] && source "/Users/adrianlam/.bun/_bun"
-
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
-# pure prompt
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/.hades/bin"
+
+# ── Prompt ────────────────────────────────────────────────────────────────
 autoload -U promptinit; promptinit
 PURE_PROMPT_SYMBOL=">"
 zstyle :prompt:pure:path color '#8c97ff'
@@ -247,55 +177,22 @@ zstyle :prompt:pure:prompt:success color '#8c97ff'
 zstyle :prompt:pure:git:arrow color '#c2a1ff'
 prompt pure
 
-
-# zoxide (better cd)
+# ── Navigation and search ─────────────────────────────────────────────────
 eval "$(zoxide init zsh)"
-#compdef gt
-###-begin-gt-completions-###
-#
-# yargs command completion script
-#
-# Installation: gt completion >> ~/.zshrc
-#    or gt completion >> ~/.zprofile on OSX.
-#
-_gt_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
-}
-compdef _gt_yargs_completions gt
-###-end-gt-completions-###
 
-export PATH="$HOME/.local/bin:$PATH"
-
-# Added by Hades
-export PATH="$PATH:$HOME/.hades/bin"
-
-# Mole shell completion
-if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
-
-# fzf (fuzzy finder)
 eval "$(fzf --zsh)"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
-
-# fzf Linear theme
 export FZF_DEFAULT_OPTS="\
   --color=bg+:#22273a,bg:#17181d,spinner:#c2a1ff,hl:#f5c56a \
   --color=fg:#e6e9ef,header:#636b7b,info:#636b7b,pointer:#8c97ff \
   --color=marker:#8c97ff,fg+:#e6e9ef,prompt:#8c97ff,hl+:#f5c56a \
   --color=selected-bg:#22273a,border:#22273a,gutter:#17181d"
-
-# fzf previews (bat for files, eza tree for directories)
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window='right:60%:wrap'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --icons --level=2 {}' --preview-window='right:50%'"
 
-# Override fzf cd widget to use zoxide instead of builtin cd
+# Make fzf's cd widget hand off to zoxide instead of builtin cd.
 fzf-cd-widget() {
   setopt localoptions pipefail no_aliases 2> /dev/null
   local dir="$(
@@ -316,20 +213,14 @@ fzf-cd-widget() {
 }
 zle -N fzf-cd-widget
 
-# Remap fzf: Ctrl+F / Cmd+F for file search, Ctrl+G / Cmd+G for directory jump
-# bindkey -r '^T'
-# bindkey '^F' fzf-file-widget
-# bindkey '\x1b[70;9~' fzf-file-widget
-# bindkey -r '\ec'
-# bindkey '^G' fzf-cd-widget
-# bindkey '\x1b[71;9~' fzf-cd-widget
-# # Cmd+R for history search (atuin)
-# bindkey '\x1b[82;9~' atuin-search
+eval "$(atuin init zsh)"
 
-# bat as man pager (syntax-highlighted man pages)
+# ── Misc tooling ──────────────────────────────────────────────────────────
+# Per-directory env vars, opt-in via `direnv allow`.
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
+
+if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
+
+# Syntax-highlighted man pages.
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-
-# atuin (better shell history)
-eval "$(atuin init zsh)"
-ZSH_DOTENV_PROMPT=false

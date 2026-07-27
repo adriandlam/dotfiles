@@ -83,6 +83,19 @@ numbers yellow `#f5c56a`, punctuation muted `#b5bccb`. Diff backgrounds match th
 Neovim pulls `linear-nvim` as a plugin and sets `transparent = true` (the plugin
 defaults it off) since Ghostty already paints the same background.
 
+## Shell
+
+oh-my-zsh for its plugin library, [pure](https://github.com/sindresorhus/pure) for the
+prompt. The three heavyweight zsh plugins — `zsh-autosuggestions`,
+`zsh-fast-syntax-highlighting`, `zsh-autocomplete` — come from the `Brewfile` and are
+sourced from `$HOMEBREW_PREFIX` directly, rather than cloned into `$ZSH_CUSTOM`. One
+source, and `brew upgrade` keeps them current.
+
+`direnv` handles per-directory environment variables. The oh-my-zsh `dotenv` plugin is
+deliberately not enabled: it sources any `.env` in a directory you `cd` into, so cloning
+a repo and entering it would run whatever that file contains. `direnv` needs an explicit
+`direnv allow` per directory.
+
 ## Packages
 
 ```bash
@@ -90,6 +103,20 @@ brew bundle --file=Brewfile          # install everything
 brew bundle dump --force --describe  # rewrite Brewfile from current state
 brew bundle cleanup --force          # uninstall anything not in the Brewfile
 ```
+
+Beyond the usual (`ripgrep`, `fd`, `bat`, `eza`, `fzf`, `zoxide`, `atuin`, `delta`,
+`lazygit`, `gh`, `jq`):
+
+| Tool | Replaces | For |
+|---|---|---|
+| `dust` | `du` | Disk usage as a sorted tree |
+| `duf` | `df` | Readable free-space table |
+| `btop` | `top` | Process and resource monitor |
+| `sd` | `sed s///` | Find and replace with plain regex |
+| `yq` | — | `jq` for YAML and TOML |
+| `direnv` | — | Per-directory env, opt-in |
+| `git-absorb` | manual `--fixup` | Auto-routes changes to the commit that introduced them |
+| `watchexec` | — | Re-run a command when files change |
 
 ## Secrets
 

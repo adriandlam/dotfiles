@@ -33,23 +33,19 @@ echo "Creating symlinks..."
 stow --target="$HOME" --restow .
 
 # .zshrc sources $ZSH/oh-my-zsh.sh unconditionally, so a missing install is a
-# broken shell, not a degraded one. Install it rather than skipping.
+# broken shell rather than a degraded one. Install it rather than skipping.
+#
+# KEEP_ZSHRC matters: the installer rewrites ~/.zshrc by default, which here is
+# a stow symlink into this repo. Without it, a fresh install would clobber it.
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh..."
     RUNZSH=no KEEP_ZSHRC=yes sh -c \
         "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-echo "Installing oh-my-zsh plugins..."
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions \
-        "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-fi
-if [ ! -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ]; then
-    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
-        "$ZSH_CUSTOM/plugins/fast-syntax-highlighting"
-fi
+# No plugin clones here on purpose. zsh-autosuggestions, fast-syntax-highlighting
+# and zsh-autocomplete all come from the Brewfile, and .zshrc sources them from
+# $HOMEBREW_PREFIX directly — one source, and `brew upgrade` keeps them current.
 
 # Agent config dirs (~/.claude, ~/.codex, ~/.agents) and ~/.ssh hold live state and
 # credentials next to their config, so stow must never fold them. Link file by file.

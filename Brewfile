@@ -12,14 +12,22 @@ brew "agent-browser"
 brew "atuin"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
 # Cross-platform make
 brew "cmake"
 # Securely send things from one computer to another
 brew "croc"
+# Load/unload environment variables based on $PWD
+brew "direnv"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
+# Disk Usage/Free Utility - a better 'df' alternative
+brew "duf"
+# More intuitive version of du in rust
+brew "dust"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
@@ -28,6 +36,8 @@ brew "fd"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
+# Automatic git commit --fixup
+brew "git-absorb"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Quickly rewrite git repository history
@@ -42,9 +52,6 @@ brew "hf"
 brew "hunk"
 # Command-line benchmarking tool
 brew "hyperfine"
-# Lightweight and flexible command-line JSON processor
-# Ships at /usr/bin/jq on recent macOS, but the Claude statusLine needs it on older ones too
-brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
 # LLM inference in C/C++
@@ -63,6 +70,8 @@ brew "pure"
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
 brew "ruff"
+# Intuitive find & replace CLI
+brew "sd"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Multi-modal AI tool to extract and summarize content
@@ -75,8 +84,12 @@ brew "tmux"
 brew "ugrep"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Execute commands when watched files change
+brew "watchexec"
 # Generate your Xcode project from a spec file and your folder structure
 brew "xcodegen"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
 # Programming language designed for robustness, optimality, and clarity
 brew "zig"
 # Shell extension to navigate your filesystem faster
@@ -97,8 +110,6 @@ cask "1password-cli"
 cask "codex"
 cask "font-geist"
 cask "font-geist-mono-nerd-font"
-# Terminal emulator (installed manually as an .app before; the cask keeps it reproducible)
-cask "ghostty"
 # File system integration
 cask "macfuse"
 # Reverse proxy, secure introspectable tunnels to localhost
