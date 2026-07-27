@@ -25,39 +25,31 @@ brew bundle --file="$DOTFILES/Brewfile"
 # or state: a folded ~/.config would put gh's hosts.yml, ngrok and rclone configs
 # inside a public git repo. Creating them first forces stow to link file-by-file.
 echo "Pre-creating directories stow must not fold..."
-for d in .config .config/atuin .config/gh .config/mole .config/zed .pi .pi/agent; do
+for d in .config .config/atuin .config/gh .config/mole .config/zed; do
     mkdir -p "$HOME/$d"
 done
 
 echo "Creating symlinks..."
 stow --target="$HOME" --restow .
 
-if [ -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing oh-my-zsh plugins..."
-
-    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-        git clone https://github.com/zsh-users/zsh-autosuggestions \
-            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-    fi
-
-    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting" ]; then
-        git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
-            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting"
-    fi
-else
-    echo "oh-my-zsh not found, skipping plugin installation"
+# .zshrc sources $ZSH/oh-my-zsh.sh unconditionally, so a missing install is a
+# broken shell, not a degraded one. Install it rather than skipping.
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing oh-my-zsh..."
+    RUNZSH=no KEEP_ZSHRC=yes sh -c \
+        "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-echo "Initializing git submodules..."
-git -C "$DOTFILES" submodule update --init --recursive
-
-echo "Setting up opencode plugins and skills..."
-mkdir -p "$HOME/.config/opencode/plugins"
-ln -sf "$HOME/.config/opencode/superpowers/.opencode/plugins/superpowers.js" \
-       "$HOME/.config/opencode/plugins/superpowers.js"
-mkdir -p "$HOME/.config/opencode/skills"
-ln -sf "$HOME/.config/opencode/superpowers/skills" \
-       "$HOME/.config/opencode/skills/superpowers"
+echo "Installing oh-my-zsh plugins..."
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions \
+        "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+fi
+if [ ! -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ]; then
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+        "$ZSH_CUSTOM/plugins/fast-syntax-highlighting"
+fi
 
 # Agent config dirs (~/.claude, ~/.codex, ~/.agents) and ~/.ssh hold live state and
 # credentials next to their config, so stow must never fold them. Link file by file.

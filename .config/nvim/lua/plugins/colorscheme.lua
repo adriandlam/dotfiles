@@ -16,14 +16,4 @@ return {
     end,
   },
   { "LazyVim/LazyVim", opts = { colorscheme = "linear" } },
-
-  -- Kept installed but not loaded, so `:colorscheme vesper` still works.
-  {
-    "datsfilipe/vesper.nvim",
-    lazy = true,
-    opts = {
-      transparent = true,
-      italics = { comments = true, keywords = true },
-    },
-  },
 }

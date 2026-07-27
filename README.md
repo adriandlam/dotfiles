@@ -32,9 +32,7 @@ Three things it deliberately does not do, because they need you:
 | `.config/ghostty`, `.config/bat`, `.config/eza`, `.config/lazygit`, `.config/atuin` | Terminal and CLI tooling |
 | `.aerospace.toml` | Window manager |
 | `.claude`, `.codex`, `.agents` | AI agent config (settings and manifests only — no state, no credentials) |
-| `.config/opencode` | opencode config, with superpowers as a submodule |
 | `.config/zed` | Zed settings and keymap |
-| `.pi` | pi agent settings |
 | `.ssh/config` | SSH config only — points at the 1Password agent. No keys, ever. |
 | `Brewfile` | Every package, cask, tap and global npm/cargo/go install |
 | `macos-defaults.sh` | `defaults write` settings |
@@ -83,8 +81,7 @@ numbers yellow `#f5c56a`, punctuation muted `#b5bccb`. Diff backgrounds match th
 `[delta]` block in `.gitconfig`, so `git diff` and `:Gdiff` agree.
 
 Neovim pulls `linear-nvim` as a plugin and sets `transparent = true` (the plugin
-defaults it off) since Ghostty already paints the same background. Vesper is still
-installed but unloaded — `:colorscheme vesper` switches back.
+defaults it off) since Ghostty already paints the same background.
 
 ## Packages
 

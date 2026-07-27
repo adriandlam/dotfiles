@@ -3,20 +3,6 @@
 .config/raycast/config.json
 .config/gh/hosts.yml
 
-# opencode: ignore generated files (package.json is force-added via git add -f)
-.config/opencode/node_modules
-.config/opencode/bun.lock
-.config/opencode/.gitignore
-
-# opencode: plugins and skills dirs contain local symlinks only
-.config/opencode/plugins/
-.config/opencode/skills/
-
-# opencode: runtime state, logs and config backups
-.config/opencode/logs/
-.config/opencode/opencode-notifier-state.json
-.config/opencode/opencode.json.bak.*
-
 # zed: prompt library is a live LMDB database
 .config/zed/prompts/
 

@@ -79,12 +79,12 @@
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
   "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true,
   "editorMode": "normal",
   "verbose": true,
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "agentPushNotifEnabled": true
 }
