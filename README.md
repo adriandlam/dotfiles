@@ -38,6 +38,18 @@ are linked.
 For the same reason `.config/raycast/extensions/` and `vscode/extensions/` are gitignored:
 they are recompiled bundles and downloaded binaries, not config.
 
+### Snapshots
+
+A few files can't be symlinked at all. Claude Code rewrites its plugin manifests by
+atomic replace, which deletes a symlink the first time the plugin set changes. Those are
+copied on a fresh install and refreshed on demand:
+
+```bash
+./snapshot.sh    # pull live plugin manifests, Brewfile and extension list into the repo
+```
+
+Everything else is symlinked, so edits land in the repo automatically.
+
 ## Packages
 
 ```bash

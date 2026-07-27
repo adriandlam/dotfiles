@@ -24,6 +24,7 @@ _darcs
 
 vscode
 setup.sh
+snapshot.sh
 macos-defaults.sh
 Brewfile
 

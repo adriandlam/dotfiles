@@ -54,10 +54,26 @@ link_config() {
     echo "  linked $2"
 }
 
+# Claude Code rewrites the plugin manifests by atomic replace, which destroys a
+# symlink on the first plugin change. Seed those on a fresh machine instead, and
+# refresh the repo copy with ./snapshot.sh when the plugin set changes.
+seed_config() {
+    local src="$DOTFILES/$1" dst="$HOME/$2"
+    if [ ! -e "$src" ]; then
+        echo "  skip $2 (not in repo)"
+    elif [ -e "$dst" ]; then
+        echo "  kept $2 (already present)"
+    else
+        mkdir -p "$(dirname "$dst")"
+        cp "$src" "$dst"
+        echo "  seeded $2"
+    fi
+}
+
 echo "Linking agent and ssh configs..."
 link_config .claude/settings.json                   .claude/settings.json
-link_config .claude/plugins/installed_plugins.json  .claude/plugins/installed_plugins.json
-link_config .claude/plugins/known_marketplaces.json .claude/plugins/known_marketplaces.json
+seed_config .claude/plugins/installed_plugins.json  .claude/plugins/installed_plugins.json
+seed_config .claude/plugins/known_marketplaces.json .claude/plugins/known_marketplaces.json
 link_config .agents/.skill-lock.json                .agents/.skill-lock.json
 link_config .codex/config.toml                      .codex/config.toml
 link_config .codex/keybindings.json                 .codex/keybindings.json

@@ -14,143 +14,131 @@
     ],
     "code-review@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/code-review/unknown",
         "version": "unknown",
         "installedAt": "2026-02-12T20:27:11.025Z",
-        "lastUpdated": "2026-07-27T02:40:44.151Z",
+        "lastUpdated": "2026-07-27T03:39:10.921Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "feature-dev@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/feature-dev/unknown",
         "version": "unknown",
         "installedAt": "2026-02-12T20:27:11.034Z",
-        "lastUpdated": "2026-07-27T02:40:44.147Z",
+        "lastUpdated": "2026-07-27T03:39:10.923Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "code-simplifier@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0",
         "version": "1.0.0",
         "installedAt": "2026-02-12T20:27:11.038Z",
-        "lastUpdated": "2026-07-27T00:47:52.730Z",
+        "lastUpdated": "2026-07-27T03:09:28.377Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "commit-commands@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/commit-commands/unknown",
         "version": "unknown",
         "installedAt": "2026-02-12T20:27:11.045Z",
-        "lastUpdated": "2026-07-27T02:40:44.150Z",
+        "lastUpdated": "2026-07-27T03:39:10.922Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "pr-review-toolkit@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/pr-review-toolkit/unknown",
         "version": "unknown",
         "installedAt": "2026-02-12T20:27:11.054Z",
-        "lastUpdated": "2026-07-27T02:40:44.151Z",
+        "lastUpdated": "2026-07-27T03:39:10.922Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "explanatory-output-style@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/explanatory-output-style/1.0.0",
         "version": "1.0.0",
         "installedAt": "2026-02-12T20:27:11.058Z",
-        "lastUpdated": "2026-07-27T00:47:52.730Z",
+        "lastUpdated": "2026-07-27T03:09:28.377Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "claude-md-management@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/claude-md-management/1.0.0",
         "version": "1.0.0",
         "installedAt": "2026-02-12T20:27:11.063Z",
-        "lastUpdated": "2026-07-27T00:47:52.730Z",
+        "lastUpdated": "2026-07-27T03:09:28.377Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "hookify@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/hookify/unknown",
         "version": "unknown",
         "installedAt": "2026-02-12T20:27:11.070Z",
-        "lastUpdated": "2026-07-27T02:40:44.151Z",
+        "lastUpdated": "2026-07-27T03:39:10.932Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "claude-code-setup@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/claude-code-setup/1.0.0",
         "version": "1.0.0",
         "installedAt": "2026-02-12T20:27:11.074Z",
-        "lastUpdated": "2026-07-27T00:47:52.730Z",
+        "lastUpdated": "2026-07-27T03:09:28.377Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "security-guidance@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/security-guidance/2.0.6",
         "version": "2.0.6",
         "installedAt": "2026-02-14T19:24:29.418Z",
-        "lastUpdated": "2026-07-27T00:47:52.730Z",
+        "lastUpdated": "2026-07-27T03:09:28.377Z",
         "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ],
     "vercel@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/vercel/0.45.1",
         "version": "0.45.1",
         "installedAt": "2026-02-14T19:24:35.863Z",
-        "lastUpdated": "2026-07-27T00:54:08.880Z",
+        "lastUpdated": "2026-07-27T03:09:28.377Z",
         "gitCommitSha": "ae067751b4f42c97d13054211657275029ca8b6d"
       }
     ],
     "superpowers@claude-plugins-official": [
       {
-        "scope": "project",
-        "projectPath": "/Users/adrianlam/dotfiles",
+        "scope": "user",
         "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/superpowers/6.2.0",
         "version": "6.2.0",
         "installedAt": "2026-02-14T19:35:51.301Z",
-        "lastUpdated": "2026-07-27T00:54:06.867Z",
+        "lastUpdated": "2026-07-27T03:09:28.377Z",
         "gitCommitSha": "e16d611eee14ac4c3253b4bf4c55a98d905c2e64"
       }
     ],
     "frontend-design@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/frontend-design/f2d1e0230fc2",
-        "version": "f2d1e0230fc2",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
+        "version": "unknown",
         "installedAt": "2026-02-22T07:54:38.965Z",
-        "lastUpdated": "2026-07-27T02:58:05.021Z",
+        "lastUpdated": "2026-07-27T03:39:10.933Z",
         "gitCommitSha": "f2d1e0230fc287e1fcba00a87fa0abc8881aaae4"
       }
     ],
@@ -234,10 +222,10 @@
     "code-modernization@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/code-modernization/f2d1e0230fc2",
-        "version": "f2d1e0230fc2",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/code-modernization/unknown",
+        "version": "unknown",
         "installedAt": "2026-07-27T01:16:55.073Z",
-        "lastUpdated": "2026-07-27T02:58:05.021Z",
+        "lastUpdated": "2026-07-27T03:39:10.926Z",
         "gitCommitSha": "f2d1e0230fc287e1fcba00a87fa0abc8881aaae4"
       }
     ],
@@ -249,6 +237,15 @@
         "installedAt": "2026-07-27T01:16:56.847Z",
         "lastUpdated": "2026-07-27T01:16:56.847Z",
         "gitCommitSha": "044372f031ef4a6d2df60354504c757e8018466d"
+      }
+    ],
+    "huggingface-skills@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/adrianlam/.claude/plugins/cache/claude-plugins-official/huggingface-skills/1.0.20",
+        "version": "1.0.20",
+        "installedAt": "2026-07-27T03:09:28.377Z",
+        "lastUpdated": "2026-07-27T03:27:35.195Z"
       }
     ]
   }
