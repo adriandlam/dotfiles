@@ -4,12 +4,30 @@ set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    for p in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+        [ -x "$p" ] && eval "$("$p" shellenv)" && break
+    done
+fi
+
 echo "Updating Homebrew..."
 brew update
 brew upgrade
 
 echo "Installing packages from Brewfile..."
 brew bundle --file="$DOTFILES/Brewfile"
+
+# Stow "folds" a directory — replaces it with one symlink into this repo — whenever
+# the target does not already exist. That is fine for directories we own entirely
+# (ghostty, nvim, bat), but catastrophic for ones where an app also writes secrets
+# or state: a folded ~/.config would put gh's hosts.yml, ngrok and rclone configs
+# inside a public git repo. Creating them first forces stow to link file-by-file.
+echo "Pre-creating directories stow must not fold..."
+for d in .config .config/atuin .config/gh .config/mole .config/zed .pi .pi/agent; do
+    mkdir -p "$HOME/$d"
+done
 
 echo "Creating symlinks..."
 stow --target="$HOME" --restow .

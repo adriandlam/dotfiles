@@ -8,15 +8,6 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "cli_default_open_behavior": "existing_window",
-  "agent_servers": {
-    "pi-acp": {
-      "default_config_options": {
-        "thought_level": "medium",
-        "model": "opencode-cloudflare/workers-ai/@cf/zai-org/glm-5.2"
-      },
-      "type": "registry"
-    },
-  },
   "remove_trailing_whitespace_on_save": true,
   "agent_buffer_font_size": 13.0,
   "agent_ui_font_size": 15.0,
@@ -45,6 +36,14 @@
       "provider": "zed.dev",
       "model": "claude-sonnet-4-6",
     },
+    // Compact the thread automatically instead of hard-stopping at the context limit.
+    "auto_compact": {
+      "enabled": true,
+      "threshold": "90%",
+    },
+    "commit_message_instructions": "Use the Conventional Commits format: <type>(<scope>): <description>. Keep the subject under 72 characters, imperative mood, no trailing period. Explain why in the body only when it isn't obvious from the diff.",
+    // Also available if you want them pinned to a cheaper/faster model than
+    // `default_model`: "commit_message_model", "thread_summary_model", "subagent_model".
   },
   "edit_predictions": {
     "provider": "zed",
@@ -140,6 +139,21 @@
     "metrics": false,
   },
   "vim_mode": true,
+  // `vim_mode` only turns the mode on; the behaviour lives here.
+  "vim": {
+    // Relative numbers in normal mode, absolute in insert.
+    "toggle_relative_line_numbers": true,
+    // Matches the existing `use_smartcase_search`.
+    "use_smartcase_find": true,
+    // Left at the default ("always"). Set to "on_yank" if you want d/x to stop
+    // clobbering the system clipboard.
+    // "use_system_clipboard": "on_yank",
+  },
+  // Shows the available continuations while a leader chord is held.
+  "which_key": {
+    "enabled": true,
+    "delay_ms": 500,
+  },
   "relative_line_numbers": "enabled",
   "vertical_scroll_margin": 15.0,
   "gutter": {
