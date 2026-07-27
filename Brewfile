@@ -12,8 +12,6 @@ brew "agent-browser"
 brew "atuin"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Swiss army knife for network attacks and monitoring
-brew "bettercap"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
 # Cross-platform make
@@ -40,8 +38,6 @@ brew "git-lfs"
 brew "go"
 # Client library for huggingface.co hub
 brew "hf"
-# CLI email client written in Rust
-brew "himalaya"
 # Review-first terminal diff viewer for agent-authored changesets
 brew "hunk"
 # Command-line benchmarking tool
@@ -55,8 +51,6 @@ brew "lazygit"
 brew "llama.cpp"
 # Deep clean and optimize your Mac
 brew "mole"
-# Cross-platform ncurses Spotify client written in Rust
-brew "ncspot"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Utility for managing network connections
@@ -69,8 +63,6 @@ brew "pure"
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
 brew "ruff"
-# Create beautiful image of your source code
-brew "silicon"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Multi-modal AI tool to extract and summarize content
