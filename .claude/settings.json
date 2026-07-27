@@ -75,7 +75,7 @@
   "autoCompactWindow": 400000,
   "awaySummaryEnabled": false,
   "autoUpdatesChannel": "latest",
-  "tui": "default",
+  "tui": "fullscreen",
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
   "showThinkingSummaries": true,

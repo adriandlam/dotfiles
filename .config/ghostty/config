@@ -2,11 +2,11 @@
 #  Ghostty — targets 1.3.x · macOS 26 (Tahoe) · AeroSpace tiling
 # ══════════════════════════════════════════════════════════════════════
 
-# ── Typography ────────────────────────────────────────────────────────
-font-family = "GeistMono Nerd Font Mono"
-font-size = 14
-adjust-cell-height = 12%
-window-title-font-family = "Geist"
+# ── Text rendering ────────────────────────────────────────────────────
+# No font-family set on purpose: uses Ghostty's bundled JetBrains Mono NF.
+# 12 = the stock 13 minus one cmd+- step, which was the first thing done
+# in every new terminal anyway.
+font-size = 12
 alpha-blending = linear-corrected
 minimum-contrast = 1.1
 bold-color = bright
