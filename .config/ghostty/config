@@ -11,18 +11,19 @@ alpha-blending = linear-corrected
 minimum-contrast = 1.1
 bold-color = bright
 
-# ── Chrome: none ──────────────────────────────────────────────────────
-# No titlebar, no tab bar, no traffic lights. Rounded corners survive.
-macos-titlebar-style = hidden
+# ── Chrome ────────────────────────────────────────────────────────────
+# 'tabs' = custom titlebar with the tab bar built in. Required for tabs:
+# macOS native tabs need a titlebar, so 'hidden' disables cmd+t entirely.
+macos-titlebar-style = tabs
+# Strip what the tabs titlebar lets us strip.
+macos-window-buttons = hidden
+macos-titlebar-proxy-icon = hidden
 scrollbar = never
 resize-overlay = never
 window-padding-x = 16
 window-padding-y = 16
 window-padding-balance = true
 window-padding-color = background
-# Inert while the titlebar is hidden — kept as a guard if you ever unhide.
-macos-window-buttons = hidden
-macos-titlebar-proxy-icon = hidden
 
 # ── Color ─────────────────────────────────────────────────────────────
 theme = linear-dark
