@@ -5,17 +5,52 @@
 //
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
+//
+// Deliberately NOT rebound, because Zed's vim defaults already cover them:
+//   ctrl-w h/j/k/l  pane navigation
+//   g t / g shift-t tab navigation
+//   ] d / [ d       next/previous diagnostic
+//   escape          clears search highlight (editor::Cancel)
 [
-  {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    },
-  },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      // "j k": "vim::NormalBefore"
+      "j k": "vim::NormalBefore",
+    },
+  },
+
+  // Space leader. Only active in normal/visual/operator-pending, so it never
+  // swallows a literal space while typing. `which_key` is enabled in
+  // settings.json, so holding space lists what is available.
+  //
+  // The overlapping half of this map mirrors Zed's own Helix-mode leader
+  // (space f / b / s / r / k / c / /), so the two stay consistent.
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Finding
+      "space space": "file_finder::Toggle",
+      "space f": "file_finder::Toggle",
+      "space b": "tab_switcher::ToggleAll",
+      "space /": "pane::DeploySearch",
+      "space s": "outline::Toggle",
+      "space shift-s": "project_symbols::Toggle",
+
+      // Panels
+      "space e": "project_panel::ToggleFocus",
+      "space g": "git_panel::ToggleFocus",
+      "space o": "outline_panel::ToggleFocus",
+      "space t": "terminal_panel::Toggle",
+      "space a": "agent::ToggleFocus",
+      "space d": "diagnostics::Deploy",
+
+      // Editing
+      "space r": "editor::Rename",
+      "space .": "editor::ToggleCodeActions",
+      "space k": "editor::Hover",
+      "space c": "editor::ToggleComments",
+      "space w": "workspace::Save",
+      "space q": "pane::CloseActiveItem",
     },
   },
 ]

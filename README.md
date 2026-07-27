@@ -28,7 +28,7 @@ Three things it deliberately does not do, because they need you:
 |---|---|
 | `.zshrc`, `.zshenv` | Shell config. Secrets live in `~/.zshenv.local`, which is never committed. |
 | `.gitconfig`, `.config/git` | Git config and delta theme |
-| `.config/nvim` | LazyVim setup |
+| `.config/nvim` | LazyVim, with the Linear colorscheme in `lua/linear/` |
 | `.config/ghostty`, `.config/bat`, `.config/eza`, `.config/lazygit`, `.config/atuin` | Terminal and CLI tooling |
 | `.aerospace.toml` | Window manager |
 | `.claude`, `.codex`, `.agents` | AI agent config (settings and manifests only — no state, no credentials) |
@@ -62,6 +62,30 @@ copied on a fresh install and refreshed on demand:
 ```
 
 Everything else is symlinked, so edits land in the repo automatically.
+
+## Theming
+
+Everything runs the Linear theme. Ghostty, bat, delta, lazygit and Zed use the
+published ports ([ghostty-linear](https://github.com/adriandlam/ghostty-linear),
+[linear-bat](https://github.com/adriandlam/linear-bat),
+[zed-linear](https://github.com/adriandlam/zed-linear)). Neovim has no upstream port,
+so the colorscheme lives here in `.config/nvim/lua/linear/`:
+
+| File | Role |
+|---|---|
+| `lua/linear/palette.lua` | Colors, with the source each one came from |
+| `lua/linear/highlights.lua` | ~360 highlight groups, plus the `:terminal` palette |
+| `lua/linear/init.lua` | `setup()` / `load()`, options, overrides |
+| `colors/linear.lua` | Entry point for `:colorscheme linear` |
+
+Token semantics are taken from the bat and Zed themes so a file reads the same
+everywhere: keywords indigo `#8c97ff`, functions purple `#c2a1ff`, types blue
+`#73b7ff`, strings teal `#7ad9c0`, numbers yellow `#f5c56a`, punctuation muted
+`#b5bccb`. Diff backgrounds match the `[delta]` block in `.gitconfig`, so `git diff`
+and `:Gdiff` agree.
+
+Both variants exist; `light` follows `vim.o.background`. Vesper is still installed
+but unloaded — `:colorscheme vesper` switches back.
 
 ## Packages
 

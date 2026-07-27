@@ -101,6 +101,15 @@
   },
   "terminal": {
     "button": false,
+    "font_family": "Geist Mono",
+    "font_size": 13.0,
+    "copy_on_select": true,
+    // Lets alt-f / alt-b word-motion reach the shell instead of emitting Unicode.
+    "option_as_meta": true,
+    "working_directory": "current_project_directory",
+    "toolbar": {
+      "breadcrumbs": false,
+    },
   },
   "status_bar": {
     "active_language_button": true,
@@ -165,6 +174,66 @@
     "markdown": ["*.mdx"],
   },
   "auto_indent_on_paste": true,
+  "tab_size": 2,
+  "preferred_line_length": 100,
+  "wrap_guides": [100],
+  "indent_guides": {
+    "enabled": true,
+    // Default is "fixed"; indent_aware tints each level differently.
+    "coloring": "indent_aware",
+  },
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    // The noisiest category by far — types and value hints carry most of the benefit.
+    "show_parameter_hints": false,
+    "show_value_hints": true,
+    "show_other_hints": true,
+  },
+  // Close the tab when the file disappears under you (branch switch, rebase).
+  "close_on_file_delete": true,
+  "preview_tabs": {
+    "enabled": true,
+    // Off by default; stops the file finder from accreting permanent tabs.
+    "enable_preview_from_file_finder": true,
+  },
+  // Gates what is sent to edit predictions and the agent. This REPLACES Zed's
+  // default list rather than merging, so the defaults are restated here and the
+  // SSH key patterns are the actual addition.
+  "private_files": [
+    "**/.env*",
+    "**/*.pem",
+    "**/*.key",
+    "**/*.cert",
+    "**/*.crt",
+    "**/secrets.yml",
+    "**/.dev.vars",
+    "**/id_rsa",
+    "**/id_ed25519",
+    "**/*.p12",
+    "**/*.pfx",
+  ],
+  // Also replaces rather than merges. Everything listed becomes invisible to the
+  // file finder and project search — drop "**/node_modules" if you ever want to
+  // open dependency source by path.
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/.sl",
+    "**/.repo",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/node_modules",
+    "**/.next",
+    "**/.turbo",
+    "**/.venv",
+    "**/__pycache__",
+  ],
   "base_keymap": "Cursor",
   "ui_font_size": 15.0,
   "buffer_font_size": 13.0,
@@ -183,11 +252,14 @@
     "show_nav_history_buttons": false,
   },
   "auto_install_extensions": {
-    "biome": true,
+    // Provides both the oxlint and oxfmt language servers configured under "lsp".
+    // Without this the formatter config below silently does nothing on a fresh machine.
+    "oxc": true,
     "git-firefly": true,
     "github-actions": true,
     "mdx": true,
     "vercel-theme": true,
+    // Dropped: "biome" — superseded by oxfmt/oxlint, and nothing references it.
   },
   "format_on_save": "on",
   "languages": {
@@ -313,6 +385,7 @@
       },
       "Markdown": {
         "format_on_save": "on",
+        "soft_wrap": "editor_width",
         "prettier": {
           "allowed": false
         },
@@ -326,6 +399,7 @@
       },
       "MDX": {
         "format_on_save": "on",
+        "soft_wrap": "editor_width",
         "prettier": {
           "allowed": false
         },
@@ -422,6 +496,17 @@
              "run": "onSave"
            }
          }
+       },
+       "vtsls": {
+         "settings": {
+           "typescript": {
+             "updateImportsOnFileMove": { "enabled": "always" }
+           },
+           "javascript": {
+             "updateImportsOnFileMove": { "enabled": "always" }
+           }
+         },
+         "enable_lsp_tasks": true
        }
      },
 }

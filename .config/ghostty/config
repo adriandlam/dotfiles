@@ -61,10 +61,7 @@ quick-terminal-autohide = true
 
 # ── Dock icon ─────────────────────────────────────────────────────────
 # NOTE: custom-style is experimental upstream; format may change.
-macos-icon = custom-style
-macos-icon-frame = plastic
-macos-icon-ghost-color = #8c97ff
-macos-icon-screen-color = #17181d,#22273a
+macos-icon = blueprint
 
 # ── Keybinds ──────────────────────────────────────────────────────────
 keybind = cmd+shift+r=reload_config
