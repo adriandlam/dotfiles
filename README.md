@@ -28,14 +28,17 @@ Three things it deliberately does not do, because they need you:
 |---|---|
 | `.zshrc`, `.zshenv` | Shell config. Secrets live in `~/.zshenv.local`, which is never committed. |
 | `.gitconfig`, `.config/git` | Git config and delta theme |
-| `.config/nvim` | LazyVim, with the Linear colorscheme in `lua/linear/` |
+| `.config/nvim` | LazyVim. The colorscheme is the [linear-nvim](https://github.com/adriandlam/linear-nvim) plugin, configured in `lua/plugins/colorscheme.lua` |
 | `.config/ghostty`, `.config/bat`, `.config/eza`, `.config/lazygit`, `.config/atuin` | Terminal and CLI tooling |
 | `.aerospace.toml` | Window manager |
 | `.claude`, `.codex`, `.agents` | AI agent config (settings and manifests only — no state, no credentials) |
 | `.config/opencode` | opencode config, with superpowers as a submodule |
 | `.config/zed` | Zed settings and keymap |
+| `.pi` | pi agent settings |
+| `.ssh/config` | SSH config only — points at the 1Password agent. No keys, ever. |
 | `Brewfile` | Every package, cask, tap and global npm/cargo/go install |
 | `macos-defaults.sh` | `defaults write` settings |
+| `setup.sh`, `snapshot.sh` | Install on a new machine; pull replace-on-write config back in |
 | `vscode/extensions.txt` | Extension list (install with the one-liner below) |
 
 ## How linking works
