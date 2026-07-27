@@ -65,27 +65,24 @@ Everything else is symlinked, so edits land in the repo automatically.
 
 ## Theming
 
-Everything runs the Linear theme. Ghostty, bat, delta, lazygit and Zed use the
-published ports ([ghostty-linear](https://github.com/adriandlam/ghostty-linear),
-[linear-bat](https://github.com/adriandlam/linear-bat),
-[zed-linear](https://github.com/adriandlam/zed-linear)). Neovim has no upstream port,
-so the colorscheme lives here in `.config/nvim/lua/linear/`:
+Everything runs the Linear theme, each tool via its own port:
 
-| File | Role |
+| Tool | Port |
 |---|---|
-| `lua/linear/palette.lua` | Colors, with the source each one came from |
-| `lua/linear/highlights.lua` | ~360 highlight groups, plus the `:terminal` palette |
-| `lua/linear/init.lua` | `setup()` / `load()`, options, overrides |
-| `colors/linear.lua` | Entry point for `:colorscheme linear` |
+| Ghostty | [ghostty-linear](https://github.com/adriandlam/ghostty-linear) |
+| bat, Sublime | [linear-bat](https://github.com/adriandlam/linear-bat) |
+| Zed | [zed-linear](https://github.com/adriandlam/zed-linear) |
+| Neovim | [linear-nvim](https://github.com/adriandlam/linear-nvim) |
+| delta, lazygit | Inline, in `.gitconfig` and `.config/lazygit` |
 
-Token semantics are taken from the bat and Zed themes so a file reads the same
-everywhere: keywords indigo `#8c97ff`, functions purple `#c2a1ff`, types blue
-`#73b7ff`, strings teal `#7ad9c0`, numbers yellow `#f5c56a`, punctuation muted
-`#b5bccb`. Diff backgrounds match the `[delta]` block in `.gitconfig`, so `git diff`
-and `:Gdiff` agree.
+Token semantics are shared, so a file reads the same everywhere: keywords indigo
+`#8c97ff`, functions purple `#c2a1ff`, types blue `#73b7ff`, strings teal `#7ad9c0`,
+numbers yellow `#f5c56a`, punctuation muted `#b5bccb`. Diff backgrounds match the
+`[delta]` block in `.gitconfig`, so `git diff` and `:Gdiff` agree.
 
-Both variants exist; `light` follows `vim.o.background`. Vesper is still installed
-but unloaded — `:colorscheme vesper` switches back.
+Neovim pulls `linear-nvim` as a plugin and sets `transparent = true` (the plugin
+defaults it off) since Ghostty already paints the same background. Vesper is still
+installed but unloaded — `:colorscheme vesper` switches back.
 
 ## Packages
 

@@ -1,27 +1,21 @@
--- Linear is a local colorscheme, not a plugin: it lives in
--- ~/.config/nvim/lua/linear/ with the entry point at colors/linear.lua.
--- It matches the Ghostty, bat, delta, lazygit and Zed themes on this machine.
+-- Linear, matching the Ghostty, bat, delta, lazygit and Zed themes on this
+-- machine. Source: github.com/adriandlam/linear-nvim
 
 return {
-  -- Configure Linear before LazyVim applies the colorscheme.
   {
-    "LazyVim/LazyVim",
+    "adriandlam/linear-nvim",
+    lazy = false,
+    priority = 1000,
     opts = {
-      colorscheme = function()
-        require("linear").setup({
-          transparent = true,
-          italics = {
-            comments = true,
-            keywords = true,
-            functions = false,
-            strings = false,
-            variables = false,
-          },
-        })
-        vim.cmd.colorscheme("linear")
-      end,
+      -- Ghostty already paints the Linear background, so letting it through
+      -- keeps padding and blur consistent. The plugin defaults this off.
+      transparent = true,
     },
+    config = function(_, opts)
+      require("linear").setup(opts)
+    end,
   },
+  { "LazyVim/LazyVim", opts = { colorscheme = "linear" } },
 
   -- Kept installed but not loaded, so `:colorscheme vesper` still works.
   {
