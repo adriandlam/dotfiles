@@ -21,6 +21,9 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # Disable press-and-hold (we want key repeat for hjkl navigation)
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
+# Make default screenshots use jpg
+defaults write com.apple.screencapture type jpg
+
 # Disable all the "smart" features that mess with code
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
@@ -161,7 +164,7 @@ echo "🔄 Restarting affected applications..."
 
 # Restart affected applications
 for app in "Dock" "Finder"; do
-    killall "${app}" &> /dev/null || true
+  killall "${app}" &>/dev/null || true
 done
 
 echo ""

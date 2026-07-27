@@ -1,14 +1,9 @@
-cache
-debug
-file-history
-paste-cache
-plans
-projects
-session-env
-shell-snapshots
-statsig
-telemetry
-tasks
-todos
-stats-cache.json
-history.jsonl
+# This directory doubles as the project-level Claude dir for the dotfiles repo,
+# so Claude writes live state here. Allowlist config; ignore everything else.
+*
+!.gitignore
+!settings.json
+!plugins/
+plugins/*
+!plugins/installed_plugins.json
+!plugins/known_marketplaces.json

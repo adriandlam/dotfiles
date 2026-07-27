@@ -11,3 +11,41 @@
 # opencode: plugins and skills dirs contain local symlinks only
 .config/opencode/plugins/
 .config/opencode/skills/
+
+# opencode: runtime state, logs and config backups
+.config/opencode/logs/
+.config/opencode/opencode-notifier-state.json
+.config/opencode/opencode.json.bak.*
+
+# zed: prompt library is a live LMDB database
+.config/zed/prompts/
+
+# raycast: extensions are recompiled bundles, not config
+.config/raycast/extensions/
+
+# vscode: track the extension list, never the installed extensions
+vscode/extensions/
+
+# ssh: config only, never keys or known_hosts
+.ssh/*
+!.ssh/config
+
+# codex: config only; everything else is state, cache or credentials
+.codex/*
+!.codex/config.toml
+!.codex/keybindings.json
+!.codex/rules/
+.codex/rules/*
+!.codex/rules/default.rules
+
+# agents: the lock file is the manifest; skills are reinstalled from it
+.agents/*
+!.agents/.skill-lock.json
+
+# secrets never belong in a public repo
+.env
+.env.*
+*.pem
+*_rsa
+*_ed25519
+.zshenv.local

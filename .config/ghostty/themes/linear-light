@@ -20,3 +20,7 @@ cursor-color = #2a3140
 cursor-text = #f7f8fa
 selection-background = #e8ecf5
 selection-foreground = #2a3140
+search-background = #dfe6f7
+search-foreground = #2a3140
+search-selected-background = #5e6ad2
+search-selected-foreground = #f7f8fa

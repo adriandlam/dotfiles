@@ -1,24 +1,78 @@
-# Appearance
-theme = linear-dark
-background-opacity = 0.80
-background-blur = true
+# ══════════════════════════════════════════════════════════════════════
+#  Ghostty — targets 1.3.x · macOS 26 (Tahoe) · AeroSpace tiling
+# ══════════════════════════════════════════════════════════════════════
+
+# ── Typography ────────────────────────────────────────────────────────
+font-family = "GeistMono Nerd Font Mono"
+font-size = 14
+adjust-cell-height = 12%
+window-title-font-family = "Geist"
+alpha-blending = linear-corrected
+minimum-contrast = 1.1
+bold-color = bright
+
+# ── Chrome: none ──────────────────────────────────────────────────────
+# No titlebar, no tab bar, no traffic lights. Rounded corners survive.
+macos-titlebar-style = hidden
+scrollbar = never
+resize-overlay = never
 window-padding-x = 16
 window-padding-y = 16
 window-padding-balance = true
 window-padding-color = background
-cursor-style = underline
+# Inert while the titlebar is hidden — kept as a guard if you ever unhide.
+macos-window-buttons = hidden
+macos-titlebar-proxy-icon = hidden
+
+# ── Color ─────────────────────────────────────────────────────────────
+theme = linear-dark
+# Derive palette 16–255 from the theme's base 16 instead of xterm defaults.
+# Pull this line first if any TUI's 256-color output looks wrong.
+palette-generate = true
+
+# ── Splits ────────────────────────────────────────────────────────────
+cursor-style = bar
 cursor-style-blink = true
 unfocused-split-opacity = 0.4
-split-divider-color = #636b7b
-macos-titlebar-style = tabs
-macos-icon = blueprint
-macos-titlebar-proxy-icon = hidden
-macos-window-buttons = hidden
+split-divider-color = #22273a
+split-preserve-zoom = navigation
+
+# ── Dev flow ──────────────────────────────────────────────────────────
+shell-integration-features = title,sudo,ssh-terminfo,ssh-env,no-cursor
+# Notify when a long command finishes in a split you're not looking at.
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = bell,notify
+notify-on-command-finish-after = 20s
+undo-timeout = 30s
+working-directory = inherit
+copy-on-select = clipboard
+mouse-hide-while-typing = true
+link-previews = true
+quit-after-last-window-closed = true
+scrollback-limit = 100000000
 macos-option-as-alt = true
 
-# Keybinds
+# ── Quick terminal ────────────────────────────────────────────────────
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.1
+quick-terminal-autohide = true
+
+# ── Dock icon ─────────────────────────────────────────────────────────
+# NOTE: custom-style is experimental upstream; format may change.
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = #8c97ff
+macos-icon-screen-color = #17181d,#22273a
+
+# ── Keybinds ──────────────────────────────────────────────────────────
 keybind = cmd+shift+r=reload_config
+
+# Forward cmd+r / cmd+g into TUIs as super+r / super+g (kitty encoding)
 keybind = cmd+r=text:\x1b[82;9~
+keybind = cmd+g=text:\x1b[71;9~
+
+# Splits
 keybind = cmd+shift+k=new_split:up
 keybind = cmd+shift+h=new_split:left
 keybind = cmd+shift+l=new_split:right
@@ -31,37 +85,13 @@ keybind = cmd+k=goto_split:up
 keybind = cmd+j=goto_split:down
 keybind = cmd+l=goto_split:right
 keybind = cmd+h=goto_split:left
+keybind = cmd+alt+e=equalize_splits
+keybind = cmd+alt+r=toggle_readonly
+
+# Search — cmd+g is taken by the forward above, so next-match moves here.
+# (cmd+f start, cmd+shift+g previous, escape end — all stock defaults.)
+keybind = cmd+alt+g=navigate_search:next
+
 keybind = cmd+backquote=toggle_quick_terminal
-keybind = cmd+g=text:\x1b[71;9~
-
-# Link previews
-link-previews = true
-
-# Environment
-env = COLORTERM=truecolor
-env = TERM_PROGRAM=Ghostty
-
-# Background opacity for apps like vim/tmux
-background-opacity-cells = true
-
-# Hide mouse while typing
-mouse-hide-while-typing = true
-
-# Shell integration
-shell-integration-features = title,sudo,ssh-terminfo,ssh-env,no-cursor
-
-copy-on-select = clipboard
-quit-after-last-window-closed = true
-
-# 100 mb per terminal
-scrollback-limit = 100000000  
-
-# Quick terminal
-quick-terminal-position = top
-quick-terminal-screen = main
-quick-terminal-animation-duration = 0.1
-quick-terminal-autohide = true
- 
-working-directory = inherit
 keybind = shift+enter=text:\x1b\r
 keybind = alt+backspace=text:\x1b\x7f

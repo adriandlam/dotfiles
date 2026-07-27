@@ -1,0 +1,3 @@
+prefix_rule(pattern=["bun", "--cwd=apps/desktop", "run", "dev"], decision="allow")
+prefix_rule(pattern=[".venv-mlx/bin/python", "-m", "pytest"], decision="allow")
+prefix_rule(pattern=["rm", "-rf", ".pnpm-store"], decision="allow")

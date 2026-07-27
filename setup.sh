@@ -1,68 +1,38 @@
 #!/bin/bash
 
-set -e  # Exit on error
+set -euo pipefail
 
-# Update Homebrew
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 echo "Updating Homebrew..."
 brew update
 brew upgrade
 
-# Install core packages
-echo "Installing packages..."
-brew install stow
-brew install neovim
-brew install ghostty
-brew install gh
+echo "Installing packages from Brewfile..."
+brew bundle --file="$DOTFILES/Brewfile"
 
-# CLI tools
-brew install bat
-brew install eza
-brew install fd
-brew install fzf
-brew install ripgrep
-brew install git-delta
-brew install lazygit
-brew install zoxide
-brew install atuin
-brew install jq
-brew install tldr
-brew install pnpm
-
-# Zsh enhancements
-echo "Installing zsh plugins..."
-brew install pure
-brew install zsh-autosuggestions
-brew install zsh-autocomplete
-
-# Create symlinks
-# Run stow from the dotfiles directory, targeting home directory
-stow --target="$HOME" .
+echo "Creating symlinks..."
+stow --target="$HOME" --restow .
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh plugins..."
 
     if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
         git clone https://github.com/zsh-users/zsh-autosuggestions \
-            ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
     fi
 
     if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting" ]; then
         git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
-            ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting"
     fi
 else
     echo "oh-my-zsh not found, skipping plugin installation"
 fi
 
-# Create symlinks with stow
-echo "Creating symlinks..."
-stow --target="$HOME" --restow .
-
-# Initialize git submodules (superpowers, etc.)
 echo "Initializing git submodules..."
-git submodule update --init --recursive
+git -C "$DOTFILES" submodule update --init --recursive
 
-# Set up opencode plugins + skills symlinks
 echo "Setting up opencode plugins and skills..."
 mkdir -p "$HOME/.config/opencode/plugins"
 ln -sf "$HOME/.config/opencode/superpowers/.opencode/plugins/superpowers.js" \
@@ -71,14 +41,45 @@ mkdir -p "$HOME/.config/opencode/skills"
 ln -sf "$HOME/.config/opencode/superpowers/skills" \
        "$HOME/.config/opencode/skills/superpowers"
 
-# Rebuild bat theme cache (stow symlinks the tmTheme, but bat needs its binary cache rebuilt)
+# Agent config dirs (~/.claude, ~/.codex, ~/.agents) and ~/.ssh hold live state and
+# credentials next to their config, so stow must never fold them. Link file by file.
+link_config() {
+    local src="$DOTFILES/$1" dst="$HOME/$2"
+    if [ ! -e "$src" ]; then
+        echo "  skip $2 (not in repo)"
+        return
+    fi
+    mkdir -p "$(dirname "$dst")"
+    ln -sfn "$src" "$dst"
+    echo "  linked $2"
+}
+
+echo "Linking agent and ssh configs..."
+link_config .claude/settings.json                   .claude/settings.json
+link_config .claude/plugins/installed_plugins.json  .claude/plugins/installed_plugins.json
+link_config .claude/plugins/known_marketplaces.json .claude/plugins/known_marketplaces.json
+link_config .agents/.skill-lock.json                .agents/.skill-lock.json
+link_config .codex/config.toml                      .codex/config.toml
+link_config .codex/keybindings.json                 .codex/keybindings.json
+link_config .codex/rules/default.rules              .codex/rules/default.rules
+link_config .config/atuin/config.toml               .config/atuin/config.toml
+link_config .ssh/config                             .ssh/config
+
 echo "Building bat theme cache..."
 bat cache --build
 
-# Apply macOS defaults
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Applying macOS defaults..."
-    bash "$(dirname "$0")/macos-defaults.sh"
+    bash "$DOTFILES/macos-defaults.sh"
 fi
 
-echo "Installation complete!"
+cat <<'EOF'
+
+Installation complete.
+
+Remaining manual steps:
+  1. Sign in to 1Password CLI:  op signin
+  2. Create ~/.zshenv.local for machine-local secrets (never committed):
+       echo 'export SOME_TOKEN="$(op read op://Private/some-item/credential)"' > ~/.zshenv.local
+  3. Reinstall agent skills from the lock file if they are missing.
+EOF

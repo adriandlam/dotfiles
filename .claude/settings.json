@@ -1,24 +1,89 @@
 {
+  "cleanupPeriodDays": 90,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Skill",
+      "WebFetch",
+      "WebSearch",
+      "Bash"
+    ],
+    "ask": [
+      "Bash(git commit *)",
+      "Bash(git commit)",
+      "Bash(git push *)",
+      "Bash(git push)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -fd *)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(chmod -R 777 *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "skillOverrides": {
+    "find-skills": "off",
+    "mcp-builder": "off",
+    "next-best-practices": "off",
+    "pdf": "off",
+    "vercel-react-best-practices": "off",
+    "vercel-react-view-transitions": "off",
+    "web-design-guidelines": "off"
+  },
   "statusLine": {
     "type": "command",
-    "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir'); name=$(echo \"$input\" | jq -r '.session_name // empty'); rem=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); dir=$(basename \"$cwd\"); branch=$(git -C \"$cwd\" branch --show-current 2>/dev/null); dirty=$(git -C \"$cwd\" diff-index --quiet HEAD -- 2>/dev/null || echo '*'); parts=\"\"; [ -n \"$name\" ] && parts=\"$(printf '\\033[38;2;255;199;153m%s\\033[0m' \"$name\") \"; parts=\"$parts$(printf '\\033[38;2;153;255;228m%s\\033[0m' \"$dir\")\"; [ -n \"$branch\" ] && parts=\"$parts $(printf '\\033[38;2;160;160;160m%s\\033[0m' \"$branch\")$( [ -n \"$dirty\" ] && printf ' \\033[38;2;255;128;128m*\\033[0m' )\"; [ -n \"$rem\" ] && parts=\"$parts $(printf '\\033[38;2;80;80;80m%s%%\\033[0m' \"$rem\")\"; echo \"$parts $(printf '\\033[38;2;255;199;153m>\\033[0m')\""
+    "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "sonatype-guide@claude-plugins-official": true,
-    "firecrawl@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
+    "code-review@claude-plugins-official": false,
+    "feature-dev@claude-plugins-official": false,
+    "code-simplifier@claude-plugins-official": false,
+    "commit-commands@claude-plugins-official": false,
+    "pr-review-toolkit@claude-plugins-official": false,
     "explanatory-output-style@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": false,
     "hookify@claude-plugins-official": true,
-    "claude-code-setup@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": false,
     "security-guidance@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@superpowers-marketplace": false,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "chrome-devtools-mcp@claude-plugins-official": true,
+    "imessage@claude-plugins-official": true,
+    "code-modernization@claude-plugins-official": true,
+    "resend@claude-plugins-official": true,
+    "huggingface-skills@claude-plugins-official": false
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "autoCompactWindow": 400000,
+  "awaySummaryEnabled": false,
+  "autoUpdatesChannel": "latest",
+  "tui": "default",
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "showThinkingSummaries": true,
+  "editorMode": "normal",
+  "verbose": true,
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": true,
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }

@@ -1,0 +1,241 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+model_verbosity = "low"
+
+
+notify = ["/Users/adrianlam/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+service_tier = "default"
+
+[projects."/Users/adrianlam/GitHub/flint"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub/tau"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-06-03/4th-year-cs-and-math-majors"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub/sglang"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub/relais"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub/adrianlam.sh"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub/powerbar"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub/modex.sh"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-16/is"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-16/take"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-16/take-a-look-at-https-adguard"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-16/how"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-16/help"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-16/ful"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-19/i"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-20/add"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-20/add-these-to-memory"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-20/got"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-20/take"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-20/which"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub/gdiff.sh"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-21/debug"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-23/lo"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-25/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-25/research-venture-capital-fellowships-talent-networks"]
+trust_level = "trusted"
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = false
+
+[plugins."ponytail@ponytail"]
+enabled = true
+
+[plugins."superpowers@openai-curated"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."i-have-adhd@i-have-adhd"]
+enabled = true
+
+[marketplaces.openai-bundled]
+last_updated = "2026-07-26T02:47:25Z"
+source_type = "local"
+source = "/Users/adrianlam/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-07-24T16:09:26Z"
+source_type = "local"
+source = "/Users/adrianlam/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.ponytail]
+last_updated = "2026-07-16T08:45:05Z"
+last_revision = "16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
+source_type = "git"
+source = "https://github.com/DietrichGebert/ponytail.git"
+
+[marketplaces.i-have-adhd]
+last_updated = "2026-07-26T02:47:21Z"
+last_revision = "16a42a01f7783e29db8557dfc46226baf8015618"
+source_type = "git"
+source = "https://github.com/ayghri/i-have-adhd.git"
+ref = "main"
+
+[desktop]
+appearanceTheme = "dark"
+usePointerCursors = false
+followUpQueueMode = "steer"
+default-service-tier = "fast"
+appearanceDarkCodeThemeId = "linear"
+preventSleepWhileRunning = true
+git-pull-request-merge-method = "squash"
+keepRemoteControlAwakeWhilePluggedIn = true
+avatar-overlay-mascot-width-px = 80
+dock-icon-preference = "codex-system"
+conversationDetailMode = "STEPS_COMMANDS"
+show-ultra-in-model-picker-slider = false
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh"]
+show-context-window-usage = true
+git-branch-prefix = ""
+
+[desktop.open-in-target-preferences]
+global = "zed"
+
+[desktop.appearanceDarkChromeTheme]
+accent = "#606acc"
+contrast = 50
+ink = "#e3e4e6"
+opaqueWindows = true
+surface = "#0f0f11"
+
+[desktop.appearanceDarkChromeTheme.fonts]
+ui = "Inter"
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = "#69c967"
+diffRemoved = "#ff7e78"
+skill = "#c2a1ff"
+
+[features]
+js_repl = false
+memories = true
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex"
+CODEX_HOME = "/Users/adrianlam/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.721.41059"
+SKY_CUA_SERVICE_PATH = "/Users/adrianlam/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[tui.model_availability_nux]
+"gpt-5.5" = 1
+
+[hooks.state]
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:session_start:0:0"]
+trusted_hash = "sha256:5f81d38f47448a1581c08ec877e044d9e04dd6f814dce3f2671f7a8edadd719b"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:6a6f42bc3b58d6262db38bfd74d7f340fcca2b09cdb134aad365063f0bfefca4"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7a6e70ef"
+
+[sandbox_workspace_write]
+network_access = true
+
+[memories]
+generate_memories = true
+use_memories = true
+
+[shell_environment_policy.set]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex"
