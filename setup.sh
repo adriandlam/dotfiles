@@ -62,7 +62,6 @@ link_config .agents/.skill-lock.json                .agents/.skill-lock.json
 link_config .codex/config.toml                      .codex/config.toml
 link_config .codex/keybindings.json                 .codex/keybindings.json
 link_config .codex/rules/default.rules              .codex/rules/default.rules
-link_config .config/atuin/config.toml               .config/atuin/config.toml
 link_config .ssh/config                             .ssh/config
 
 echo "Building bat theme cache..."
