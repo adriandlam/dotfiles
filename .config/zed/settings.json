@@ -11,6 +11,13 @@
   "remove_trailing_whitespace_on_save": true,
   "agent_buffer_font_size": 13.0,
   "agent_ui_font_size": 15.0,
+  // Carried over from the legacy ~/.zed/settings.json, which Zed dropped when it
+  // migrated config to ~/.config/zed.
+  "agent_servers": {
+    "opencode": {
+      "type": "registry",
+    },
+  },
   "agent": {
     "dock": "right",
     "tool_permissions": {
