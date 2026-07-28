@@ -30,7 +30,6 @@ Three things it deliberately does not do, because they need you:
 | `.gitconfig`, `.config/git` | Git config and delta theme |
 | `.config/nvim` | LazyVim. The colorscheme is the [linear-nvim](https://github.com/adriandlam/linear-nvim) plugin, configured in `lua/plugins/colorscheme.lua` |
 | `.config/ghostty`, `.config/bat`, `.config/eza`, `.config/lazygit`, `.config/atuin` | Terminal and CLI tooling |
-| `.aerospace.toml` | Window manager |
 | `.claude`, `.codex`, `.agents` | AI agent config (settings and manifests only — no state, no credentials) |
 | `.config/zed` | Zed settings and keymap |
 | `.ssh/config` | SSH config only — points at the 1Password agent. No keys, ever. |
