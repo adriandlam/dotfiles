@@ -34,8 +34,11 @@ Three things it deliberately does not do, because they need you:
 | `.config/zed` | Zed settings and keymap |
 | `.ssh/config` | SSH config only — points at the 1Password agent. No keys, ever. |
 | `Brewfile` | Every package, cask, tap and global npm/cargo/go install |
-| `macos-defaults.sh` | `defaults write` settings |
+| `macos-defaults.sh` | `defaults write` settings, plus Touch ID for `sudo` |
 | `setup.sh`, `snapshot.sh` | Install on a new machine; pull replace-on-write config back in |
+| `doctor.sh` | Health check — verifies the install still matches the model below |
+| `.githooks`, `.gitleaks.toml` | Pre-commit secret scan and its allowlist |
+| `.github/workflows` | CI: shellcheck, a `stow --simulate`, and gitleaks over full history |
 
 ## How linking works
 
@@ -61,6 +64,28 @@ copied on a fresh install and refreshed on demand:
 ```
 
 Everything else is symlinked, so edits land in the repo automatically.
+
+### Checking it still holds
+
+Everything above is a claim about the machine. `./doctor.sh` is what verifies it —
+no dangling links, none of the four hazardous directories folded into a symlink,
+the pre-commit hook wired, `HEAD`'s signature actually verifying, Homebrew ahead of
+the system on `PATH`, and every script parsing. It reports; it never repairs.
+
+```bash
+./doctor.sh
+```
+
+### Secrets
+
+`.githooks/pre-commit` runs `gitleaks` over the staged changes and refuses the commit
+if it finds one. `setup.sh` wires it as a **repo-local** `core.hooksPath` — never
+`--global`, which would point every clone on the machine at these hooks. The same scan
+runs in CI over the full history.
+
+Allowlist entries in `.gitleaks.toml` should stay narrow. The reason to scan a repo
+that deliberately links config sitting beside real credentials is to catch the one
+careless `git add`; a broad exclusion quietly turns that off.
 
 ## Theming
 
