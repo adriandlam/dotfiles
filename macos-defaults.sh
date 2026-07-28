@@ -1,8 +1,25 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 echo "🛠️  Configuring macOS defaults for development..."
+
+# A few settings below need root (chflags on /Volumes, systemsetup). Asking for
+# the password up front — and refreshing it in the background — keeps the one
+# interactive moment at the start instead of surfacing minutes into setup.sh.
+#
+# The tty guard matters: without it a non-interactive run (CI, a piped shell)
+# blocks forever on a password prompt nobody can answer. Nothing below is
+# load-bearing, so skipping sudo entirely just means those few lines no-op.
+if [ -t 0 ] && sudo -v; then
+    while true; do
+        sudo -n true
+        sleep 60
+        kill -0 "$$" 2>/dev/null || exit
+    done 2>/dev/null &
+    SUDO_KEEPALIVE=$!
+    trap 'kill "$SUDO_KEEPALIVE" 2>/dev/null || true' EXIT
+fi
 
 # Close System Preferences to prevent override
 osascript -e 'tell application "System Preferences" to quit' 2>/dev/null || true
@@ -21,12 +38,16 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # Disable press-and-hold (we want key repeat for hjkl navigation)
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Make default screenshots use jpg
-defaults write com.apple.screencapture type jpg
-
-# Disable all the "smart" features that mess with code
+# Disable all the "smart" features that mess with code. Quote and dash
+# substitution matter most: they turn "foo" into “foo” and -- into –, which
+# survives a copy-paste out of Notes or Slack and then fails to parse.
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Tab through every control in a dialog, not just text fields and lists
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # ============================================
 # Trackpad & Mouse (Faster = Better)
@@ -67,6 +88,14 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 # Keep folders on top when sorting
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# Show the full POSIX path in the window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Stop Finder writing .DS_Store onto network shares and USB volumes, which is
+# how they end up committed to repos on other people's machines
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Show ~/Library folder
 chflags nohidden ~/Library
@@ -137,11 +166,27 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Disable Resume system-wide (don't restore windows on restart)
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
+# Save new documents to disk, not iCloud
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Don't interrupt with the crash reporter dialog
+defaults write com.apple.CrashReporter DialogType -string none
+
 # Restart automatically if the computer freezes
 sudo systemsetup -setrestartfreeze on 2>/dev/null || true
 
 # Disable Time Machine prompts for new disks
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# ============================================
+# Security
+# ============================================
+
+echo "🔒 Configuring security..."
+
+# Require the password immediately after sleep or screen saver
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # ============================================
 # Text Editing
