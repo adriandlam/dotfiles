@@ -188,6 +188,27 @@ echo "🔒 Configuring security..."
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
+# Touch ID for sudo. /etc/pam.d/sudo_local is the supported seam for this —
+# Apple includes it from /etc/pam.d/sudo and, unlike edits to sudo itself,
+# it survives system updates. Ships as a .template with the line commented.
+if grep -qs '^auth.*pam_tid\.so' /etc/pam.d/sudo_local; then
+    echo "  Touch ID for sudo already enabled"
+elif [ -z "${SUDO_KEEPALIVE:-}" ]; then
+    echo "  skipped Touch ID for sudo (needs an interactive run)"
+else
+    # Prepend rather than overwrite: the file may already carry unrelated PAM
+    # rules, and pam_tid must be reached before sudo falls through to password.
+    # The `if` matters: `[ -f x ] && cat x` returns 1 when the file is absent,
+    # which under pipefail fails the pipeline and set -e kills the script.
+    { printf 'auth       sufficient     pam_tid.so\n'
+      if [ -f /etc/pam.d/sudo_local ]; then cat /etc/pam.d/sudo_local; fi
+    } | sudo tee /etc/pam.d/sudo_local.new >/dev/null
+    sudo mv /etc/pam.d/sudo_local.new /etc/pam.d/sudo_local
+    sudo chmod 444 /etc/pam.d/sudo_local
+    sudo chown root:wheel /etc/pam.d/sudo_local
+    echo "  Touch ID for sudo enabled"
+fi
+
 # ============================================
 # Text Editing
 # ============================================
