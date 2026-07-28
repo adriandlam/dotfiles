@@ -21,18 +21,27 @@ COMPLETION_WAITING_DOTS="true"
 # into, which means `cd` into a cloned repo runs whatever that file contains.
 # direnv (hooked in below) does the same job but requires `direnv allow` per
 # directory, so a fresh checkout can't execute anything.
+#
+# `command-not-found` is absent because on macOS it only wires up a handler from
+# the homebrew-command-not-found tap, which isn't installed — it loaded and did
+# nothing. `alias-finder` is absent because it registers a preexec hook that
+# greps the whole alias table before every command you run.
+#
+# fzf, zoxide and eza have omz plugins too, but all three are configured by hand
+# further down with custom widgets and themes; the plugins would overwrite them.
 plugins=(
   git gitfast macos brew
-  alias-finder aliases command-not-found
-  sudo extract copypath copyfile
+  aliases sudo extract copypath copyfile
   colored-man-pages jsontools web-search
-  safe-paste
+  safe-paste magic-enter
+  1password gh bun uv golang
 )
 
-zstyle ':omz:plugins:alias-finder' autoload yes
-zstyle ':omz:plugins:alias-finder' longer yes
-zstyle ':omz:plugins:alias-finder' exact yes
-zstyle ':omz:plugins:alias-finder' cheaper yes
+# Bare Enter runs these instead of a blank prompt. The stock "other" command is
+# `ls -lh .`, which collides with the eza alias below (duplicate -l, and eza
+# reads -h as --header), so point it at the alias itself.
+MAGIC_ENTER_GIT_COMMAND='git status -u .'
+MAGIC_ENTER_OTHER_COMMAND='ls'
 
 source $ZSH/oh-my-zsh.sh
 
