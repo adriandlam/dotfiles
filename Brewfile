@@ -1,8 +1,5 @@
 tap "antoniorodr/memo"
-tap "clawdbot/tap", "https://github.com/openclaw/homebrew-tap.git"
 tap "messense/macos-cross-toolchains"
-tap "openclaw/tap"
-tap "steipete/tap"
 tap "yakitrak/yakitrak"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
@@ -58,8 +55,6 @@ brew "hyperfine"
 brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
-# LLM inference in C/C++
-brew "llama.cpp"
 # Deep clean and optimize your Mac
 brew "mole"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -106,10 +101,6 @@ brew "zsh-autocomplete"
 brew "zsh-autosuggestions"
 # Feature-rich syntax highlighting for Zsh
 brew "zsh-fast-syntax-highlighting"
-# Modern Go client + CLI for the Google Places API (New).
-brew "openclaw/tap/goplaces"
-# Fast X CLI for tweeting, replying, and reading
-brew "steipete/tap/bird"
 # Command-line interface for 1Password
 cask "1password-cli"
 # OpenAI's coding agent that runs in your terminal

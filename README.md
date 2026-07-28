@@ -13,14 +13,12 @@ cd dotfiles && ./setup.sh
 `setup.sh` is idempotent — safe to re-run any time. It installs Homebrew if missing,
 installs everything in the `Brewfile`, symlinks the tree, and applies the macOS defaults.
 
-Three things it deliberately does not do, because they need you:
+Two things it deliberately does not do, because they need you:
 
 1. **1Password** — install the app, sign in, enable the SSH agent. `.ssh/config` already
    points at the agent socket, so git over SSH works once it's running.
 2. **`~/.zshenv.local`** — recreate any machine-local secrets. Nothing in this repo
    contains them by design.
-3. **Untrusted taps** — `brew bundle` may stop on `openclaw/tap` and `steipete/tap`.
-   Run `brew trust --formula openclaw/tap/goplaces steipete/tap/bird` and re-run.
 
 ## What's here
 
