@@ -1,1 +1,12 @@
-adrianlam@users.noreply.github.com 
+# Roster git verifies SSH commit signatures against, pointed at by
+# gpg.ssh.allowedSignersFile in .gitconfig. Format is:
+#
+#   <principal[,principal...]> <key-type> <key>
+#
+# The principal must match the commit's author email, so both addresses
+# are listed: commits are authored as me@adrianlam.sh, but the GitHub
+# noreply address shows up on anything committed through the web UI.
+#
+# The key is the public half of user.signingkey — the private half never
+# leaves the 1Password agent.
+me@adrianlam.sh,adrianlam@users.noreply.github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpW/soFiCrttzvsERgdEIzsYcGlRrfu1LH7g8aTSlE0
