@@ -45,6 +45,19 @@ MAGIC_ENTER_OTHER_COMMAND='ls'
 
 source $ZSH/oh-my-zsh.sh
 
+# ── PATH: Homebrew ahead of the system ────────────────────────────────────
+# Homebrew is on PATH via /etc/paths.d/homebrew rather than a shellenv eval in
+# .zprofile. path_helper reads /etc/paths first (/usr/bin, /bin, /usr/sbin,
+# /sbin) and only then /etc/paths.d/*, so every brew binary lands *behind* its
+# system namesake — openssl, python3, jq and nc all resolved to Apple's build
+# despite being installed deliberately.
+#
+# HOMEBREW_PREFIX is exported by the omz brew plugin above, so this has to come
+# after the oh-my-zsh source.
+if [[ -n $HOMEBREW_PREFIX ]]; then
+  path=("$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin" ${path:#($HOMEBREW_PREFIX/bin|$HOMEBREW_PREFIX/sbin)})
+fi
+
 # ── eza ───────────────────────────────────────────────────────────────────
 # Point eza at the repo config, and drop the LS_COLORS omz just set so
 # theme.yml wins.
