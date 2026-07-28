@@ -4,33 +4,74 @@
     "commit": "",
     "pr": ""
   },
+  "fallbackModel": ["claude-sonnet-5"],
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
       "Read",
-      "Edit",
-      "Write",
       "Glob",
       "Grep",
       "Skill",
       "WebFetch",
-      "WebSearch",
-      "Bash"
+      "WebSearch"
     ],
     "ask": [
-      "Bash(git commit *)",
-      "Bash(git commit)",
-      "Bash(git push *)",
       "Bash(git push)",
-      "Bash(git push --force *)",
-      "Bash(git reset --hard *)",
-      "Bash(git clean -fd *)",
+      "Bash(git push *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh release *)",
+      "Bash(gh repo delete *)",
+      "Bash(npm publish *)",
+      "Bash(pnpm publish *)",
+      "Bash(bun publish *)",
+      "Bash(cargo publish *)",
+      "Bash(stow *)",
+      "Bash(sudo *)"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Edit(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Edit(~/.aws/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.zshenv.local)",
+      "Edit(~/.zshenv.local)",
+      "Read(~/.config/gh/hosts.yml)",
+      "Read(**/*.pem)",
+      "Read(**/*.p12)",
+      "Read(**/id_rsa*)",
+      "Read(**/id_ed25519*)",
       "Bash(rm -rf /*)",
       "Bash(rm -rf ~*)",
-      "Bash(rm -rf *)",
-      "Bash(sudo *)",
-      "Bash(chmod -R 777 *)"
+      "Bash(chmod -R 777 *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/block-no-verify.sh"
+          }
+        ]
+      }
     ],
-    "defaultMode": "auto"
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/zsh-syntax-check.sh",
+            "statusMessage": "Checking zsh syntax..."
+          }
+        ]
+      }
+    ]
   },
   "skillOverrides": {
     "find-skills": "off",
@@ -80,12 +121,13 @@
   "autoDreamEnabled": true,
   "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "editorMode": "normal",
   "verbose": true,
+  "spinnerTipsEnabled": false,
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "skipWorkflowUsageWarning": true
+  "agentPushNotifEnabled": true
 }

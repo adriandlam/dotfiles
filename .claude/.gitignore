@@ -3,6 +3,9 @@
 *
 !.gitignore
 !settings.json
+!statusline.sh
+!hooks/
+!hooks/*.sh
 !plugins/
 plugins/*
 !plugins/installed_plugins.json

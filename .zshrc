@@ -103,6 +103,14 @@ zstyle ':autocomplete:*' special-dirs true
 zstyle ':autocomplete:*' delay 0.5
 zstyle ':autocomplete:*' timeout 1.0
 zstyle -e ':autocomplete:*:*' list-lines 'reply=( $(( LINES / 3 )) )'
+
+# zsh-autocomplete runs its own compinit from a precmd hook, and unfunctions
+# compdef first. A bare compinit prompts via `read -q` when compaudit flags an
+# fpath directory, so one stray keystroke aborts it, compdef never returns, and
+# every queued `compdef` falls through to command-not-found. `-i` warns instead
+# of prompting, which is what oh-my-zsh already does.
+zstyle ':autocomplete::compinit' arguments -i
+
 zstyle ':completion:*' keep-prefix true
 zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
 bindkey '^I' menu-complete

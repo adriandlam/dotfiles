@@ -19,6 +19,12 @@ brew upgrade
 echo "Installing packages from Brewfile..."
 brew bundle --file="$DOTFILES/Brewfile"
 
+# Homebrew leaves the prefix's share/ group-writable whenever it creates new
+# subdirectories there, so that several admin accounts can share one install.
+# compaudit refuses that above any fpath entry, and compinit then prompts and
+# aborts — which is exactly what a Brewfile addition triggered on 2026-07-27.
+chmod g-w "$(brew --prefix)/share" 2>/dev/null || true
+
 # Stow "folds" a directory — replaces it with one symlink into this repo — whenever
 # the target does not already exist. That is fine for directories we own entirely
 # (ghostty, nvim, bat), but catastrophic for ones where an app also writes secrets
@@ -78,6 +84,9 @@ seed_config() {
 
 echo "Linking agent and ssh configs..."
 link_config .claude/settings.json                   .claude/settings.json
+link_config .claude/statusline.sh                   .claude/statusline.sh
+link_config .claude/hooks/block-no-verify.sh        .claude/hooks/block-no-verify.sh
+link_config .claude/hooks/zsh-syntax-check.sh       .claude/hooks/zsh-syntax-check.sh
 seed_config .claude/plugins/installed_plugins.json  .claude/plugins/installed_plugins.json
 seed_config .claude/plugins/known_marketplaces.json .claude/plugins/known_marketplaces.json
 link_config .agents/.skill-lock.json                .agents/.skill-lock.json

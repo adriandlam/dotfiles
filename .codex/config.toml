@@ -131,7 +131,7 @@ source_type = "local"
 source = "/Users/adrianlam/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-07-24T16:09:26Z"
+last_updated = "2026-07-27T22:39:22Z"
 source_type = "local"
 source = "/Users/adrianlam/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
