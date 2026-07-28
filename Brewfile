@@ -44,6 +44,8 @@ brew "git-delta"
 brew "git-filter-repo"
 # Git extension for versioning large files
 brew "git-lfs"
+# Audit git repos for secrets
+brew "gitleaks"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Client library for huggingface.co hub
@@ -52,6 +54,8 @@ brew "hf"
 brew "hunk"
 # Command-line benchmarking tool
 brew "hyperfine"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
 # LLM inference in C/C++
@@ -72,6 +76,8 @@ brew "ripgrep"
 brew "ruff"
 # Intuitive find & replace CLI
 brew "sd"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Multi-modal AI tool to extract and summarize content
