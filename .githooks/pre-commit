@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# Refuse a commit that stages a secret.
+#
+# This repo deliberately keeps config next to credentials — ~/.claude, ~/.codex,
+# ~/.agents and ~/.ssh all hold live state, and setup.sh links individual files
+# out of them rather than folding the directory. That design is enforced by
+# nothing but care: one careless `git add`, or one snapshot.sh line pointed at
+# the wrong file, publishes a token to a public repo.
+#
+# Wired up by setup.sh as a repo-local core.hooksPath, never globally.
+
+set -euo pipefail
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+    echo "pre-commit: gitleaks not installed — run 'brew bundle' (skipping scan)" >&2
+    exit 0
+fi
+
+if ! gitleaks protect --staged --redact --no-banner; then
+    cat >&2 <<'EOF'
+
+pre-commit: gitleaks found a secret in the staged changes.
+
+Nothing has been committed. Unstage the offending file, or if this is a
+genuine false positive, add a narrowly-scoped rule to .gitleaks.toml —
+prefer that over --no-verify, which skips every check including this one.
+EOF
+    exit 1
+fi

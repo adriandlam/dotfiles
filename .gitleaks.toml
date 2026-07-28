@@ -1,0 +1,26 @@
+# gitleaks config for this repo. Used by .githooks/pre-commit, the ci workflow,
+# and doctor.sh.
+#
+# Allowlist entries must stay narrow. The point of scanning a repo that
+# deliberately links config sitting beside real credentials is to catch the one
+# careless `git add`; a broad exclusion here quietly turns that off.
+#
+# Do not redefine a built-in rule to attach an allowlist to it — a rule with a
+# matching id replaces the default outright, so a typo in the copied regex
+# silently disables that detector everywhere.
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = """
+Claude Code plugin install manifests are file-path -> SHA256 maps. Any entry
+whose path contains "token" (e.g. tests/claude-code/analyze-token-usage.py)
+trips generic-api-key, because that rule keys off the left-hand side of the
+pair. matchCondition AND means a finding is only ignored when it is BOTH in a
+manifest AND a bare 64-char hex digest, so a real credential pasted into one of
+these files is still reported.
+"""
+matchCondition = "AND"
+paths = ['''\.claude/plugins/\.install-manifests/.*\.json$''']
+regexes = ['''^[a-f0-9]{64}$''']

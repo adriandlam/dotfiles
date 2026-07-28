@@ -1,0 +1,56 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Lint shell scripts
+        run: |
+          shellcheck --severity=warning \
+            setup.sh snapshot.sh macos-defaults.sh doctor.sh \
+            .githooks/pre-commit \
+            .claude/hooks/*.sh
+
+  stow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y stow
+      - name: Dry-run the link tree into a scratch HOME
+        # --simulate resolves every link and reports conflicts without writing.
+        # The pre-created dirs mirror setup.sh: stow folds a directory into a
+        # single symlink when the target is absent, which for .config or .ssh
+        # would put credentials inside the repo.
+        run: |
+          TARGET="$(mktemp -d)"
+          mkdir -p "$TARGET"/.config/{atuin,gh,mole,zed}
+          stow --target="$TARGET" --simulate --verbose=2 . 2>&1 | tee /tmp/stow.log
+          if grep -qiE "conflict|cannot stow|existing target" /tmp/stow.log; then
+            echo "::error::stow reported conflicts"; exit 1
+          fi
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan history for secrets
+        # This repo links config that lives beside real credentials, so a
+        # secret reaching a commit is the failure mode worth gating on.
+        run: |
+          curl -sSfL -o gitleaks.tar.gz \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          tar -xzf gitleaks.tar.gz gitleaks
+          ./gitleaks detect --source . --redact --no-banner --verbose

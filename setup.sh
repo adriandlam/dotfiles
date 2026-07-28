@@ -98,6 +98,12 @@ link_config .ssh/config                             .ssh/config
 echo "Building bat theme cache..."
 bat cache --build
 
+# Repo-local, never --global: core.hooksPath applies to whichever repo it is set
+# in, and a global value would point every clone on this machine at these hooks.
+echo "Wiring the pre-commit secret scan..."
+git -C "$DOTFILES" config core.hooksPath .githooks
+chmod +x "$DOTFILES/.githooks/"* 2>/dev/null || true
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Applying macOS defaults..."
     bash "$DOTFILES/macos-defaults.sh"
@@ -106,6 +112,8 @@ fi
 cat <<'EOF'
 
 Installation complete.
+
+Verify the install with ./doctor.sh
 
 Remaining manual steps:
   1. Sign in to 1Password CLI:  op signin

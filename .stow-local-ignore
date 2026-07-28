@@ -25,7 +25,13 @@ _darcs
 setup.sh
 snapshot.sh
 macos-defaults.sh
+doctor.sh
 Brewfile
+
+# Repo infrastructure, not config — these belong to the repo, not to $HOME.
+\.github
+\.githooks
+\.gitleaks\.toml
 
 .DS_Store
 
