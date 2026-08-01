@@ -83,6 +83,27 @@ trust_level = "trusted"
 [projects."/Users/adrianlam/Documents/Codex/2026-07-25/research-venture-capital-fellowships-talent-networks"]
 trust_level = "trusted"
 
+[projects."/Users/adrianlam/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-29/he"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-29/help-me-make-a-goal-prompt"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-07-29/go"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/GitHub"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-01/poss"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-01/check"]
+trust_level = "trusted"
+
 [plugins."github@openai-curated"]
 enabled = true
 
@@ -126,12 +147,12 @@ enabled = true
 enabled = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-26T02:47:25Z"
+last_updated = "2026-07-30T03:30:54Z"
 source_type = "local"
 source = "/Users/adrianlam/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-07-27T22:39:22Z"
+last_updated = "2026-07-31T21:39:33Z"
 source_type = "local"
 source = "/Users/adrianlam/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
@@ -142,8 +163,8 @@ source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
 
 [marketplaces.i-have-adhd]
-last_updated = "2026-07-26T02:47:21Z"
-last_revision = "16a42a01f7783e29db8557dfc46226baf8015618"
+last_updated = "2026-08-01T05:10:47Z"
+last_revision = "d05af1e4ac2259846e81686d14180d46d84acc2d"
 source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
 ref = "main"
@@ -198,13 +219,13 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex"
 CODEX_HOME = "/Users/adrianlam/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "14e425736668bf21b5b39f2cc022ee8684728617fb5c49f35533c2e349f47193,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.721.41059"
+BROWSER_USE_CODEX_APP_VERSION = "26.721.81911"
 SKY_CUA_SERVICE_PATH = "/Users/adrianlam/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
@@ -228,6 +249,9 @@ trusted_hash = "sha256:6a6f42bc3b58d6262db38bfd74d7f340fcca2b09cdb134aad365063f0
 [hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
 trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7a6e70ef"
 
+[hooks.state."i-have-adhd@i-have-adhd:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:649193980053a380255523cb329d72d43581fadf346676057aa4caccb813dd76"
+
 [sandbox_workspace_write]
 network_access = true
 
@@ -237,5 +261,5 @@ use_memories = true
 
 [shell_environment_policy.set]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "14e425736668bf21b5b39f2cc022ee8684728617fb5c49f35533c2e349f47193,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex"

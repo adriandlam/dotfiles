@@ -1,0 +1,11 @@
+[theme]
+name = "linear"
+
+[colors]
+AlertInfo = "#73b7ff"
+AlertWarn = "#f5c56a"
+AlertError = "#ff7e78"
+Annotation = "#636b7b"
+Base = "#e6e9ef"
+Guidance = "#b5bccb"
+Important = "#8c97ff"

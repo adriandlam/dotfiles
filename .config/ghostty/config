@@ -8,13 +8,13 @@
 # in every new terminal anyway.
 font-size = 12
 alpha-blending = linear-corrected
-minimum-contrast = 1.1
+minimum-contrast = 0
 bold-color = bright
 
 # ── Chrome ────────────────────────────────────────────────────────────
 # 'tabs' = custom titlebar with the tab bar built in. Required for tabs:
 # macOS native tabs need a titlebar, so 'hidden' disables cmd+t entirely.
-macos-titlebar-style = tabs
+macos-titlebar-style = transparent
 # Strip what the tabs titlebar lets us strip.
 macos-window-buttons = hidden
 macos-titlebar-proxy-icon = hidden
@@ -54,9 +54,9 @@ scrollback-limit = 100000000
 macos-option-as-alt = true
 
 # ── Quick terminal ────────────────────────────────────────────────────
-quick-terminal-position = top
+quick-terminal-position = bottom
 quick-terminal-screen = main
-quick-terminal-animation-duration = 0.1
+quick-terminal-animation-duration = 0
 quick-terminal-autohide = true
 
 # ── Dock icon ─────────────────────────────────────────────────────────

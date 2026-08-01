@@ -37,9 +37,6 @@ Brewfile
 
 # Agent config dirs hold live state alongside config, so stow must not fold them.
 # setup.sh links the individual config files instead.
-\.claude
-\.codex
-\.agents
 
 # Never let stow near the ssh dir; setup.sh links config only.
 \.ssh

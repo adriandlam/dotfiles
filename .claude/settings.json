@@ -4,9 +4,7 @@
     "commit": "",
     "pr": ""
   },
-  "fallbackModel": ["claude-sonnet-5"],
   "permissions": {
-    "defaultMode": "auto",
     "allow": [
       "Read",
       "Glob",
@@ -14,19 +12,6 @@
       "Skill",
       "WebFetch",
       "WebSearch"
-    ],
-    "ask": [
-      "Bash(git push)",
-      "Bash(git push *)",
-      "Bash(gh pr merge *)",
-      "Bash(gh release *)",
-      "Bash(gh repo delete *)",
-      "Bash(npm publish *)",
-      "Bash(pnpm publish *)",
-      "Bash(bun publish *)",
-      "Bash(cargo publish *)",
-      "Bash(stow *)",
-      "Bash(sudo *)"
     ],
     "deny": [
       "Read(~/.ssh/**)",
@@ -46,7 +31,34 @@
       "Bash(chmod -R 777 *)",
       "Bash(git push --force *)",
       "Bash(git push -f *)"
-    ]
+    ],
+    "ask": [
+      "Bash(git push)",
+      "Bash(git push *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh release *)",
+      "Bash(gh repo delete *)",
+      "Bash(npm publish *)",
+      "Bash(pnpm publish *)",
+      "Bash(bun publish *)",
+      "Bash(cargo publish *)",
+      "Bash(stow *)",
+      "Bash(sudo *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "fallbackModel": [
+    "claude-sonnet-5"
+  ],
+  "disableClaudeAiConnectors": true,
+  "skillOverrides": {
+    "find-skills": "off",
+    "mcp-builder": "off",
+    "next-best-practices": "off",
+    "pdf": "off",
+    "vercel-react-best-practices": "off",
+    "vercel-react-view-transitions": "off",
+    "web-design-guidelines": "off"
   },
   "hooks": {
     "PreToolUse": [
@@ -72,15 +84,6 @@
         ]
       }
     ]
-  },
-  "skillOverrides": {
-    "find-skills": "off",
-    "mcp-builder": "off",
-    "next-best-practices": "off",
-    "pdf": "off",
-    "vercel-react-best-practices": "off",
-    "vercel-react-view-transitions": "off",
-    "web-design-guidelines": "off"
   },
   "statusLine": {
     "type": "command",
@@ -111,11 +114,12 @@
     "resend@claude-plugins-official": false,
     "huggingface-skills@claude-plugins-official": false
   },
-  "disableClaudeAiConnectors": true,
+  "spinnerTipsEnabled": false,
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "autoCompactWindow": 400000,
   "awaySummaryEnabled": false,
+  "askUserQuestionTimeout": "60s",
   "autoUpdatesChannel": "latest",
   "tui": "default",
   "autoMemoryEnabled": true,
@@ -125,7 +129,6 @@
   "skipWorkflowUsageWarning": true,
   "editorMode": "normal",
   "verbose": true,
-  "spinnerTipsEnabled": false,
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
   "remoteControlAtStartup": true,
