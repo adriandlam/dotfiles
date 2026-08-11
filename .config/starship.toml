@@ -1,0 +1,58 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+palette = "linear"
+
+format = """
+$username\
+$hostname\
+$directory\
+($git_branch$git_state$git_status )\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
+
+[palettes.linear]
+accent = "#8c97ff"
+purple = "#c2a1ff"
+yellow = "#f5c56a"
+red = "#ff7e78"
+muted = "#636b7b"
+
+[directory]
+style = "accent"
+
+[character]
+success_symbol = "[➜](accent)"
+error_symbol = "[➜](red)"
+vimcmd_symbol = "[←](purple)"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "purple"
+
+[git_status]
+format = "[(*$conflicted$untracked$modified$staged$renamed$deleted)](yellow)[$ahead_behind](yellow)"
+ahead = " ↑${count}"
+behind = " ↓${count}"
+diverged = " ↓${behind_count} ↑${ahead_count}"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+
+[git_state]
+format = "\\([$state( $progress_current/$progress_total)]($style)\\) "
+style = "muted"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "muted"
+detect_extensions = []
+detect_files = []
