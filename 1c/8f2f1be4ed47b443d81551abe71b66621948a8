@@ -1,0 +1,23 @@
+.config/starship.toml
+  s_499bc92e03e8e1::t_8f0fdd8640780e 1-58
+.zshrc
+  s_499bc92e03e8e1::t_ea3b325a3cfc64 201-211
+Brewfile
+  s_499bc92e03e8e1::t_e31270d07d3057 66-67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "1c8f2f1be4ed47b443d81551abe71b66621948a8",
+  "prompts": {},
+  "sessions": {
+    "s_499bc92e03e8e1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff2ca-1872-72b0-961e-96b4746f194a",
+        "model": "unknown"
+      },
+      "human_author": "Adrian Lam <me@adrianlam.sh>"
+    }
+  }
+}
