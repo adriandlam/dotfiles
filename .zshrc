@@ -198,14 +198,17 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.hades/bin"
 
 # ── Prompt ────────────────────────────────────────────────────────────────
-autoload -U promptinit; promptinit
-PURE_PROMPT_SYMBOL=">"
-zstyle :prompt:pure:path color '#8c97ff'
-zstyle :prompt:pure:git:branch color '#c2a1ff'
-zstyle :prompt:pure:git:dirty color '#f5c56a'
-zstyle :prompt:pure:prompt:success color '#8c97ff'
-zstyle :prompt:pure:git:arrow color '#c2a1ff'
-prompt pure
+# Old prompt: Pure (disabled)
+# autoload -U promptinit; promptinit
+# PURE_PROMPT_SYMBOL=">"
+# zstyle :prompt:pure:path color '#8c97ff'
+# zstyle :prompt:pure:git:branch color '#c2a1ff'
+# zstyle :prompt:pure:git:dirty color '#f5c56a'
+# zstyle :prompt:pure:prompt:success color '#8c97ff'
+# zstyle :prompt:pure:git:arrow color '#c2a1ff'
+# prompt pure
+
+eval "$(starship init zsh)"
 
 # ── Navigation and search ─────────────────────────────────────────────────
 eval "$(zoxide init zsh)"

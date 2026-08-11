@@ -63,8 +63,8 @@ brew "neovim"
 brew "netcat"
 # Development kit for the Java programming language
 brew "openjdk"
-# Pretty, minimal and fast ZSH prompt
-brew "pure"
+# Fast, customizable cross-shell prompt
+brew "starship"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
