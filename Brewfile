@@ -63,8 +63,8 @@ brew "neovim"
 brew "netcat"
 # Development kit for the Java programming language
 brew "openjdk"
-# Fast, customizable cross-shell prompt
-brew "starship"
+# Pretty, minimal and fast ZSH prompt
+brew "pure"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
@@ -73,6 +73,8 @@ brew "ruff"
 brew "sd"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Cross-shell prompt for astronauts
+brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Multi-modal AI tool to extract and summarize content
