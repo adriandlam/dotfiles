@@ -1,0 +1,22 @@
+[Unit]
+Description=OpenAI Codex Remote Control
+Documentation=https://github.com/openai/codex/tree/main/codex-rs/app-server-daemon
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/adrian
+Environment=HOME=/home/adrian
+Environment=PATH=/home/adrian/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/adrian/.local/bin/codex app-server daemon enable-remote-control
+ExecStart=/home/adrian/.local/bin/codex app-server daemon start
+ExecStop=/home/adrian/.local/bin/codex app-server daemon stop
+RemainAfterExit=yes
+TimeoutStopSec=30s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
