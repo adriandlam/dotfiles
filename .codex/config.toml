@@ -104,6 +104,30 @@ trust_level = "trusted"
 [projects."/Users/adrianlam/Documents/Codex/2026-08-01/check"]
 trust_level = "trusted"
 
+[projects."/Users/adrianlam/Documents/Codex/2026-08-01/for-m"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-01/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-03/f"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-03/co"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-03/review-adriandlam-ubc-webring-pr-2"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-03/ok-implement-the-live-path-and"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-04/us"]
+trust_level = "trusted"
+
+[projects."/Users/adrianlam/Documents/Codex/2026-08-04/insta"]
+trust_level = "trusted"
+
 [plugins."github@openai-curated"]
 enabled = true
 
@@ -147,24 +171,24 @@ enabled = true
 enabled = true
 
 [marketplaces.openai-bundled]
-last_updated = "2026-07-30T03:30:54Z"
+last_updated = "2026-08-05T04:02:46Z"
 source_type = "local"
 source = "/Users/adrianlam/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
-last_updated = "2026-07-31T21:39:33Z"
+last_updated = "2026-08-12T21:39:26Z"
 source_type = "local"
 source = "/Users/adrianlam/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.ponytail]
-last_updated = "2026-07-16T08:45:05Z"
-last_revision = "16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
+last_updated = "2026-08-11T21:55:27Z"
+last_revision = "2ed6c52c9d7e5e56942508591085fd45dea277d3"
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
 
 [marketplaces.i-have-adhd]
-last_updated = "2026-08-01T05:10:47Z"
-last_revision = "d05af1e4ac2259846e81686d14180d46d84acc2d"
+last_updated = "2026-08-11T21:55:25Z"
+last_revision = "2ed064090711586e0c97a2fbbf15465fe8f1808b"
 source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
 ref = "main"
@@ -217,15 +241,15 @@ startup_timeout_sec = 120
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 CODEX_HOME = "/Users/adrianlam/.codex"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "14e425736668bf21b5b39f2cc022ee8684728617fb5c49f35533c2e349f47193,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "091a81603ff202a16ed56557709bf42d97caf8f0dd2e07ae9e26d7c014d71035"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.721.81911"
+BROWSER_USE_CODEX_APP_VERSION = "26.730.61639"
 SKY_CUA_SERVICE_PATH = "/Users/adrianlam/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
@@ -261,5 +285,5 @@ use_memories = true
 
 [shell_environment_policy.set]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "14e425736668bf21b5b39f2cc022ee8684728617fb5c49f35533c2e349f47193,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "091a81603ff202a16ed56557709bf42d97caf8f0dd2e07ae9e26d7c014d71035"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/adrianlam/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
