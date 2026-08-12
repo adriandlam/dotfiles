@@ -3,10 +3,17 @@
 # ══════════════════════════════════════════════════════════════════════
 
 # ── Text rendering ────────────────────────────────────────────────────
-# No font-family set on purpose: uses Ghostty's bundled JetBrains Mono NF.
+# Must be the exact family name, not the cask name: "Geist Mono" matches nothing
+# and Ghostty falls back to its bundled JetBrains Mono NF *silently*, so a typo
+# here looks like the setting simply had no effect. Check with `ghostty
+# +list-fonts`, which lists only monospace families — the NF and NFP variants of
+# this font are proportional, so "Mono" is the one that shows up and the one to
+# use. The Nerd Font build matters: eza --icons and the starship prompt both
+# emit glyphs that plain Geist Mono has no coverage for.
 # 12 = the stock 13 minus one cmd+- step, which was the first thing done
 # in every new terminal anyway.
 font-size = 12
+font-family = "GeistMono Nerd Font Mono"
 alpha-blending = linear-corrected
 minimum-contrast = 0
 bold-color = bright

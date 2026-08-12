@@ -25,6 +25,7 @@ Two things it deliberately does not do, because they need you:
 | Path | Contents |
 |---|---|
 | `.zshrc`, `.zshenv` | Shell config. Secrets live in `~/.zshenv.local`, which is never committed. |
+| `.config/zsh/banner.zsh` | Startup banner, modelled on Nushell's. Disable with `DOTFILES_BANNER=0`; run `motd` to reprint, `motd --short` for startup time only. Caches the OS version, the `brew outdated` count and the `doctor.sh` summary under `~/.cache/dotfiles` — the last two refreshed by disowned background jobs (6h and 24h), never inline. |
 | `.gitconfig`, `.config/git` | Git config and delta theme |
 | `.config/nvim` | LazyVim. The colorscheme is the [linear-nvim](https://github.com/adriandlam/linear-nvim) plugin, configured in `lua/plugins/colorscheme.lua` |
 | `.config/ghostty`, `.config/bat`, `.config/eza`, `.config/lazygit`, `.config/atuin` | Terminal and CLI tooling |

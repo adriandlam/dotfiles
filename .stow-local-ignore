@@ -36,7 +36,12 @@ Brewfile
 .DS_Store
 
 # Agent config dirs hold live state alongside config, so stow must not fold them.
-# setup.sh links the individual config files instead.
+# setup.sh links the individual config files instead. These patterns are what
+# makes that true: stow reads only this file, never .gitignore, so without them
+# a --restow links every gitignored debug log and cache file into $HOME.
+\.claude
+\.codex
+\.agents
 
 # Never let stow near the ssh dir; setup.sh links config only.
 \.ssh

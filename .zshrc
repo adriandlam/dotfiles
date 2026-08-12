@@ -257,3 +257,18 @@ if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
 # Syntax-highlighted man pages.
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
+
+# ── Startup banner ────────────────────────────────────────────────────────
+# Last in the file on purpose: the elapsed time is only honest if everything
+# above it has already run. Paired with the stamp at the top of .zshenv.
+if [[ -n $_DOTFILES_INIT_START ]]; then
+  typeset -gi _DOTFILES_STARTUP_MS=$(( (EPOCHREALTIME - _DOTFILES_INIT_START) * 1000 ))
+fi
+
+# Guarded because .zshrc can be live before stow has linked .config — on a fresh
+# clone, or any time a --restow is interrupted. A missing banner is a non-event;
+# a shell that errors on every prompt is not.
+if [[ -r "$HOME/.config/zsh/banner.zsh" ]]; then
+  source "$HOME/.config/zsh/banner.zsh"
+  _motd_maybe
+fi
