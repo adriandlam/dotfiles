@@ -35,10 +35,6 @@ typeset -g _MOTD_ALERT=$'\e[38;2;255;126;120m'    # #ff7e78  outright failing
 typeset -g _MOTD_UPTIME_WARN_DAYS=7
 typeset -g _MOTD_DISK_WARN_GB=25
 
-# How stale the brew count may get before a refresh is kicked off. Formulae do
-# not go out of date on a timescale where six hours matters.
-typeset -g _MOTD_BREW_TTL=21600
-
 # doctor.sh takes ~7s (it scans full git history with gitleaks and checks the
 # Brewfile), so it runs far more rarely and never anywhere near the hot path.
 typeset -g _MOTD_DOCTOR="$HOME/dotfiles/doctor.sh"
@@ -122,49 +118,6 @@ _motd_disk() {
   return 0
 }
 
-# `brew outdated` is ~490ms — twice the whole shell startup — so it can never
-# run on the path that prints the startup time. Instead the count is read from
-# a cache file (instant, no fork), and a refresh is disowned into the
-# background only once the cache is older than the TTL. The displayed number is
-# therefore up to six hours stale, which is the correct trade: a slightly old
-# count costs nothing, a 490ms pause on every new terminal costs everything.
-#
-# The stamp is written even when brew fails, so a broken brew degrades to one
-# silent retry per TTL rather than a spawned job on every single shell.
-_motd_brew_refresh() {
-  local cache="$1"
-  {
-    local n
-    n=$(brew outdated --quiet 2>/dev/null | wc -l)
-    mkdir -p "${cache:h}"
-    # Write-then-rename: another shell reading this file concurrently sees
-    # either the old contents or the new, never a half-written line.
-    print -r -- "$EPOCHSECONDS ${${n//[^0-9]/}:-0}" >| "${cache}.tmp$$"
-    mv -f "${cache}.tmp$$" "$cache"
-  } &!
-}
-
-_motd_brew() {
-  typeset -g _MOTD_BREW=""
-  (( $+commands[brew] )) || return 0
-
-  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/dotfiles/brew-outdated"
-  local -i stamp=0 count=0
-
-  if [[ -s $cache ]]; then
-    local -a parts=( ${=$(<$cache)} )
-    stamp=${parts[1]:-0}
-    count=${parts[2]:-0}
-  fi
-
-  (( EPOCHSECONDS - stamp > _MOTD_BREW_TTL )) && _motd_brew_refresh "$cache"
-
-  # Unlike uptime and disk, zero carries no information — "0 outdated" is a
-  # line you would learn to skip. Shown only when there is something to do.
-  (( count > 0 )) && typeset -g _MOTD_BREW="${count} outdated"
-  return 0
-}
-
 # The point of a health check you never remember to run is that it tells you
 # nothing. This surfaces doctor.sh's own summary line, cached exactly like the
 # brew count — the difference being a 24h TTL, because a 7s background job is
@@ -242,7 +195,6 @@ motd() {
   _motd_os_version
   _motd_uptime
   _motd_disk
-  _motd_brew
   _motd_doctor
 
   # A value sits at full brightness normally and turns yellow once it crosses
@@ -260,7 +212,6 @@ motd() {
   print -r -- "${label}Version:      ${value}zsh ${ZSH_VERSION} ${sep}· ${value}macOS ${_MOTD_OS} ${sep}· ${value}${CPUTYPE} ${sep}· ${value}${TERM_PROGRAM:-terminal}${reset}"
   [[ -n $_MOTD_UPTIME ]] && print -r -- "${label}Uptime:       ${uptime_colour}${_MOTD_UPTIME}${reset}"
   [[ -n $_MOTD_DISK ]]   && print -r -- "${label}Disk:         ${disk_colour}${_MOTD_DISK}${reset}"
-  [[ -n $_MOTD_BREW ]]   && print -r -- "${label}Packages:     ${warn}${_MOTD_BREW}${reset}"
 
   if [[ -n $_MOTD_HEALTH ]]; then
     local health_colour=$warn
