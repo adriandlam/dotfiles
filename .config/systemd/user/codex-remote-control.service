@@ -10,8 +10,8 @@ Type=oneshot
 WorkingDirectory=/home/adrian
 Environment=HOME=/home/adrian
 Environment=PATH=/home/adrian/.local/bin:/usr/local/bin:/usr/bin:/bin
-ExecStart=/home/adrian/.local/bin/codex app-server daemon enable-remote-control
-ExecStart=/home/adrian/.local/bin/codex app-server daemon start
+ExecStart=-/home/adrian/.local/bin/codex app-server daemon enable-remote-control
+ExecStart=-/home/adrian/.local/bin/codex app-server daemon start
 ExecStop=/home/adrian/.local/bin/codex app-server daemon stop
 RemainAfterExit=yes
 TimeoutStopSec=30s
