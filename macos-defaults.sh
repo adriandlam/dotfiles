@@ -69,6 +69,119 @@ ok "smart quotes, dashes, capitalization and periods off"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 ok "tab reaches every control in a dialog"
 
+# ── Key remapping ─────────────────────────────────────────────────────────
+head_ "Key remapping"
+
+# Caps Lock → Escape. System Settings → Keyboard → Modifier Keys writes this into
+# the *per-host* global domain (defaults -currentHost read -g), one entry per
+# keyboard, keyed com.apple.keyboard.modifiermapping.<vendorID>-<productID>-0.
+# The values are HID usage codes: 0x700000039 is Caps Lock, 0x700000029 Escape.
+#
+# Not hidutil. Every write-up on this reaches for `hidutil property --set`, but
+# that mapping lives in the driver and is gone on the next reboot — persisting it
+# needs a LaunchDaemon wrapper around it. The pref below is what the GUI itself
+# writes, so it survives reboots and reads back correctly in System Settings.
+CAPS_LOCK=30064771129   # 0x700000039
+ESCAPE=30064771113      # 0x700000029
+
+remap_caps_to_escape() {
+    defaults -currentHost write -g "com.apple.keyboard.modifiermapping.$1" -array \
+        "<dict>
+            <key>HIDKeyboardModifierMappingDst</key><integer>${ESCAPE}</integer>
+            <key>HIDKeyboardModifierMappingSrc</key><integer>${CAPS_LOCK}</integer>
+        </dict>"
+}
+
+# 0-0-0 is the Apple Internal Keyboard / Trackpad. Every external keyboard gets
+# its own entry, and ioreg can only see one while it is plugged in — so remap
+# whatever is attached right now, and name 13364-2800 (0x3434/0xaf0, the
+# Keychron) explicitly so a run with it unplugged still covers it.
+KEYBOARDS="$({ printf '0-0-0\n13364-2800-0\n'
+    ioreg -c AppleHIDKeyboardEventDriverV2 -r -d 1 2>/dev/null \
+        | awk -F' = ' '/"VendorID"/ {v=$2}
+                       /"ProductID"/ {if (v != "") {print v "-" $2 "-0"; v=""}}'
+} | sort -u)"
+
+for kb in $KEYBOARDS; do
+    remap_caps_to_escape "$kb"
+done
+ok "Caps Lock → Escape on: $(printf '%s' "$KEYBOARDS" | tr '\n' ' ')"
+
+# ── Keyboard shortcuts ────────────────────────────────────────────────────
+head_ "Keyboard shortcuts"
+
+# Everything under System Settings → Keyboard → Keyboard Shortcuts lives in one
+# dictionary, com.apple.symbolichotkeys:AppleSymbolicHotKeys, keyed by an opaque
+# integer per action. Apple never published those IDs; the names in the comments
+# below are the community-mapped values, each read back off this machine.
+#
+# `parameters` is [ascii, keycode, modifierMask]. 65535 in the ascii slot means
+# the key has no printable character (arrows, F-keys). The mask is a bitfield:
+#   shift 1<<17 = 131072      control 1<<18 = 262144    option 1<<19 = 524288
+#   command 1<<20 = 1048576   fn 1<<23 = 8388608
+#
+# -dict-add rather than `defaults import` of an exported plist: it merges, so an
+# ID a later macOS introduces keeps its own default instead of being wiped by a
+# stale blob, and the table stays legible. The tradeoff is that each call must
+# write the *whole* {enabled, value} dict — writing `enabled` alone replaces the
+# entry and drops the binding, and macOS then restores its stock shortcut.
+hotkey() {  # hotkey <id> <on|off> [ascii keycode modifiers]
+    local id="$1" state="$2" flag body=""
+    [ "$state" = "on" ] && flag="true" || flag="false"
+    if [ "$#" -eq 5 ]; then
+        body="<key>value</key><dict>
+                <key>parameters</key>
+                <array><integer>$3</integer><integer>$4</integer><integer>$5</integer></array>
+                <key>type</key><string>standard</string>
+              </dict>"
+    fi
+    defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add "$id" \
+        "<dict><key>enabled</key><${flag}/>${body}</dict>"
+}
+
+# Spotlight and Finder search off, so Raycast owns ⌘Space
+hotkey 64 off 32 49 1048576     # ⌘Space   Show Spotlight search
+hotkey 65 off 32 49 1572864     # ⌥⌘Space  Show Finder search window
+ok "Spotlight and Finder search unbound, ⌘Space freed for Raycast"
+
+# Input-source switching, which otherwise swallows ⌃Space system-wide
+hotkey 60 off 32 49 262144      # ⌃Space   Select the previous input source
+hotkey 61 off 32 49 786432      # ⌃⌥Space  Select next source in Input menu
+ok "input-source switching unbound, ⌃Space freed"
+
+# Apple's screenshot shortcuts off, replaced by the single binding we use: ⇧⌘S
+# copies the selected area to the clipboard. Nothing writes to disk any more.
+hotkey 28  off 51  20 1179648   # ⇧⌘3  Save picture of screen as file
+hotkey 29  off 115  1 1179648   # ⇧⌘S  Copy picture of screen to clipboard
+hotkey 30  off 52  21 1179648   # ⇧⌘4  Save picture of selected area as file
+hotkey 184 off 53  23 1179648   # ⇧⌘5  Screenshot and recording options
+hotkey 31  on  115  1 1179648   # ⇧⌘S  Copy picture of selected area to clipboard
+ok "screenshots: only ⇧⌘S, copying the selected area to the clipboard"
+
+# Mission Control on ⌃fn↑ / ⌃fn↓ rather than the stock ⌃↑ / ⌃↓
+hotkey 32 on 65535 126 8650752  # ⌃fn↑   Mission Control
+hotkey 33 on 65535 125 8650752  # ⌃fn↓   Application windows
+hotkey 34 on 65535 126 8781824  # ⇧⌃fn↑  Mission Control, alternate
+hotkey 35 on 65535 125 8781824  # ⇧⌃fn↓  Application windows, alternate
+ok "Mission Control and Application Windows on ⌃fn↑ / ⌃fn↓"
+
+# Accessibility zoom, contrast and colour inversion. These carry no binding of
+# their own in the plist — only an enabled flag — so they take the short form.
+for id in 15 16 17 18 19 20 21 22 23 24 25 26; do hotkey "$id" off; done
+ok "zoom, contrast and invert-colours shortcuts off"
+
+hotkey 164 off 65535 65535 0    # Turn Do Not Disturb on/off
+
+# Quick Note is the one entry that fits neither form the helper takes: it carries
+# a `type` of SAE1.0 and no `parameters` at all. Written out by hand so the plist
+# round-trips byte for byte — `hotkey 176 off` would drop the value dict, which
+# is harmless in effect but leaves the script unable to reproduce the state it
+# claims, and reproducibility is what makes a doctor.sh-style check possible.
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 176 \
+    "<dict><key>enabled</key><false/>
+     <key>value</key><dict><key>type</key><string>SAE1.0</string></dict></dict>"
+ok "Do Not Disturb and Quick Note shortcuts off"
+
 # ── Trackpad & mouse ──────────────────────────────────────────────────────
 head_ "Trackpad & mouse"
 
@@ -118,6 +231,65 @@ head_ "Dock"
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock show-recents -bool false
 ok "minimize into the app icon, recent applications hidden"
+
+# The Dock's contents, in order. Each tile in com.apple.dock is a nested dict
+# carrying a GUID, a bookmark blob, a label and a type — not something worth
+# hand-writing as `defaults write` XML. dockutil builds them correctly.
+#
+# The Downloads stack is listed here too, and not as an afterthought: dockutil
+# has no way to clear only the apps section, so `--remove all` takes the stack
+# with it. Anything the Dock should end up holding has to be in this list or it
+# is destroyed on the first rebuild.
+#
+# --no-restart on every call, with one killall at the end of the script: without
+# it a fresh setup flickers through eleven Dock relaunches.
+DOCK_APPS=(
+    "/Applications/Helium.app"
+    "/Applications/Aside.app"
+    "/Applications/Dia.app"
+    "/System/Applications/Messages.app"
+    "/Applications/Notion Calendar.app"
+    "/Applications/Spotify.app"
+    "/Applications/Ghostty.app"
+    "/Applications/Zed.app"
+    "/Applications/Claude.app"
+    "/Applications/ChatGPT.app"
+)
+
+if ! command -v dockutil >/dev/null 2>&1; then
+    skip "dockutil not installed (brew bundle) — Dock left alone"
+else
+    # dockutil --list prints "label<TAB>url<TAB>section<TAB>plist[<TAB>bundleid]".
+    # Field 2 is a file:// URL with a trailing slash and percent-escapes; the
+    # printf '%b' trick decodes %20 and friends without reaching for python.
+    current="$(dockutil --list 2>/dev/null | cut -f2 | sed 's|^file://||; s|/$||')"
+    current="$(printf '%b' "${current//%/\\x}")"
+    wanted="$(printf '%s\n' "${DOCK_APPS[@]}" "$HOME/Downloads")"
+
+    if [ "$current" = "$wanted" ]; then
+        info "Dock already matches (${#DOCK_APPS[@]} apps and the Downloads stack)"
+    else
+        # Refuse to rebuild if anything is missing. --remove all is destructive,
+        # and a half-populated Dock on a machine mid-install is worse than the
+        # one macOS shipped: the apps you do have would be silently dropped.
+        missing=""
+        for app in "${DOCK_APPS[@]}"; do
+            [ -e "$app" ] || missing="$missing ${app##*/}"
+        done
+        if [ -n "$missing" ]; then
+            skip "Dock left alone — not installed yet:$missing"
+        else
+            dockutil --remove all --no-restart >/dev/null 2>&1 || true
+            for app in "${DOCK_APPS[@]}"; do
+                dockutil --add "$app" --no-restart >/dev/null 2>&1
+            done
+            # Matches the live stack: fan view, shown as a stack, newest first.
+            dockutil --add "$HOME/Downloads" --view fan --display stack \
+                --sort dateadded --no-restart >/dev/null 2>&1
+            ok "Dock rebuilt: ${#DOCK_APPS[@]} apps, then the Downloads stack"
+        fi
+    fi
+fi
 
 # ── Screenshots ───────────────────────────────────────────────────────────
 head_ "Screenshots"
@@ -208,7 +380,18 @@ for app in "Dock" "Finder"; do
 done
 ok "restarted Dock and Finder"
 
-info "keyboard, trackpad and animation changes need a logout to take effect"
+# Reloads the shortcut and modifier-key tables into the running WindowServer.
+# Without it the symbolichotkeys writes above sit in the plist unread, and the
+# machine keeps answering ⌘Space with Spotlight until the next logout.
+ACTIVATE=/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings
+if [ -x "$ACTIVATE" ]; then
+    "$ACTIVATE" -u
+    ok "keyboard shortcuts and key remapping applied to the running session"
+else
+    skip "activateSettings missing — shortcuts apply after a logout"
+fi
+
+info "trackpad and animation changes need a logout to take effect"
 
 # ── Summary ───────────────────────────────────────────────────────────────
 printf '\n\033[1m%d settings applied, %d skipped\033[0m\n' "$APPLIED" "$SKIPPED"

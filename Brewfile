@@ -21,6 +21,8 @@ brew "croc"
 brew "direnv"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
+# Tool for managing dock items
+brew "dockutil"
 # Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
 # More intuitive version of du in rust
@@ -97,6 +99,8 @@ brew "yq"
 brew "zig"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Newer zsh than Apple ships; fixes detached shells spinning at 100% CPU
+brew "zsh"
 # Real-time type-ahead completion for Zsh
 brew "zsh-autocomplete"
 # Fish-like fast/unobtrusive autosuggestions for zsh

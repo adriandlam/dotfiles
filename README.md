@@ -33,7 +33,7 @@ Two things it deliberately does not do, because they need you:
 | `.config/zed` | Zed settings and keymap |
 | `.ssh/config` | SSH config only — points at the 1Password agent. No keys, ever. |
 | `Brewfile` | Every package, cask, tap and global npm/cargo/go install |
-| `macos-defaults.sh` | `defaults write` settings, plus Touch ID for `sudo` |
+| `macos-defaults.sh` | `defaults write` settings, keyboard shortcuts, key remapping, Dock contents, plus Touch ID for `sudo` |
 | `setup.sh`, `snapshot.sh` | Install on a new machine; pull replace-on-write config back in |
 | `doctor.sh` | Health check — verifies the install still matches the model below |
 | `.githooks`, `.gitleaks.toml` | Pre-commit secret scan and its allowlist |
@@ -85,6 +85,69 @@ runs in CI over the full history.
 Allowlist entries in `.gitleaks.toml` should stay narrow. The reason to scan a repo
 that deliberately links config sitting beside real credentials is to catch the one
 careless `git add`; a broad exclusion quietly turns that off.
+
+## Keyboard
+
+Two customizations that no amount of `defaults read` on the usual domains will show
+you, so they are easy to lose on a new machine and are worth knowing where to find:
+
+**Modifier keys** — Caps Lock → Escape. This lives in the *per-host* global domain,
+one entry per keyboard, keyed by hardware ID:
+
+```bash
+defaults -currentHost read -g | grep -A5 modifiermapping
+```
+
+`macos-defaults.sh` writes `0-0-0` (the internal keyboard) and the Keychron
+explicitly, then enumerates whatever else is attached via `ioreg`. Deliberately not
+`hidutil`: that mapping lives in the driver and is gone at the next reboot.
+
+**Shortcuts** — every binding under System Settings → Keyboard → Keyboard Shortcuts
+is one dictionary keyed by an opaque, undocumented integer per action:
+
+```bash
+defaults read com.apple.symbolichotkeys AppleSymbolicHotKeys
+```
+
+The current set: ⌘Space and ⌥⌘Space unbound so Raycast owns them, ⌃Space freed from
+input-source switching, Apple's screenshot shortcuts replaced by ⇧⌘S for
+copy-selection-to-clipboard, and Mission Control moved to ⌃fn↑ / ⌃fn↓.
+
+To capture a shortcut you have just changed in System Settings, diff the domain
+rather than guessing at the ID:
+
+```bash
+defaults export com.apple.symbolichotkeys before.plist
+# change the shortcut in System Settings, then:
+defaults export com.apple.symbolichotkeys after.plist
+diff <(plutil -convert xml1 before.plist -o -) <(plutil -convert xml1 after.plist -o -)
+```
+
+Add the ID it names to the table in `macos-defaults.sh`. `parameters` is
+`[ascii, keycode, modifierMask]`; the mask is a bitfield — shift `1<<17`, control
+`1<<18`, option `1<<19`, command `1<<20`, fn `1<<23`.
+
+The table uses `-dict-add` rather than a committed `defaults import` blob on purpose:
+it merges, so a hotkey ID a future macOS introduces keeps its own default instead of
+being silently wiped, and every line says what it is for.
+
+`doctor.sh` re-checks the few of these whose regression is silent — System Settings
+hands ⌘Space back to Spotlight whenever it rewrites the domain, and the symptom
+reads as "Raycast is broken", so nothing points you at a settings change.
+
+## Dock
+
+`macos-defaults.sh` owns the Dock's contents via `dockutil`, as the `DOCK_APPS` list
+plus the Downloads stack. It compares before writing and only rebuilds on a
+mismatch, so re-running it on a machine you have since rearranged is a no-op.
+
+Two things to know before editing that list. `dockutil` cannot clear only the apps
+section, so a rebuild runs `--remove all` — anything the Dock should keep, including
+the Downloads stack, has to be *in* the list or it is destroyed. And the rebuild is
+skipped outright if any listed app is not installed yet, because a half-populated
+Dock mid-install is worse than the one macOS shipped.
+
+To capture the Dock as it stands now, `dockutil --list | cut -f2` prints it in order.
 
 ## Theming
 

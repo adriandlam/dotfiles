@@ -191,6 +191,80 @@ else
     warn "Ghostty not installed"
 fi
 
+# ── Keyboard ──────────────────────────────────────────────────────────────
+# Same silent-fallback shape as the font check above. macos-defaults.sh writes
+# thirty shortcut entries; re-listing all thirty here would only duplicate that
+# table somewhere it can quietly drift from it. What earns a check is the handful
+# whose regression is silent and misleading: System Settings rewrites the whole
+# symbolichotkeys domain whenever you open a shortcut pane, and it hands ⌘Space
+# back to Spotlight on the way out. The symptom reads as "Raycast stopped
+# working", never as a settings change — so nothing points you here.
+#
+# Read through `defaults export`, not the plist on disk: cfprefsd holds writes in
+# memory and flushes lazily, so the file is stale for minutes after a change and
+# a direct read reports drift that does not exist.
+head_ "Keyboard"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    SHK="$(mktemp)"
+    trap 'rm -f "$SHK"' EXIT
+
+    # Whole entry, then match on the printed form — PlistBuddy's boolean output
+    # is not reliably capturable field-by-field across macOS releases.
+    hk_entry() { /usr/libexec/PlistBuddy -c "Print :AppleSymbolicHotKeys:$1" "$SHK" 2>/dev/null; }
+
+    hk_check() {  # hk_check <id> <enabled|disabled> <description>
+        local entry state
+        entry="$(hk_entry "$1")"
+        case "$entry" in
+            "")                  warn "hotkey $1 absent — $3"; return ;;
+            *"enabled = true"*)  state=enabled ;;
+            *"enabled = false"*) state=disabled ;;
+            *)                   warn "hotkey $1 unreadable — $3"; return ;;
+        esac
+        if [ "$state" = "$2" ]; then
+            ok "$3"
+        else
+            bad "$3 — but hotkey $1 is ${state}"
+        fi
+    }
+
+    if defaults export com.apple.symbolichotkeys - > "$SHK" 2>/dev/null; then
+        hk_check 64 disabled "Spotlight unbound — ⌘Space is Raycast's"
+        hk_check 65 disabled "Finder search unbound — ⌥⌘Space is free"
+        hk_check 60 disabled "input-source switching unbound — ⌃Space is free"
+        hk_check 31 enabled  "⇧⌘S copies the selected area to the clipboard"
+
+        # Enabled is only half of it: the binding itself can be reassigned while
+        # the entry stays on, which is exactly what happens if you set ⇧⌘S
+        # somewhere else and let System Settings resolve the conflict.
+        # PlistBuddy prints the array one element per line; stripping whitespace
+        # concatenates [115, 1, 1179648] — ascii "s", keycode S, ⇧⌘ — into the
+        # digits below. Crude, but it needs no plist parser in a bash script.
+        params="$(/usr/libexec/PlistBuddy -c "Print :AppleSymbolicHotKeys:31:value:parameters" \
+            "$SHK" 2>/dev/null | tr -d ' \n')"
+        case "$params" in
+            *"11511179648"*) ok "hotkey 31 still bound to ⇧⌘S" ;;
+            "")              warn "hotkey 31 has no binding recorded" ;;
+            *)               bad "hotkey 31 is no longer ⇧⌘S — run ./macos-defaults.sh" ;;
+        esac
+    else
+        warn "could not read com.apple.symbolichotkeys"
+    fi
+
+    # Caps Lock → Escape. Checked on the internal keyboard only: external ones
+    # get their own vendor-product entry and are absent whenever unplugged, so
+    # a missing entry there is not evidence of anything.
+    if defaults -currentHost read -g "com.apple.keyboard.modifiermapping.0-0-0" 2>/dev/null \
+        | grep -q 30064771113; then
+        ok "Caps Lock → Escape on the internal keyboard"
+    else
+        bad "Caps Lock is not remapped — run ./macos-defaults.sh"
+    fi
+else
+    warn "not macOS — keyboard checks skipped"
+fi
+
 # ── Shell ─────────────────────────────────────────────────────────────────
 head_ "Shell"
 

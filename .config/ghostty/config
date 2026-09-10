@@ -13,7 +13,7 @@
 # 12 = the stock 13 minus one cmd+- step, which was the first thing done
 # in every new terminal anyway.
 font-size = 12
-font-family = "GeistMono Nerd Font Mono"
+# font-family = "GeistMono Nerd Font Mono"
 alpha-blending = linear-corrected
 minimum-contrast = 0
 bold-color = bright
@@ -46,6 +46,11 @@ split-divider-color = #22273a
 split-preserve-zoom = navigation
 
 # ── Dev flow ──────────────────────────────────────────────────────────
+# Homebrew zsh (5.9.2). Apple's /bin/zsh is 5.9 from 2022 and has a signal-handling
+# bug: closing a window mid-completion can leave a detached zsh spinning at 100%
+# CPU inside a zle widget (zsh-autocomplete triggers it). Fixed upstream after 5.9.
+# Ghostty still wraps this in `login`, so it remains a login shell.
+command = /opt/homebrew/bin/zsh
 shell-integration-features = title,sudo,ssh-terminfo,ssh-env,no-cursor
 # Notify when a long command finishes in a split you're not looking at.
 notify-on-command-finish = unfocused
