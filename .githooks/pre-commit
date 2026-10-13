@@ -17,7 +17,7 @@ if ! command -v gitleaks >/dev/null 2>&1; then
     exit 0
 fi
 
-if ! gitleaks protect --staged --redact --no-banner; then
+if ! gitleaks git --pre-commit --staged --redact --no-banner; then
     cat >&2 <<'EOF'
 
 pre-commit: gitleaks found a secret in the staged changes.

@@ -339,9 +339,15 @@ fi
 # ── Security ──────────────────────────────────────────────────────────────
 head_ "Security"
 
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-ok "password required immediately after sleep or screen saver"
+# Since Ventura the com.apple.screensaver askForPassword keys are ignored; the
+# real setting sits behind sysadminctl, which wants the login password.
+if sysadminctl -screenLock status 2>&1 | grep -q immediate; then
+    info "password already required immediately after sleep or screen saver"
+elif [ -t 0 ] && sysadminctl -screenLock immediate -password - 2>/dev/null; then
+    ok "password required immediately after sleep or screen saver"
+else
+    skip "screen lock delay unchanged (needs an interactive run)"
+fi
 
 # Touch ID for sudo. /etc/pam.d/sudo_local is the supported seam for this —
 # Apple includes it from /etc/pam.d/sudo and, unlike edits to sudo itself,

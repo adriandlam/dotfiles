@@ -54,12 +54,12 @@ Raycast recompiles on every launch, not config.
 
 ### Snapshots
 
-A few files can't be symlinked at all. Claude Code rewrites its plugin manifests by
-atomic replace, which deletes a symlink the first time the plugin set changes. Those are
+A few files can't be symlinked at all. Claude Code rewrites `settings.json` and its plugin
+manifests by atomic replace, which deletes a symlink the first time they change. Those are
 copied on a fresh install and refreshed on demand:
 
 ```bash
-./snapshot.sh    # pull the live plugin manifests and Brewfile into the repo
+./snapshot.sh    # pull the live Claude settings, plugin manifests and Brewfile into the repo
 ```
 
 Everything else is symlinked, so edits land in the repo automatically.
@@ -187,7 +187,7 @@ a repo and entering it would run whatever that file contains. `direnv` needs an 
 ```bash
 brew bundle --file=Brewfile          # install everything
 brew bundle dump --force --describe  # rewrite Brewfile from current state
-brew bundle cleanup --force          # uninstall anything not in the Brewfile
+brew bundle cleanup                  # list anything not in the Brewfile (--force uninstalls it)
 ```
 
 Beyond the usual (`ripgrep`, `fd`, `bat`, `eza`, `fzf`, `zoxide`, `atuin`, `delta`,

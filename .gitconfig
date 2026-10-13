@@ -73,10 +73,10 @@
 	followTags = true
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [status]
 	short = true
 [column]
@@ -91,3 +91,7 @@
 	fsckObjects = true
 [receive]
 	fsckObjects = true
+# Machine-local overrides, last so they win. On Linux this is where signing
+# gets pointed away from the macOS-only 1Password op-ssh-sign path.
+[include]
+	path = ~/.gitconfig.local

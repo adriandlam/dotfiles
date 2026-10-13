@@ -106,9 +106,9 @@ link_config() {
     ok "linked $2"
 }
 
-# Claude Code rewrites the plugin manifests by atomic replace, which destroys a
-# symlink on the first plugin change. Seed those on a fresh machine instead, and
-# refresh the repo copy with ./snapshot.sh when the plugin set changes.
+# Claude Code rewrites settings.json and the plugin manifests by atomic replace,
+# which destroys a symlink on the first change. Seed those on a fresh machine
+# instead, and refresh the repo copy with ./snapshot.sh.
 seed_config() {
     local src="$DOTFILES/$1" dst="$HOME/$2"
     if [ ! -e "$src" ]; then
@@ -122,7 +122,7 @@ seed_config() {
     fi
 }
 
-link_config .claude/settings.json                   .claude/settings.json
+seed_config .claude/settings.json                   .claude/settings.json
 link_config .claude/statusline.sh                   .claude/statusline.sh
 link_config .claude/hooks/block-no-verify.sh        .claude/hooks/block-no-verify.sh
 link_config .claude/hooks/zsh-syntax-check.sh       .claude/hooks/zsh-syntax-check.sh

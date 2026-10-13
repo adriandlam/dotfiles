@@ -8,7 +8,14 @@ if [[ -o interactive ]]; then
   typeset -gF _DOTFILES_INIT_START=$EPOCHREALTIME
 fi
 
-. "$HOME/.cargo/env"
+# Drop duplicate PATH entries, keeping the first. Nested shells re-run every
+# `export PATH=...:$PATH` line, so without this each level adds another copy.
+typeset -U path PATH
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# lazygit reads ~/Library/Application Support on macOS, not ~/.config
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 
 # Machine-local secrets and overrides. Never committed — see .gitignore.
 # Populate with 1Password:

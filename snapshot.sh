@@ -5,7 +5,7 @@
 # Most config is symlinked, so edits land in the repo automatically. These files
 # are the exception: the apps that own them write by atomic replace, which
 # deletes a symlink the first time the file changes. Run this after changing
-# your Claude plugin set, or before committing, to pull the live copies back in.
+# your Claude settings or plugin set, or before committing, to pull the live copies back in.
 
 set -euo pipefail
 
@@ -27,6 +27,7 @@ snapshot() {
 }
 
 echo "Snapshotting replace-on-write config..."
+snapshot .claude/settings.json                   .claude/settings.json
 snapshot .claude/plugins/installed_plugins.json  .claude/plugins/installed_plugins.json
 snapshot .claude/plugins/known_marketplaces.json .claude/plugins/known_marketplaces.json
 

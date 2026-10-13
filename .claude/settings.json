@@ -47,6 +47,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus[1m]",
   "fallbackModel": [
     "claude-sonnet-5"
   ],
@@ -58,7 +59,9 @@
     "pdf": "off",
     "vercel-react-best-practices": "off",
     "vercel-react-view-transitions": "off",
-    "web-design-guidelines": "off"
+    "web-design-guidelines": "off",
+    "web-animation-design": "off",
+    "emil-design-eng": "off"
   },
   "hooks": {
     "PreToolUse": [
@@ -102,22 +105,65 @@
     "security-guidance@claude-plugins-official": true,
     "vercel@claude-plugins-official": false,
     "superpowers@claude-plugins-official": false,
-    "frontend-design@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": false,
     "superpowers@superpowers-marketplace": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "clangd-lsp@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": false,
+    "typescript-lsp@claude-plugins-official": false,
     "pyright-lsp@claude-plugins-official": true,
     "chrome-devtools-mcp@claude-plugins-official": false,
     "imessage@claude-plugins-official": false,
     "code-modernization@claude-plugins-official": false,
     "resend@claude-plugins-official": false,
-    "huggingface-skills@claude-plugins-official": false
+    "huggingface-skills@claude-plugins-official": false,
+    "ponytail@ponytail": true,
+    "remember@claude-plugins-official": true,
+    "i-have-adhd@i-have-adhd": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "blast-radius@my-mods": false,
+    "cctop@my-mods": true,
+    "aside@my-mods": true,
+    "secret-redactor@my-mods": false,
+    "gh-ci-status@my-mods": true,
+    "next-steps@claude-community": true
   },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "my-mods": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/adrianlam/.claude/mods/my-mods"
+      }
+    },
+    "claude-community": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-community"
+      }
+    }
+  },
+  "feedbackDrafts": "quiet",
   "spinnerTipsEnabled": false,
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
   "autoCompactWindow": 400000,
+  "promptSuggestionEnabled": false,
   "awaySummaryEnabled": false,
   "askUserQuestionTimeout": "60s",
   "autoUpdatesChannel": "latest",
@@ -131,7 +177,36 @@
   "verbose": true,
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
+  "switchModelsOnFlag": false,
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: PUBLIC — github.com/adriandlam/dotfiles (confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: 1Password (op CLI) — `op read` used for secret retrieval; machine-local secrets live in `~/.zshenv.local`, never committed",
+      "**Default / protected branches**: main (default); no rulesets or protected-branch rules listed via gh",
+      "**CI/CD deploy targets**: None configured — CI is limited to shellcheck, `stow --simulate`, and gitleaks over full history (.github/workflows)",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo (github.com/adriandlam/dotfiles) and its remote only — no additional orgs configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: `~/.zshenv.local` (machine-local secrets, never committed); `.env`, `.env.*` (gitignored); files matched by `.gitleaks.toml` allowlist and pre-commit secret scan — share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: personal dotfiles management (macOS config, shell tooling, editor config) — hobby/personal use",
+      "**Trusted repo**: github.com/adriandlam/dotfiles (public) — working directory /Users/adrianlam/dotfiles; confidential material (secrets, personal/entrusted data) is never cleared into this repo by its public visibility, only the user's own dotfiles work is appropriate to commit/push here",
+      "**Org-specific CLIs**: None configured — routine personal CLIs observed: brew, stow, plutil, defaults, shellcheck, op (1Password CLI)",
+      "routine under adriandlam/dotfiles prefix: brew, stow, defaults, plutil, shellcheck operations are routine local/CI maintenance"
+    ]
+  }
 }
