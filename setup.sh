@@ -150,6 +150,18 @@ ok "pre-commit secret scan wired (core.hooksPath=.githooks)"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     bash "$DOTFILES/macos-defaults.sh"
 else
+    # Linked as a whole dir so `systemctl --user enable` writes its .wants links
+    # into the repo, which is how those got tracked in the first place
+    units="$HOME/.config/systemd/user"
+    if [ "$(cd "$units" 2>/dev/null && pwd -P)" = "$(cd "$DOTFILES/.config/systemd/user" && pwd -P)" ]; then
+        info "systemd user units already linked"
+    elif [ -e "$units" ]; then
+        skip "$units exists as a real dir — merge it into the repo by hand"
+    else
+        mkdir -p "$(dirname "$units")"
+        ln -s "$DOTFILES/.config/systemd/user" "$units"
+        ok "linked systemd user units"
+    fi
     head_ "macOS defaults"
     skip "not macOS — skipped"
 fi
