@@ -36,7 +36,7 @@ if [ -t 0 ] && sudo -v; then
     trap 'kill "$SUDO_KEEPALIVE" 2>/dev/null || true' EXIT
     ok "sudo cached for this run"
 else
-    skip "no sudo — /Volumes, restart-on-freeze and Touch ID will be left alone"
+    skip "no sudo — /Volumes, restart-on-freeze, stealth mode and Touch ID will be left alone"
 fi
 
 # Close System Settings so it cannot overwrite what we write below
@@ -55,6 +55,11 @@ ok "key repeat at the fastest rate, shortest delay"
 # Disable press-and-hold (we want key repeat for hjkl navigation)
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 ok "press-and-hold off, so hjkl repeats"
+
+# A lone tap of fn/🌐 does nothing, instead of opening the emoji picker. fn still
+# works as a modifier, so a slightly early release of ⌃fn↑ no longer misfires.
+defaults write com.apple.HIToolbox AppleFnUsageType -int 0
+ok "fn key alone does nothing"
 
 # Smart text substitutions stay on (the macOS default). Written explicitly so a
 # machine that once had them off is put back, not left as it was.
@@ -209,7 +214,11 @@ ok "path bar, status bar and POSIX path in the title"
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
-ok "list view, search scoped to the current folder, folders first"
+defaults write com.apple.finder NewWindowTarget -string PfHm
+defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
+# Get Info opens with the panes you actually open it for already expanded
+defaults write com.apple.finder FXInfoPanesExpanded -dict General -bool true OpenWith -bool true Privileges -bool true
+ok "list view, search scoped to the current folder, folders first, new windows at Home"
 
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 ok "no warning when changing a file extension"
@@ -237,7 +246,15 @@ head_ "Dock"
 
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock show-recents -bool false
-ok "minimize into the app icon, recent applications hidden"
+# Apps hidden with ⌘H show as translucent icons
+defaults write com.apple.dock showhidden -bool true
+ok "minimize into the app icon, recent applications hidden, hidden apps dimmed"
+
+# Bottom-right hot corner defaults to Quick Note, which the shortcut section
+# already turns off; the corner otherwise fires on every stray mouse-over.
+defaults write com.apple.dock wvous-br-corner -int 1
+defaults write com.apple.dock wvous-br-modifier -int 0
+ok "bottom-right hot corner off"
 
 defaults write com.apple.dock tilesize -int 55
 defaults write com.apple.dock launchanim -bool false
@@ -350,10 +367,14 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 ok "save and print panels expanded by default"
 
-defaults write com.apple.LaunchServices LSQuarantine -bool false
-defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+# Resume off for every app, not just System Settings
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 defaults write com.apple.CrashReporter DialogType -string none
-ok "quarantine, Resume and crash reporter dialogs off"
+ok "Resume and crash reporter dialogs off"
+
+# Plugging in an iPhone to charge no longer launches Photos
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+ok "Photos stays closed when a device is plugged in"
 
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 ok "new documents save to disk, not iCloud"
@@ -382,6 +403,14 @@ fi
 
 defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
 ok "personalized ads off"
+
+# Don't answer pings or port probes. socketfilterfw, not com.apple.alf: plist
+# writes to the firewall stopped sticking in Sequoia.
+if sudo -n /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on >/dev/null 2>&1; then
+    ok "firewall stealth mode on"
+else
+    skip "firewall stealth mode unchanged (needs sudo)"
+fi
 
 # Touch ID for sudo. /etc/pam.d/sudo_local is the supported seam for this —
 # Apple includes it from /etc/pam.d/sudo and, unlike edits to sudo itself,
@@ -412,12 +441,32 @@ defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 ok "TextEdit opens and saves plain text as UTF-8"
 
+# Double-clicking code and text files opens Zed, not Xcode or TextEdit
+if command -v duti >/dev/null 2>&1 && [ -d /Applications/Zed.app ]; then
+    # Concrete UTIs, not public.source-code: Cursor and Xcode claim each subtype
+    # directly, and a claim on the subtype beats one on its parent. .ts maps to
+    # public.mpeg-2-transport-stream, so this also sends MPEG-TS video to Zed.
+    for uti in public.plain-text net.daringfireball.markdown public.json public.yaml \
+               public.toml com.microsoft.ini public.xml public.css \
+               public.shell-script public.zsh-script public.python-script public.ruby-script \
+               com.netscape.javascript-source public.mpeg-2-transport-stream com.microsoft.typescript \
+               public.c-source public.c-header public.c-plus-plus-source public.swift-source; do
+        duti -s dev.zed.Zed "$uti" all
+    done
+    ok "Zed opens text and code files"
+else
+    skip "default editor unchanged (needs duti and Zed)"
+fi
+
 # ── Apply ─────────────────────────────────────────────────────────────────
 head_ "Applying"
 
-for app in "Dock" "Finder"; do
-  killall "${app}" &>/dev/null || true
-done
+# Restart through launchd and LaunchServices, not a bare killall: on macOS 27
+# neither came back on its own after killall, which leaves no Dock and no ⌘Tab
+# app switcher (the switcher lives in the Dock process).
+launchctl kickstart -k "gui/$(id -u)/com.apple.Dock.agent"
+killall Finder &>/dev/null || true
+open -a Finder
 ok "restarted Dock and Finder"
 
 # Reloads the shortcut and modifier-key tables into the running WindowServer.
