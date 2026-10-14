@@ -19,6 +19,8 @@ brew "cmake"
 brew "croc"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Set default applications for document types and URL schemes
+brew "duti"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Tool for managing dock items
