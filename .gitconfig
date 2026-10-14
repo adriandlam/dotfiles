@@ -3,6 +3,9 @@
 	amend = commit --amend --no-edit
 	undo = reset --soft HEAD~1
 	sync = !git pull --rebase && git push
+	# Structural, syntax-aware diffs on demand; delta stays the default pager
+	dft = -c diff.external=difft diff
+	dlog = -c diff.external=difft log -p --ext-diff
 [user]
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpW/soFiCrttzvsERgdEIzsYcGlRrfu1LH7g8aTSlE0
 	name = Adrian Lam
@@ -62,10 +65,12 @@
 [rebase]
   autoStash = true
   updateRefs = true
+	autoSquash = true
 [branch]
   sort = -committerdate
 [tag]
   sort = -version:refname
+	gpgSign = true
 [merge]
   conflictstyle = zdiff3
 [push]
@@ -73,12 +78,13 @@
 	followTags = true
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [status]
 	short = true
+	branch = true
 [column]
 	ui = auto
 [help]
@@ -91,3 +97,7 @@
 	fsckObjects = true
 [receive]
 	fsckObjects = true
+# Machine-local overrides, last so they win. On Linux this is where signing
+# gets pointed away from the macOS-only 1Password op-ssh-sign path.
+[include]
+	path = ~/.gitconfig.local

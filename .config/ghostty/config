@@ -19,10 +19,10 @@ minimum-contrast = 0
 bold-color = bright
 
 # ── Chrome ────────────────────────────────────────────────────────────
-# 'tabs' = custom titlebar with the tab bar built in. Required for tabs:
-# macOS native tabs need a titlebar, so 'hidden' disables cmd+t entirely.
+# 'transparent' keeps the native titlebar, which macOS tabs need ('hidden'
+# disables cmd+t entirely), but tints it to the background.
 macos-titlebar-style = transparent
-# Strip what the tabs titlebar lets us strip.
+# Strip what the titlebar lets us strip.
 macos-window-buttons = hidden
 macos-titlebar-proxy-icon = hidden
 scrollbar = never
@@ -33,7 +33,7 @@ window-padding-balance = true
 window-padding-color = background
 
 # ── Color ─────────────────────────────────────────────────────────────
-theme = linear-dark
+theme = light:linear-light,dark:linear-dark
 # Derive palette 16–255 from the theme's base 16 instead of xterm defaults.
 # Pull this line first if any TUI's 256-color output looks wrong.
 palette-generate = true
@@ -102,6 +102,8 @@ keybind = cmd+alt+r=toggle_readonly
 # (cmd+f start, cmd+shift+g previous, escape end — all stock defaults.)
 keybind = cmd+alt+g=navigate_search:next
 
-keybind = cmd+backquote=toggle_quick_terminal
+# global: works from any app, not just while Ghostty is focused. Needs
+# Ghostty allowed under System Settings › Privacy & Security › Accessibility.
+keybind = global:cmd+backquote=toggle_quick_terminal
 keybind = shift+enter=text:\x1b\r
 keybind = alt+backspace=text:\x1b\x7f

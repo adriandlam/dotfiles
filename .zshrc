@@ -154,6 +154,7 @@ alias lt="eza --tree --level=2 --icons --git-ignore"
 alias p="pnpm"
 alias yp="copypath"
 alias yf="copyfile"
+alias ts="tailscale"
 
 mkcd() {
   \mkdir -p "$1"
@@ -172,17 +173,9 @@ gg() {
 }
 
 # ── Runtimes ──────────────────────────────────────────────────────────────
-# nvm is slow enough to matter at startup, so nothing loads until first use.
-export NVM_DIR="$HOME/.nvm"
-nvm() {
-  unset -f nvm node npm npx
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-  nvm "$@"
-}
-node() { unset -f node; nvm() { unset -f nvm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; nvm "$@"; }; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; node "$@"; }
-npm() { unset -f npm; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; npm "$@"; }
-npx() { unset -f npx; [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"; npx "$@"; }
+# mise picks node (and anything else in .config/mise/config.toml or a project's
+# mise.toml) per directory. Its PATH hook runs on prompt, not at startup.
+command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
 
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
@@ -225,34 +218,23 @@ export FZF_DEFAULT_OPTS="\
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}' --preview-window='right:60%:wrap'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --icons --level=2 {}' --preview-window='right:50%'"
 
-# Make fzf's cd widget hand off to zoxide instead of builtin cd.
-fzf-cd-widget() {
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(
-    FZF_DEFAULT_COMMAND=${FZF_ALT_C_COMMAND:-} \
-    FZF_DEFAULT_OPTS=$(__fzf_defaults "--reverse --walker=dir,follow,hidden --scheme=path" "${FZF_ALT_C_OPTS-} +m") \
-    FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd) < /dev/tty)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line
-  BUFFER="z ${(q)dir:a}"
-  zle accept-line
-  local ret=$?
-  unset dir
-  zle reset-prompt
-  return $ret
-}
-zle -N fzf-cd-widget
-
 eval "$(atuin init zsh)"
 
 # ── Misc tooling ──────────────────────────────────────────────────────────
 # Per-directory env vars, opt-in via `direnv allow`.
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
-if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
+# mole's completion generator is a bash script that costs ~110ms, so cache its
+# output and regenerate only when the mole binary is newer than the cache.
+if (( $+commands[mole] )); then
+  _mole_comp="$HOME/.cache/zsh/mole-completion.zsh"
+  if [[ ! "$_mole_comp" -nt "$commands[mole]" ]]; then
+    mkdir -p "${_mole_comp:h}"
+    mole completion zsh >| "$_mole_comp" 2>/dev/null
+  fi
+  source "$_mole_comp"
+  unset _mole_comp
+fi
 
 # Syntax-highlighted man pages.
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

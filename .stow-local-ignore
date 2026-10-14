@@ -45,3 +45,18 @@ Brewfile
 
 # Never let stow near the ssh dir; setup.sh links config only.
 \.ssh
+
+# Plugin state the remember plugin writes into whatever project it runs in.
+\.remember
+
+# Zed's live prompt library (an LMDB database). Gitignored, but stow never reads
+# .gitignore, so without this it links the database into the repo.
+\.config/zed/prompts
+
+# systemd user units are Linux-only; setup.sh links them there and nowhere else.
+\.config/systemd
+
+# Raycast: nothing here is tracked (.gitignore drops config.json and the
+# recompiled extension bundles), but stow never reads .gitignore, so anything
+# left in the working tree gets offered as a LINK and doctor.sh reports it.
+\.config/raycast

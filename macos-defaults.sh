@@ -56,14 +56,16 @@ ok "key repeat at the fastest rate, shortest delay"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 ok "press-and-hold off, so hjkl repeats"
 
-# Disable all the "smart" features that mess with code. Quote and dash
-# substitution matter most: they turn "foo" into “foo” and -- into –, which
-# survives a copy-paste out of Notes or Slack and then fails to parse.
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+# Smart text substitutions stay on (the macOS default). Written explicitly so a
+# machine that once had them off is put back, not left as it was.
+for key in NSAutomaticCapitalizationEnabled \
+           NSAutomaticQuoteSubstitutionEnabled NSAutomaticDashSubstitutionEnabled \
+           NSAutomaticSpellingCorrectionEnabled NSAutomaticInlinePredictionEnabled; do
+    defaults write NSGlobalDomain "$key" -bool true
+done
+# Except double-space → period, which fires mid-thought
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-ok "smart quotes, dashes, capitalization and periods off"
+ok "smart quotes, dashes, capitalization, autocorrect and inline predictions on; double-space period off"
 
 # Tab through every control in a dialog, not just text fields and lists
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -185,6 +187,8 @@ ok "Do Not Disturb and Quick Note shortcuts off"
 # ── Trackpad & mouse ──────────────────────────────────────────────────────
 head_ "Trackpad & mouse"
 
+# Built-in and Bluetooth trackpads read separate domains
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 ok "tap to click"
@@ -210,6 +214,9 @@ ok "list view, search scoped to the current folder, folders first"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 ok "no warning when changing a file extension"
 
+defaults write com.apple.finder FXRemoveOldTrashItems -bool true
+ok "Trash empties items older than 30 days"
+
 # Stop Finder writing .DS_Store onto network shares and USB volumes, which is
 # how they end up committed to repos on other people's machines
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -231,6 +238,14 @@ head_ "Dock"
 defaults write com.apple.dock minimize-to-application -bool true
 defaults write com.apple.dock show-recents -bool false
 ok "minimize into the app icon, recent applications hidden"
+
+defaults write com.apple.dock tilesize -int 55
+defaults write com.apple.dock launchanim -bool false
+ok "55px icons, no bounce on launch"
+
+# Spaces stay in the order they were made instead of shuffling by recent use
+defaults write com.apple.dock mru-spaces -bool false
+ok "Spaces never rearranged"
 
 # The Dock's contents, in order. Each tile in com.apple.dock is a nested dict
 # carrying a GUID, a bookmark blob, a label and a type — not something worth
@@ -313,6 +328,22 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 ok "window open and resize animations off"
 
+# Sonoma+ hides every window when the wallpaper is clicked; keep that to Stage Manager
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+# ⌃⌘-drag moves a window from anywhere inside it, not just the title bar
+defaults write NSGlobalDomain NSWindowShouldDragOnGesture -bool true
+ok "wallpaper click leaves windows alone, ⌃⌘-drag moves windows"
+
+# Sequoia+ tiling: windows sit edge to edge, and desktop icons stay hidden
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+defaults write com.apple.WindowManager HideDesktop -bool true
+ok "tiled windows without gaps, desktop icons hidden"
+
+defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
+# Per-host key: without -currentHost the write lands in a plist Control Center never reads
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
+ok "dark mode, battery percentage in the menu bar"
+
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
@@ -339,9 +370,18 @@ fi
 # ── Security ──────────────────────────────────────────────────────────────
 head_ "Security"
 
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-ok "password required immediately after sleep or screen saver"
+# Since Ventura the com.apple.screensaver askForPassword keys are ignored; the
+# real setting sits behind sysadminctl, which wants the login password.
+if sysadminctl -screenLock status 2>&1 | grep -q immediate; then
+    info "password already required immediately after sleep or screen saver"
+elif [ -t 0 ] && sysadminctl -screenLock immediate -password - 2>/dev/null; then
+    ok "password required immediately after sleep or screen saver"
+else
+    skip "screen lock delay unchanged (needs an interactive run)"
+fi
+
+defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
+ok "personalized ads off"
 
 # Touch ID for sudo. /etc/pam.d/sudo_local is the supported seam for this —
 # Apple includes it from /etc/pam.d/sudo and, unlike edits to sudo itself,

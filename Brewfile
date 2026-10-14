@@ -35,10 +35,14 @@ brew "fd"
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
+# Distributed revision control system (keeps starship off the /usr/bin/git xcrun shim)
+brew "git"
 # Automatic git commit --fixup
 brew "git-absorb"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Structural diff that understands syntax
+brew "difftastic"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
 # Git extension for versioning large files
@@ -59,6 +63,8 @@ brew "jq"
 brew "lazygit"
 # Deep clean and optimize your Mac
 brew "mole"
+# Polyglot runtime manager (node, and per-project versions)
+brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Utility for managing network connections
@@ -117,6 +123,8 @@ cask "font-geist-mono-nerd-font"
 cask "macfuse"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# Mesh VPN based on WireGuard (the home and kindle ssh hosts live on it)
+cask "tailscale-app"
 go "github.com/spf13/cobra-cli"
 cargo "cargo-zigbuild"
 npm "@rama_nigg/open-cursor"

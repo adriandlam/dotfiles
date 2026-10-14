@@ -73,10 +73,10 @@ done
 head_ "Secrets"
 
 if command -v gitleaks >/dev/null 2>&1; then
-    if gitleaks detect --source "$DOTFILES" --redact --no-banner >/dev/null 2>&1; then
+    if gitleaks git --redact --no-banner "$DOTFILES" >/dev/null 2>&1; then
         ok "gitleaks: clean history"
     else
-        bad "gitleaks found secrets — run: gitleaks detect --source . --redact"
+        bad "gitleaks found secrets — run: gitleaks git --redact ."
     fi
 else
     warn "gitleaks not installed (brew bundle)"

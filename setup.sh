@@ -106,9 +106,9 @@ link_config() {
     ok "linked $2"
 }
 
-# Claude Code rewrites the plugin manifests by atomic replace, which destroys a
-# symlink on the first plugin change. Seed those on a fresh machine instead, and
-# refresh the repo copy with ./snapshot.sh when the plugin set changes.
+# Claude Code rewrites settings.json and the plugin manifests by atomic replace,
+# which destroys a symlink on the first change. Seed those on a fresh machine
+# instead, and refresh the repo copy with ./snapshot.sh.
 seed_config() {
     local src="$DOTFILES/$1" dst="$HOME/$2"
     if [ ! -e "$src" ]; then
@@ -122,7 +122,7 @@ seed_config() {
     fi
 }
 
-link_config .claude/settings.json                   .claude/settings.json
+seed_config .claude/settings.json                   .claude/settings.json
 link_config .claude/statusline.sh                   .claude/statusline.sh
 link_config .claude/hooks/block-no-verify.sh        .claude/hooks/block-no-verify.sh
 link_config .claude/hooks/zsh-syntax-check.sh       .claude/hooks/zsh-syntax-check.sh
@@ -150,6 +150,18 @@ ok "pre-commit secret scan wired (core.hooksPath=.githooks)"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     bash "$DOTFILES/macos-defaults.sh"
 else
+    # Linked as a whole dir so `systemctl --user enable` writes its .wants links
+    # into the repo, which is how those got tracked in the first place
+    units="$HOME/.config/systemd/user"
+    if [ "$(cd "$units" 2>/dev/null && pwd -P)" = "$(cd "$DOTFILES/.config/systemd/user" && pwd -P)" ]; then
+        info "systemd user units already linked"
+    elif [ -e "$units" ]; then
+        skip "$units exists as a real dir — merge it into the repo by hand"
+    else
+        mkdir -p "$(dirname "$units")"
+        ln -s "$DOTFILES/.config/systemd/user" "$units"
+        ok "linked systemd user units"
+    fi
     head_ "macOS defaults"
     skip "not macOS — skipped"
 fi
