@@ -125,6 +125,8 @@ cask "font-geist-mono-nerd-font"
 cask "macfuse"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# Tiling window manager
+cask "omniwm"
 # Mesh VPN based on WireGuard (the home and kindle ssh hosts live on it)
 cask "tailscale-app"
 go "github.com/spf13/cobra-cli"
