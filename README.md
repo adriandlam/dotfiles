@@ -31,6 +31,7 @@ Two things it deliberately does not do, because they need you:
 | `.config/ghostty`, `.config/bat`, `.config/eza`, `.config/lazygit`, `.config/atuin` | Terminal and CLI tooling |
 | `.claude`, `.codex`, `.agents` | AI agent config (settings and manifests only — no state, no credentials) |
 | `.config/zed` | Zed settings and keymap |
+| `.config/omniwm` | OmniWM tiling window manager: niri layout, window keys on ⌃⌥ (⌃⌥⇧ to move), workspace bar at the bottom. Keep its System Hyper Trigger off Caps Lock — that remaps Caps Lock through `hidutil`, overwriting Caps → Escape below, and quitting OmniWM clears it instead of restoring it. |
 | `.ssh/config` | SSH config only — points at the 1Password agent. No keys, ever. |
 | `Brewfile` | Every package, cask, tap and global npm/cargo/go install |
 | `macos-defaults.sh` | `defaults write` settings, keyboard shortcuts, key remapping, Dock contents, plus Touch ID for `sudo` |

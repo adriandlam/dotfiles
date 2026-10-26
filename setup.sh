@@ -60,7 +60,7 @@ head_ "Symlinks"
 # (ghostty, nvim, bat), but catastrophic for ones where an app also writes secrets
 # or state: a folded ~/.config would put gh's hosts.yml, ngrok and rclone configs
 # inside a public git repo. Creating them first forces stow to link file-by-file.
-for d in .config .config/atuin .config/gh .config/mole .config/zed; do
+for d in .config .config/atuin .config/gh .config/mole .config/omniwm .config/zed; do
     mkdir -p "$HOME/$d"
 done
 ok "pre-created the directories stow must not fold"
@@ -174,5 +174,6 @@ info "sign in to the 1Password CLI:  op signin"
 info "create ~/.zshenv.local for machine-local secrets (never committed):"
 printf '      echo '\''export SOME_TOKEN="$(op read op://Private/some-item/credential)"'\'' > ~/.zshenv.local\n'
 info "reinstall agent skills from the lock file if they are missing"
+info "launch OmniWM, grant Accessibility + Input Monitoring, and enable Start at Login (not stored in its TOML)"
 
 printf '\n\033[1mInstallation complete.\033[0m\n'
