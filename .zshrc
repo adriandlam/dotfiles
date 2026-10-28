@@ -254,3 +254,7 @@ if [[ -r "$HOME/.config/zsh/banner.zsh" ]]; then
   source "$HOME/.config/zsh/banner.zsh"
   _motd_maybe
 fi
+
+# >>> railway initialize >>>
+source "$HOME/.railway/env"
+# <<< railway initialize <<<

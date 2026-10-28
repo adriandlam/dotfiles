@@ -91,6 +91,87 @@
       "skillFolderHash": "22563ae21af6e63ab954e178703f74fb709eb68c",
       "installedAt": "2026-07-05T04:45:19.199Z",
       "updatedAt": "2026-07-05T04:45:19.199Z"
+    },
+    "neon": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon/SKILL.md",
+      "skillFolderHash": "85ebc8a290ccba871c22b4809ae5c63884ace382",
+      "installedAt": "2026-10-23T01:07:12.692Z",
+      "updatedAt": "2026-10-23T01:07:12.692Z"
+    },
+    "neon-ai-gateway": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-ai-gateway/SKILL.md",
+      "skillFolderHash": "cca504a2ed82519177b8b678776d8c285a9155dd",
+      "installedAt": "2026-10-23T01:07:12.695Z",
+      "updatedAt": "2026-10-23T01:07:12.695Z"
+    },
+    "neon-auth": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-auth/SKILL.md",
+      "skillFolderHash": "986de8b16fa1760afb8545da01914af9bcddc7df",
+      "installedAt": "2026-10-23T01:07:12.695Z",
+      "updatedAt": "2026-10-23T01:07:12.695Z"
+    },
+    "neon-functions": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-functions/SKILL.md",
+      "skillFolderHash": "6d8b28ebfb4abe6589869ee4dbdd34adf7a00937",
+      "installedAt": "2026-10-23T01:07:12.696Z",
+      "updatedAt": "2026-10-23T01:07:12.696Z"
+    },
+    "neon-object-storage": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-object-storage/SKILL.md",
+      "skillFolderHash": "3f3c8b5f33bdc63bc41d4f76662143ec27fcbd33",
+      "installedAt": "2026-10-23T01:07:12.696Z",
+      "updatedAt": "2026-10-23T01:07:12.696Z"
+    },
+    "neon-postgres": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-postgres/SKILL.md",
+      "skillFolderHash": "24a62f1b98b921769352ad508c38c81951751849",
+      "installedAt": "2026-10-23T01:07:12.697Z",
+      "updatedAt": "2026-10-23T01:07:12.697Z"
+    },
+    "neon-postgres-branches": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-postgres-branches/SKILL.md",
+      "skillFolderHash": "6c540149c6c83cbbf4de27b485029dade184f172",
+      "installedAt": "2026-10-23T01:07:12.697Z",
+      "updatedAt": "2026-10-23T01:07:12.697Z"
+    },
+    "neon-postgres-egress-optimizer": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-postgres-egress-optimizer/SKILL.md",
+      "skillFolderHash": "6773718906e72b8fb2e51c9642b418510e02aa5b",
+      "installedAt": "2026-10-23T01:07:12.698Z",
+      "updatedAt": "2026-10-23T01:07:12.698Z"
+    },
+    "neon-realtime": {
+      "source": "neondatabase/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/neondatabase/agent-skills.git",
+      "skillPath": "skills/neon-realtime/SKILL.md",
+      "skillFolderHash": "bfa7f26e29042d74e1aa4aaa81e8c1613cc5937a",
+      "installedAt": "2026-10-23T01:07:12.698Z",
+      "updatedAt": "2026-10-23T01:07:12.698Z"
     }
   },
   "dismissed": {

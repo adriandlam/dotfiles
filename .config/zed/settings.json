@@ -47,14 +47,14 @@
       },
     ],
     "default_model": {
-      "effort": "low",
+      "effort": "medium",
       "enable_thinking": true,
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
+      "provider": "openai-subscribed",
+      "model": "gpt-6-luna",
     },
     "inline_assistant_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
+      "provider": "openai-subscribed",
+      "model": "gpt-6-luna",
     },
     // Compact the thread automatically instead of hard-stopping at the context limit.
     "auto_compact": {
@@ -67,7 +67,7 @@
   },
   "edit_predictions": {
     "provider": "zed",
-    "mode": "subtle",
+    "mode": "eager",
   },
   "scrollbar": {
     "diagnostics": "all",
