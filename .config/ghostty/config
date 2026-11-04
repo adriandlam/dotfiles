@@ -1,5 +1,5 @@
 # ══════════════════════════════════════════════════════════════════════
-#  Ghostty — targets 1.3.x · macOS 26 (Tahoe)
+#  Ghostty — targets 1.4.x · macOS 27 (Golden Gate)
 # ══════════════════════════════════════════════════════════════════════
 
 # ── Text rendering ────────────────────────────────────────────────────
@@ -58,11 +58,15 @@ notify-on-command-finish-action = bell,notify
 notify-on-command-finish-after = 20s
 undo-timeout = 30s
 working-directory = inherit
+# macos-defaults.sh turns NSQuitAlwaysKeepsWindows off system-wide, so without this
+# a normal quit, including the one a Sparkle update does, loses every tab and split.
+# Restores layout and working directories; running processes do not survive.
+window-save-state = always
 copy-on-select = clipboard
 mouse-hide-while-typing = true
 link-previews = true
 quit-after-last-window-closed = true
-scrollback-limit = 100000000
+scrollback-limit-bytes = 100000000
 macos-option-as-alt = true
 
 # ── Quick terminal ────────────────────────────────────────────────────

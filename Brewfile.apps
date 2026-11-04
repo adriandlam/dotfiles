@@ -1,0 +1,11 @@
+# Apps that update themselves and may already be installed outside Homebrew.
+# Installed only when absent: `brew bundle` fails on a cask whose app already exists,
+# and `brew bundle dump` (snapshot.sh) would drop these from the main Brewfile.
+{
+  "1password" => "1Password",
+  "cursor" => "Cursor",
+  "ghostty" => "Ghostty",
+  "orbstack" => "OrbStack",
+  "raycast" => "Raycast",
+  "zed" => "Zed",
+}.each { |token, app| cask token unless File.exist?("/Applications/#{app}.app") }

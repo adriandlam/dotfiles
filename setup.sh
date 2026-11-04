@@ -43,6 +43,7 @@ head_ "Packages"
 
 info "installing from the Brewfile"
 brew bundle --file="$DOTFILES/Brewfile"
+brew bundle --file="$DOTFILES/Brewfile.apps"
 ok "Brewfile installed"
 
 # Homebrew leaves the prefix's share/ group-writable whenever it creates new

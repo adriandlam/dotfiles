@@ -73,8 +73,6 @@ brew "neovim"
 brew "netcat"
 # Development kit for the Java programming language
 brew "openjdk"
-# Pretty, minimal and fast ZSH prompt
-brew "pure"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
@@ -117,6 +115,10 @@ brew "zsh-autosuggestions"
 brew "zsh-fast-syntax-highlighting"
 # Command-line interface for 1Password
 cask "1password-cli"
+# Android SDK component
+cask "android-platform-tools"
+# E-books management software
+cask "calibre"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
 cask "font-geist"
@@ -127,6 +129,10 @@ cask "macfuse"
 cask "ngrok"
 # Tiling window manager
 cask "omniwm"
+# Desktop syncing client for OpenCloud
+cask "opencloud"
+# Android file transfer
+cask "openmtp"
 # Mesh VPN based on WireGuard (the home and kindle ssh hosts live on it)
 cask "tailscale-app"
 go "github.com/spf13/cobra-cli"

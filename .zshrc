@@ -10,7 +10,7 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 
 # ── Oh My Zsh ─────────────────────────────────────────────────────────────
-# Prompt comes from pure, not an omz theme.
+# Prompt comes from starship, not an omz theme.
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
 
@@ -135,10 +135,12 @@ zstyle ':autocomplete::compinit' arguments -i
 
 zstyle ':completion:*' keep-prefix true
 zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
+source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# After the source, because zsh-autocomplete rebinds both keys as it loads. Before
+# `fzf --zsh`, because fzf saves the current Tab widget as its fallback.
 bindkey '^I' menu-complete
 bindkey "$terminfo[kcbt]" reverse-menu-complete
-
-source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # ── Editor ────────────────────────────────────────────────────────────────
 if [[ -n $SSH_CONNECTION ]]; then
@@ -149,7 +151,7 @@ fi
 
 # ── Aliases and functions ─────────────────────────────────────────────────
 alias nv="nvim"
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-user --no-permissions -la"
+alias ls="eza --color=auto --long --git --no-filesize --icons=auto --no-user --no-permissions -la"
 alias lt="eza --tree --level=2 --icons --git-ignore"
 alias p="pnpm"
 alias yp="copypath"
@@ -191,16 +193,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.hades/bin"
 
 # ── Prompt ────────────────────────────────────────────────────────────────
-# Old prompt: Pure (disabled)
-# autoload -U promptinit; promptinit
-# PURE_PROMPT_SYMBOL=">"
-# zstyle :prompt:pure:path color '#8c97ff'
-# zstyle :prompt:pure:git:branch color '#c2a1ff'
-# zstyle :prompt:pure:git:dirty color '#f5c56a'
-# zstyle :prompt:pure:prompt:success color '#8c97ff'
-# zstyle :prompt:pure:git:arrow color '#c2a1ff'
-# prompt pure
-
 eval "$(starship init zsh)"
 
 # ── Navigation and search ─────────────────────────────────────────────────
@@ -256,5 +248,5 @@ if [[ -r "$HOME/.config/zsh/banner.zsh" ]]; then
 fi
 
 # >>> railway initialize >>>
-source "$HOME/.railway/env"
+[ -f "$HOME/.railway/env" ] && source "$HOME/.railway/env"
 # <<< railway initialize <<<
