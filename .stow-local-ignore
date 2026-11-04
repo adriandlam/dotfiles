@@ -27,6 +27,7 @@ snapshot.sh
 macos-defaults.sh
 doctor.sh
 Brewfile
+Brewfile\.apps
 
 # Repo infrastructure, not config — these belong to the repo, not to $HOME.
 \.github

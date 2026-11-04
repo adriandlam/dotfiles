@@ -58,6 +58,10 @@ notify-on-command-finish-action = bell,notify
 notify-on-command-finish-after = 20s
 undo-timeout = 30s
 working-directory = inherit
+# macos-defaults.sh turns NSQuitAlwaysKeepsWindows off system-wide, so without this
+# a normal quit, including the one a Sparkle update does, loses every tab and split.
+# Restores layout and working directories; running processes do not survive.
+window-save-state = always
 copy-on-select = clipboard
 mouse-hide-while-typing = true
 link-previews = true

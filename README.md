@@ -34,6 +34,8 @@ Two things it deliberately does not do, because they need you:
 | `.config/omniwm` | OmniWM tiling window manager: niri layout, window keys on ⌃⌥ (⌃⌥⇧ to move), workspace bar at the bottom. Keep its System Hyper Trigger off Caps Lock — that remaps Caps Lock through `hidutil`, overwriting Caps → Escape below, and quitting OmniWM clears it instead of restoring it. |
 | `.ssh/config` | SSH config only — points at the 1Password agent. No keys, ever. |
 | `Brewfile` | Every package, cask, tap and global npm/cargo/go install |
+| `Brewfile.apps` | Self-updating apps, installed only when absent. Separate because `brew bundle dump` rewrites `Brewfile` and would drop them. |
+| Not listed | `cotabby` and `immich-desktop` come from personal taps, so they need a manual review and `brew trust`. `snapshot.sh` re-adds them with `trusted: true` while they are trusted here; delete those lines before committing. |
 | `macos-defaults.sh` | `defaults write` settings, keyboard shortcuts, key remapping, Dock contents, plus Touch ID for `sudo` |
 | `setup.sh`, `snapshot.sh` | Install on a new machine; pull replace-on-write config back in |
 | `doctor.sh` | Health check — verifies the install still matches the model below |
@@ -172,8 +174,7 @@ defaults it off) since Ghostty already paints the same background.
 
 ## Shell
 
-oh-my-zsh for its plugin library, [pure](https://github.com/sindresorhus/pure) for the
-prompt. The three heavyweight zsh plugins — `zsh-autosuggestions`,
+oh-my-zsh for its plugin library, [starship](https://starship.rs) for the prompt. The three heavyweight zsh plugins — `zsh-autosuggestions`,
 `zsh-fast-syntax-highlighting`, `zsh-autocomplete` — come from the `Brewfile` and are
 sourced from `$HOMEBREW_PREFIX` directly, rather than cloned into `$ZSH_CUSTOM`. One
 source, and `brew upgrade` keeps them current.
@@ -187,7 +188,7 @@ a repo and entering it would run whatever that file contains. `direnv` needs an 
 
 ```bash
 brew bundle --file=Brewfile          # install everything
-brew bundle dump --force --describe  # rewrite Brewfile from current state
+brew bundle dump --force --no-vscode # rewrite Brewfile from current state
 brew bundle cleanup                  # list anything not in the Brewfile (--force uninstalls it)
 ```
 

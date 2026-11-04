@@ -32,7 +32,7 @@ snapshot .claude/plugins/installed_plugins.json  .claude/plugins/installed_plugi
 snapshot .claude/plugins/known_marketplaces.json .claude/plugins/known_marketplaces.json
 
 echo "Refreshing Brewfile..."
-brew bundle dump --force --describe --file="$DOTFILES/Brewfile"
+brew bundle dump --force --no-vscode --file="$DOTFILES/Brewfile"
 echo "  Brewfile rewritten"
 
 echo
