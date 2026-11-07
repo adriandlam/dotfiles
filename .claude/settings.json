@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 90,
   "attribution": {
     "commit": "",
@@ -47,7 +48,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
   "fallbackModel": [
     "claude-sonnet-5"
   ],
@@ -98,7 +98,7 @@
     "code-simplifier@claude-plugins-official": false,
     "commit-commands@claude-plugins-official": false,
     "pr-review-toolkit@claude-plugins-official": false,
-    "explanatory-output-style@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": false,
     "claude-md-management@claude-plugins-official": false,
     "hookify@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": false,
@@ -125,7 +125,10 @@
     "aside@my-mods": true,
     "secret-redactor@my-mods": false,
     "gh-ci-status@my-mods": true,
-    "next-steps@claude-community": true
+    "next-steps@claude-community": true,
+    "neon-postgres@neon": true,
+    "flightdeck@claude-flightdeck": true,
+    "effort-cycle@anerco": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -151,11 +154,24 @@
         "source": "github",
         "repo": "anthropics/claude-plugins-community"
       }
+    },
+    "claude-flightdeck": {
+      "source": {
+        "source": "github",
+        "repo": "scasella/claude-flightdeck"
+      }
+    },
+    "anerco": {
+      "source": {
+        "source": "github",
+        "repo": "Anerco/plugins"
+      }
     }
   },
+  "outputStyle": "Proactive",
+  "feedbackSurveyRate": 0,
   "feedbackDrafts": "quiet",
   "spinnerTipsEnabled": false,
-  "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "modelSettings": {
     "claude-opus-5-5": {
@@ -166,47 +182,50 @@
   "promptSuggestionEnabled": false,
   "awaySummaryEnabled": false,
   "askUserQuestionTimeout": "60s",
-  "autoUpdatesChannel": "latest",
+  "pluginConfigs": {
+    "flightdeck@claude-flightdeck": {
+      "options": {
+        "motion": "while-active",
+        "moments": true,
+        "matchDescriptions": false,
+        "layout": "auto",
+        "palette": "theme",
+        "openOnStart": true,
+        "statusLine": true
+      }
+    },
+    "effort-cycle@anerco": {
+      "options": {
+        "includeLow": true,
+        "includeMedium": true,
+        "includeHigh": true,
+        "includeXhigh": true,
+        "includeMax": true,
+        "nudgeRows": false
+      }
+    }
+  },
   "tui": "default",
-  "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
   "showThinkingSummaries": true,
-  "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
-  "editorMode": "normal",
-  "verbose": true,
   "preferredNotifChannel": "ghostty",
   "autoCompactEnabled": true,
   "switchModelsOnFlag": false,
+  "showTurnDuration": true,
+  "terminalProgressBarEnabled": false,
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
   "autoMode": {
     "environment": [
-      "### Org-wide",
-      "**Organization**: None configured",
-      "**Cloud provider(s)**: None configured",
-      "**Repository visibility**: PUBLIC — github.com/adriandlam/dotfiles (confirmed via gh)",
-      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
-      "**Secrets management**: 1Password (op CLI) — `op read` used for secret retrieval; machine-local secrets live in `~/.zshenv.local`, never committed",
-      "**Default / protected branches**: main (default); no rulesets or protected-branch rules listed via gh",
-      "**CI/CD deploy targets**: None configured — CI is limited to shellcheck, `stow --simulate`, and gitleaks over full history (.github/workflows)",
-      "**Network posture**: None configured",
-      "**Source control**: The trusted repo (github.com/adriandlam/dotfiles) and its remote only — no additional orgs configured",
-      "**Trusted internal domains**: None configured",
-      "**Trusted cloud buckets**: None configured",
-      "**Key internal services**: None configured",
-      "**Internal package registry**: None configured",
-      "**Sensitive data locations & audiences**: `~/.zshenv.local` (machine-local secrets, never committed); `.env`, `.env.*` (gitignored); files matched by `.gitleaks.toml` allowlist and pre-commit secret scan — share only with audiences cleared at the [named+specifics] bar",
-      "**Data retention / declassification**: None configured",
-      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
-      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
-      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
-      "### User-specific",
-      "**Primary use of Claude Code**: personal dotfiles management (macOS config, shell tooling, editor config) — hobby/personal use",
-      "**Trusted repo**: github.com/adriandlam/dotfiles (public) — working directory /Users/adrianlam/dotfiles; confidential material (secrets, personal/entrusted data) is never cleared into this repo by its public visibility, only the user's own dotfiles work is appropriate to commit/push here",
-      "**Org-specific CLIs**: None configured — routine personal CLIs observed: brew, stow, plutil, defaults, shellcheck, op (1Password CLI)",
-      "routine under adriandlam/dotfiles prefix: brew, stow, defaults, plutil, shellcheck operations are routine local/CI maintenance"
+      "$defaults",
+      "**Primary use of Claude Code** (overrides default): personal side projects and dotfiles on one macOS machine; hobby use, no employer data",
+      "**Source control** (overrides default): repos under github.com/adriandlam/ are the user's own. Trust does not override visibility: public repos are publishing destinations, and private content must not be copied into them. Repos created during a session are not pre-trusted.",
+      "**Public repos**: github.com/adriandlam/dotfiles is PUBLIC. OK to commit: shell, editor and app configs, git name and commit email, aliases, Brewfile. Never commit: anything from `~/.zshenv.local`, `op` output, tokens, SSH/GPG keys, shell history, `~/.ssh/config` host entries.",
+      "**Secrets management** (overrides default): 1Password CLI. `op read` / `op run` / `op inject` are fine when the value goes straight into the consuming command or env (e.g. `op run -- cmd`, `TOKEN=$(op read ...) cmd`); printing a secret to stdout or writing it to a file is not. `~/.zshenv.local` is a credential store: reading, printing or editing it is Credential Materialization.",
+      "**Expected tools** (context only; destructive or publishing subcommands are still judged by the normal rules): shellcheck, plutil, stow from ~/dotfiles, `brew bundle` against the repo's Brewfile, `defaults read`, `defaults write` for UI/app preferences, gh read and PR commands, op per the secrets note",
+      "**Dotfiles workflow**: the dotfiles repo lives at `~/dotfiles` and is stowed into `~`. Editing files inside that repo, including shell profiles and LaunchAgent plists, is routine project work. `stow` / `stow -R` from that repo is the expected way to apply changes. `stow --adopt` and edits made directly in `~` (not via the repo) still need the user's explicit request."
     ]
   }
 }
