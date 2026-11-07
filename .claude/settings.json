@@ -190,8 +190,8 @@
         "matchDescriptions": false,
         "layout": "auto",
         "palette": "theme",
-        "openOnStart": true,
-        "statusLine": true
+        "openOnStart": false,
+        "statusLine": false
       }
     },
     "effort-cycle@anerco": {
@@ -227,5 +227,6 @@
       "**Expected tools** (context only; destructive or publishing subcommands are still judged by the normal rules): shellcheck, plutil, stow from ~/dotfiles, `brew bundle` against the repo's Brewfile, `defaults read`, `defaults write` for UI/app preferences, gh read and PR commands, op per the secrets note",
       "**Dotfiles workflow**: the dotfiles repo lives at `~/dotfiles` and is stowed into `~`. Editing files inside that repo, including shell profiles and LaunchAgent plists, is routine project work. `stow` / `stow -R` from that repo is the expected way to apply changes. `stow --adopt` and edits made directly in `~` (not via the repo) still need the user's explicit request."
     ]
-  }
+  },
+  "model": "opus"
 }
