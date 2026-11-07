@@ -232,6 +232,12 @@ fi
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 
+# Claude Code randomly stops with "suspended (tty input)" when a child process
+# leaves the terminal's foreground group pointing elsewhere (anthropics/claude-code#47382).
+# Running it without job control keeps it in the shell's own group. Cost: Ctrl+Z
+# can no longer background it. local_options scopes this to the call.
+claude() { setopt local_options no_monitor; command claude "$@" }
+
 # ── Startup banner ────────────────────────────────────────────────────────
 # Last in the file on purpose: the elapsed time is only honest if everything
 # above it has already run. Paired with the stamp at the top of .zshenv.
