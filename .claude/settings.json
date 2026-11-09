@@ -126,10 +126,12 @@
     "aside@my-mods": true,
     "secret-redactor@my-mods": false,
     "gh-ci-status@my-mods": true,
-    "next-steps@claude-community": true,
     "neon-postgres@neon": true,
     "flightdeck@claude-flightdeck": true,
-    "effort-cycle@anerco": true
+    "effort-cycle@anerco": true,
+    "connect@claude-connect": true,
+    "connect-rows@claude-connect": true,
+    "figma@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -167,19 +169,24 @@
         "source": "github",
         "repo": "Anerco/plugins"
       }
+    },
+    "claude-connect": {
+      "source": {
+        "source": "github",
+        "repo": "adriandlam/claude-connect"
+      }
     }
   },
   "outputStyle": "Proactive",
   "feedbackSurveyRate": 0,
   "feedbackDrafts": "quiet",
   "spinnerTipsEnabled": false,
-  "effortLevel": "high",
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "medium"
     }
   },
-  "autoCompactWindow": 400000,
+  "autoCompactWindow": 200000,
   "promptSuggestionEnabled": false,
   "awaySummaryEnabled": false,
   "askUserQuestionTimeout": "60s",
@@ -204,6 +211,20 @@
         "includeMax": true,
         "nudgeRows": false
       }
+    },
+    "connect@inline": {
+      "options": {
+        "wake": true,
+        "requests": true
+      }
+    },
+    "connect@claude-connect": {
+      "options": {
+        "name": "Adrian",
+        "wake": true,
+        "requests": true,
+        "rejoin": true
+      }
     }
   },
   "tui": "default",
@@ -227,7 +248,32 @@
       "**Public repos**: github.com/adriandlam/dotfiles is PUBLIC. OK to commit: shell, editor and app configs, git name and commit email, aliases, Brewfile. Never commit: anything from `~/.zshenv.local`, `op` output, tokens, SSH/GPG keys, shell history, `~/.ssh/config` host entries.",
       "**Secrets management** (overrides default): 1Password CLI. `op read` / `op run` / `op inject` are fine when the value goes straight into the consuming command or env (e.g. `op run -- cmd`, `TOKEN=$(op read ...) cmd`); printing a secret to stdout or writing it to a file is not. `~/.zshenv.local` is a credential store: reading, printing or editing it is Credential Materialization.",
       "**Expected tools** (context only; destructive or publishing subcommands are still judged by the normal rules): shellcheck, plutil, stow from ~/dotfiles, `brew bundle` against the repo's Brewfile, `defaults read`, `defaults write` for UI/app preferences, gh read and PR commands, op per the secrets note",
-      "**Dotfiles workflow**: the dotfiles repo lives at `~/dotfiles` and is stowed into `~`. Editing files inside that repo, including shell profiles and LaunchAgent plists, is routine project work. `stow` / `stow -R` from that repo is the expected way to apply changes. `stow --adopt` and edits made directly in `~` (not via the repo) still need the user's explicit request."
+      "**Dotfiles workflow**: the dotfiles repo lives at `~/dotfiles` and is stowed into `~`. Editing files inside that repo, including shell profiles and LaunchAgent plists, is routine project work. `stow` / `stow -R` from that repo is the expected way to apply changes. `stow --adopt` and edits made directly in `~` (not via the repo) still need the user's explicit request.",
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Not queryable here (no remotes configured for this repo — repo path /Users/adrianlam/GitHub has no tracked files and no remotes). Assume private per shipped default until a remote exists",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: 1Password CLI. `op read` / `op run` / `op inject` are fine when the value goes straight into the consuming command or env; printing a secret to stdout or writing it to a file is not. `~/.zshenv.local` is a credential store: reading, printing or editing it is Credential Materialization",
+      "**Default / protected branches**: unknown — origin/HEAD unset, no remotes configured for this repo",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine (macOS) with open internet",
+      "**Source control**: No remotes configured for this repo (/Users/adrianlam/GitHub has 0 tracked files). Repos under github.com/adriandlam/ are the user's own per user-level settings; trust does not override visibility — public repos are publishing destinations and private content must not be copied into them; repos created during a session are not pre-trusted",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: claude-connect-production.up.railway.app (contacted 17× in this project's transcripts) — Trusted Internal Infra (Data Flow) candidate, usage-corroborated",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar. Note: sibling repos under ~/GitHub (homelab*, adrianlam.sh, blocksmith) contain .env.example / allowlist.txt files, but per scope = \"just this project\" these are out of scope candidates only, not adopted context",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: claude-connect-production.up.railway.app and claude-connect-production (host names carry \"production\" as a whole word) — treat as sensitive remote targets per default heuristic; any namespace/host/container whose name carries prod or production as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries prod or production as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: personal side projects and dotfiles on one macOS machine; hobby use, no employer data",
+      "**Trusted repo**: This repo (/Users/adrianlam/GitHub) currently has no remotes and 0 tracked files — there is no established trusted-repo context to scope work to yet. Repos under github.com/adriandlam/ are generally the user's own, but repos created during a session are not pre-trusted, and trust does not override visibility",
+      "**Org-specific CLIs**: None configured. Expected tools (context only; destructive/publishing subcommands still judged normally): shellcheck, plutil, stow from ~/dotfiles, `brew bundle` against the repo's Brewfile, `defaults read`, `defaults write` for UI/app preferences, gh read and PR commands, op per the secrets note",
+      "**Public repos**: github.com/adriandlam/dotfiles is PUBLIC. OK to commit: shell, editor and app configs, git name and commit email, aliases, Brewfile. Never commit: anything from `~/.zshenv.local`, `op` output, tokens, SSH/GPG keys, shell history, `~/.ssh/config` host entries"
     ]
   }
 }

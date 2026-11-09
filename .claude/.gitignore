@@ -10,3 +10,5 @@
 plugins/*
 !plugins/installed_plugins.json
 !plugins/known_marketplaces.json
+!agents/
+!agents/*.md

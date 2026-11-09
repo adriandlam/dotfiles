@@ -127,6 +127,7 @@ seed_config .claude/settings.json                   .claude/settings.json
 link_config .claude/statusline.sh                   .claude/statusline.sh
 link_config .claude/hooks/block-no-verify.sh        .claude/hooks/block-no-verify.sh
 link_config .claude/hooks/zsh-syntax-check.sh       .claude/hooks/zsh-syntax-check.sh
+link_config .claude/agents/Explore.md               .claude/agents/Explore.md
 seed_config .claude/plugins/installed_plugins.json  .claude/plugins/installed_plugins.json
 seed_config .claude/plugins/known_marketplaces.json .claude/plugins/known_marketplaces.json
 link_config .agents/.skill-lock.json                .agents/.skill-lock.json
