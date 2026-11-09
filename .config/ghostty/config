@@ -15,7 +15,9 @@
 font-size = 12
 # font-family = "GeistMono Nerd Font Mono"
 alpha-blending = linear-corrected
-minimum-contrast = 0
+# 1.1 is the docs' value for "no invisible text": palette 0 is near-black on a
+# near-black background. The valid range starts at 1, so 0 did nothing.
+minimum-contrast = 1.1
 bold-color = bright
 
 # ── Chrome ────────────────────────────────────────────────────────────
@@ -41,8 +43,8 @@ palette-generate = true
 # ── Splits ────────────────────────────────────────────────────────────
 cursor-style = bar
 cursor-style-blink = true
-unfocused-split-opacity = 0.4
-split-divider-color = #22273a
+unfocused-split-opacity = 0.7
+# split-divider-color lives in each theme file so it follows light/dark.
 split-preserve-zoom = navigation
 
 # ── Dev flow ──────────────────────────────────────────────────────────

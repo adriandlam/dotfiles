@@ -24,3 +24,4 @@ search-background = #dfe6f7
 search-foreground = #2a3140
 search-selected-background = #5e6ad2
 search-selected-foreground = #f7f8fa
+split-divider-color = #dfe6f7
