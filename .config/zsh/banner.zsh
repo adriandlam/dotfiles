@@ -126,21 +126,21 @@ _motd_disk() {
 # Failures and warnings are kept apart because they mean different things: a
 # warning is drift you will get to, a failure is something on this machine that
 # is actually broken.
+#
+# bash, not a { } &! subshell or zsh -c: zsh always opens /dev/tty, so over ssh
+# the job held the terminal open and `exit` hung until doctor.sh finished. On
+# yyz the orphan then spun at 100% CPU on the closed terminal, forever.
 _motd_doctor_refresh() {
-  local cache="$1" script="$2"
-  {
-    local summary
-    summary=$("$script" 2>/dev/null | tail -1)
-    local -i f=0 w=0
+  bash -c '
+    summary=$("$2" 2>/dev/null | tail -1)
+    f=0 w=0
     # The summary carries ANSI bold, so match the digits by their trailing
     # words rather than trying to strip escapes first.
-    if [[ $summary =~ '([0-9]+) passed, ([0-9]+) failed, ([0-9]+) warning' ]]; then
-      f=${match[2]} w=${match[3]}
-    fi
-    mkdir -p "${cache:h}"
-    print -r -- "$EPOCHSECONDS $f $w" >| "${cache}.tmp$$"
-    mv -f "${cache}.tmp$$" "$cache"
-  } &!
+    re="([0-9]+) passed, ([0-9]+) failed, ([0-9]+) warning"
+    [[ $summary =~ $re ]] && f=${BASH_REMATCH[2]} w=${BASH_REMATCH[3]}
+    mkdir -p "${1%/*}"
+    echo "$(date +%s) $f $w" >"$1.tmp$$" && mv -f "$1.tmp$$" "$1"
+  ' _ "$1" "$2" </dev/null >/dev/null 2>&1 &!
 }
 
 _motd_doctor() {
