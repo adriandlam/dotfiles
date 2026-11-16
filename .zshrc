@@ -67,6 +67,9 @@ unset LS_COLORS
 zstyle ':completion:*' list-colors 'di=38;2;140;151;255' 'ln=38;2;245;197;106' 'ex=38;2;140;151;255;1'
 
 # ── Syntax highlighting (Linear) ──────────────────────────────────────────
+# ssh doesn't forward COLORTERM, and without it zsh rounds these hex colours to
+# the 256-colour palette. Ghostty always draws true colour.
+[[ $TERM == xterm-ghostty ]] && export COLORTERM=truecolor
 source $HOMEBREW_PREFIX/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 FAST_HIGHLIGHT_STYLES[command]='fg=#8c97ff'           # accent - commands

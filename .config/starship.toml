@@ -19,6 +19,14 @@ yellow = "#f5c56a"
 red = "#ff7e78"
 muted = "#636b7b"
 
+# Only shown over ssh. The user is always the same, so the host is enough.
+[username]
+disabled = true
+
+[hostname]
+format = "[$hostname]($style) "
+style = "muted"
+
 [directory]
 style = "accent"
 
