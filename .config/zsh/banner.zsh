@@ -45,6 +45,14 @@ typeset -g _MOTD_DOCTOR_TTL=86400
 # OS update and at no other time. Sets a global instead of echoing, because a
 # command substitution would fork the very subshell this is avoiding.
 _motd_os_version() {
+  if [[ $OSTYPE != darwin* ]]; then
+    local line
+    for line in "${(@f)$(</etc/os-release)}"; do
+      [[ $line == PRETTY_NAME=* ]] && { typeset -g _MOTD_OS=${${line#*=}//\"/}; return; }
+    done
+    typeset -g _MOTD_OS=Linux
+    return
+  fi
   local plist=/System/Library/CoreServices/SystemVersion.plist
   local cache="${XDG_CACHE_HOME:-$HOME/.cache}/dotfiles/os-version"
 
@@ -54,7 +62,7 @@ _motd_os_version() {
   fi
 
   # $(<file) is read by the shell itself — no fork, unlike $(cat file).
-  typeset -g _MOTD_OS="$(<$cache)"
+  typeset -g _MOTD_OS="macOS $(<$cache)"
 }
 
 # kern.boottime prints "{ sec = 1725000000, usec = 123456 } Mon Aug ...", so
@@ -209,7 +217,7 @@ motd() {
   # One emphasis per line at most. This previously accented all four of
   # zsh/macOS/arch/terminal, which is four competing highlights in one line and
   # reads as busy — the values carry themselves, only the dots recede.
-  print -r -- "${label}Version:      ${value}zsh ${ZSH_VERSION} ${sep}· ${value}macOS ${_MOTD_OS} ${sep}· ${value}${CPUTYPE} ${sep}· ${value}${TERM_PROGRAM:-terminal}${reset}"
+  print -r -- "${label}Version:      ${value}zsh ${ZSH_VERSION} ${sep}· ${value}${_MOTD_OS} ${sep}· ${value}${CPUTYPE} ${sep}· ${value}${TERM_PROGRAM:-terminal}${reset}"
   [[ -n $_MOTD_UPTIME ]] && print -r -- "${label}Uptime:       ${uptime_colour}${_MOTD_UPTIME}${reset}"
   [[ -n $_MOTD_DISK ]]   && print -r -- "${label}Disk:         ${disk_colour}${_MOTD_DISK}${reset}"
 
@@ -232,6 +240,8 @@ _motd_maybe() {
   [[ -o interactive ]] || return 0
   [[ -t 1 ]] || return 0
   [[ ${DOTFILES_BANNER:-1} != 0 ]] || return 0
+  # Over ssh the banner is noise on top of the server's own login text.
+  [[ -z $SSH_CONNECTION ]] || return 0
   # (( SHLVL <= 1 )) || return 0
   motd
 }
